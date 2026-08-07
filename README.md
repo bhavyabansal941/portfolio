@@ -21,10 +21,10 @@ Built as an **editorial dark journal product** rather than a traditional templat
 
 1. **Identity (`IdentitySection`)**: Undergraduate positioning statement and priority 4:5 rectangular portrait.
 2. **Current Focus (`FocusSection`)**: 4-card matrix detailing Academics, Technical Focus, Core Stack, and Opportunities.
-3. **Featured Projects (`ProjectsSection`)**: 3 detailed engineering case studies (*AI Posture Analysis*, *Stock Analysis*, *Disease Outbreak Prediction*) with explicit trade-offs.
+3. **Featured Projects (`ProjectsSection`)**: 3 detailed engineering case studies (_AI Posture Analysis_, _Stock Analysis_, _Disease Outbreak Prediction_) with explicit trade-offs.
 4. **Experience Beyond Classroom (`ExperienceSection`)**: Editorial coverage of national hackathons, startup incubator judging, and live booth demonstrations.
 5. **Technical Toolkit (`ToolkitSection`)**: Categorized capability matrix covering Python, SQL, Computer Vision, Machine Learning, Scikit-learn, OpenCV, and Next.js.
-6. **Learning Journey (`LearningSection`)**: 5 continuous growth pillars structured around *Focus / Why It Matters / Recent Application*.
+6. **Learning Journey (`LearningSection`)**: 5 continuous growth pillars structured around _Focus / Why It Matters / Recent Application_.
 7. **Recognition & Impact (`RecognitionSection`)**: World Entrepreneurs Day 1st Place Winner hero block and national summit presentations (India Innovates 2026, India AI Convergence).
 8. **Professional Profile (`ProfileSection`)**: 4 verifiable verification cards for Resume, GitHub, LinkedIn, and Direct Email Inquiries.
 
@@ -74,10 +74,12 @@ bhavya-portfolio/
 ## 💻 Local Development Setup
 
 ### 1. Prerequisites
+
 - Node.js 18.0.0 or higher
 - npm 9.0.0 or higher
 
 ### 2. Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/bhavyabansal941/portfolio.git
@@ -88,9 +90,11 @@ npm install
 ```
 
 ### 3. Run Development Server
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
