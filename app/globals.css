@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #09090b;
+  --surface: #121215;
+  --surface-border: #27272a;
+  --foreground: #f4f4f5;
+  --foreground-muted: #a1a1aa;
+  --foreground-subtle: #71717a;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible focus states */
+*:focus-visible {
+  outline: 2px solid var(--foreground-muted);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-subtle);
+}
+
+/* Selection highlight */
+::selection {
+  background-color: var(--surface-border);
+  color: var(--foreground);
+}
+
+/* Base button and link resets */
+a {
+  color: inherit;
+  text-decoration: inherit;
+  transition: color 0.15s ease;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}

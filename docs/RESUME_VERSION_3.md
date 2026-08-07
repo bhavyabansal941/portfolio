@@ -1,0 +1,69 @@
+# BHAVYA BANSAL
+New Delhi, India | +91 9205292550 | bansalbhavya941@gmail.com  
+**Portfolio**: [bhavyabansal.com](https://bhavyabansal.com) | **GitHub**: [github.com/bhavyabansal941](https://github.com/bhavyabansal941) | **LinkedIn**: [linkedin.com/in/bhavya-bansal-aa70a3301](https://linkedin.com/in/bhavya-bansal-aa70a3301)
+
+---
+
+## PROFESSIONAL SUMMARY
+B.Tech Artificial Intelligence & Data Science undergraduate focused on solving practical problems through software and data analytics. Experienced in developing computer vision tools, machine learning pipelines, and interactive data applications across hackathons and engineering projects. Open to technical internship opportunities.
+
+---
+
+## EDUCATION
+**Guru Gobind Singh Indraprastha University (GGSIPU)** — New Delhi, India  
+*Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science* | Expected Graduation: May 2026  
+• CGPA: 9.03 / 10.0  
+
+---
+
+## FEATURED PROJECTS
+**AI-Based Physiotherapy Assistance System** | *Python, MediaPipe, OpenCV, Streamlit*
+• Built a real-time posture analysis application to help users perform physiotherapy exercises accurately at home.
+• Formulated custom 2D joint angle calculations using MediaPipe pose landmarks to evaluate movement against target health thresholds.
+• Designed an interactive camera interface in Streamlit that displays immediate visual feedback during rehabilitation sessions.
+
+**Chronic Kidney Disease Prediction Pipeline** | *Python, Scikit-learn, Pandas, Seaborn*
+• Developed a machine learning classification pipeline to assist in identifying early indicators of chronic kidney disease.
+• Handled missing clinical data, feature scaling, and categorical encoding to prepare health records for model training.
+• Evaluated Random Forest and Logistic Regression models using precision and recall metrics to ensure reliable predictions.
+
+**Cryptocurrency Market Analysis & Trend Forecasting** | *Python, SQL, Pandas, Matplotlib*
+• Built automated data extraction scripts to clean and analyze daily time-series cryptocurrency financial data.
+• Executed SQL queries and Pandas transformations to calculate moving averages, asset volatility, and price correlations.
+• Created visual charts rendering multi-asset price trends and volume patterns for market risk assessment.
+
+**CareerAgent — AI Career Navigation Assistant** | *Python, Streamlit, LangChain, LLM APIs*
+• Developed an automated career assistant to help students identify skill gaps based on job requirements.
+• Structured prompt templates and API query logic to extract key competencies from industry job descriptions.
+• Built a responsive Streamlit application allowing users to upload resumes and view personalized career roadmaps.
+
+---
+
+## TECHNICAL SKILLS
+• **Programming Languages**: Python, SQL  
+• **Data Analysis**: Pandas, NumPy, Data Preprocessing, Exploratory Data Analysis (EDA), Time-Series Cleaning  
+• **Machine Learning & Computer Vision**: Scikit-learn, OpenCV, MediaPipe, Classification Models, Model Evaluation  
+• **Data Visualization & Prototyping**: Power BI, Excel, Matplotlib, Seaborn, Streamlit  
+• **Tools & Platforms**: Git, GitHub, VS Code, Jupyter Notebooks  
+
+---
+
+## EXPERIENCE & TECHNICAL TRAINING
+**IBM SkillsBuild & Enterprise Training** | *Generative AI & Foundation Models Program*
+• Completed technical coursework covering transformer model concepts, structured prompt design, and evaluation techniques.
+• Experimented with prompt engineering patterns to understand enterprise natural language processing workflows.
+
+**Student Innovation Cell & Technical Societies** | *Hackathon Team Leader & Contributor*
+• Led student teams in 20+ university hackathons, handling software development, code integration, and project presentations.
+
+---
+
+## ACHIEVEMENTS & RECOGNITION
+• **1st Place Winner** — *World Entrepreneurs Day Competition (Chandigarh University Incubator, 2025)*: Won 1st place for an AI healthcare prototype evaluated on technical solution architecture and live product presentation.
+• **National Finalist** — *India Innovates 2026 (Bharat Mandapam, New Delhi)*: Represented GGSIPU in the Healthcare Open Innovation track.
+
+---
+
+## CERTIFICATIONS
+• **Samsung Innovation Campus** — *Big Data & Analytics Curriculum Graduate*  
+• **IBM SkillsBuild** — *Generative AI Foundation Models Certificate*  
