@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { WEBGL_TOKENS } from '@/data/theme-tokens';
 
 export function Hero3DScene() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,7 +40,7 @@ export function Hero3DScene() {
     // 1. Central AI Core - Outer Node Lattice
     const outerGeo = new THREE.IcosahedronGeometry(3.8, 1);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
+      color: WEBGL_TOKENS.outerLattice,
       wireframe: true,
       transparent: true,
       opacity: 0.22,
@@ -50,7 +51,7 @@ export function Hero3DScene() {
     // Inner Core Geometry
     const innerGeo = new THREE.OctahedronGeometry(2.2, 0);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x6366f1,
+      color: WEBGL_TOKENS.innerOctahedron,
       wireframe: true,
       transparent: true,
       opacity: 0.35,
@@ -61,7 +62,7 @@ export function Hero3DScene() {
     // Central Radiant Point Node
     const corePointGeo = new THREE.SphereGeometry(0.6, 16, 16);
     const corePointMat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
+      color: WEBGL_TOKENS.corePointNode,
       transparent: true,
       opacity: 0.7,
     });
@@ -71,7 +72,7 @@ export function Hero3DScene() {
     // 2. Orbital Rings
     const ring1Geo = new THREE.TorusGeometry(5.4, 0.015, 16, 100);
     const ring1Mat = new THREE.MeshBasicMaterial({
-      color: 0x0284c7,
+      color: WEBGL_TOKENS.orbitalRing1,
       transparent: true,
       opacity: 0.35,
     });
@@ -81,7 +82,7 @@ export function Hero3DScene() {
 
     const ring2Geo = new THREE.TorusGeometry(6.6, 0.012, 16, 100);
     const ring2Mat = new THREE.MeshBasicMaterial({
-      color: 0x818cf8,
+      color: WEBGL_TOKENS.orbitalRing2,
       transparent: true,
       opacity: 0.25,
     });
@@ -104,7 +105,7 @@ export function Hero3DScene() {
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particlesMat = new THREE.PointsMaterial({
-      color: 0x38bdf8,
+      color: WEBGL_TOKENS.dataParticles,
       size: 0.12,
       transparent: true,
       opacity: 0.5,
@@ -166,14 +167,11 @@ export function Hero3DScene() {
     animate();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
 
-      if (container && renderer.domElement) {
-        container.removeChild(renderer.domElement);
-      }
-
+      // Clean disposal of Three.js geometries and materials
       outerGeo.dispose();
       outerMat.dispose();
       innerGeo.dispose();
@@ -187,14 +185,18 @@ export function Hero3DScene() {
       particlesGeo.dispose();
       particlesMat.dispose();
       renderer.dispose();
+
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-90"
       aria-hidden="true"
+      className="absolute inset-0 z-0 pointer-events-none opacity-80"
     />
   );
 }
