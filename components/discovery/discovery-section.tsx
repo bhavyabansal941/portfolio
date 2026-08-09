@@ -17,16 +17,16 @@ export function DiscoverySection() {
               CHRONOLOGICAL TIMELINE
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              2024 → 2027 ENGINEERING PROGRESSION
+              2023 → 2027 ENGINEERING PROGRESSION
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-mono">
-            Key milestones from academic enrollment to 1st place competitive recognition and
+            Key milestones from 2023 academic enrollment to 1st place competitive recognition and
             Expected May 2027 graduation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {journey.map((item) => (
             <div
               key={item.year}

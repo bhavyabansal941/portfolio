@@ -15,7 +15,7 @@ export function ProjectsSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-1">
-              02 / INTERACTIVE PROJECTS
+              02 / PROJECT SYSTEMS // ENGINEERING LAB
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3">
               <span>FLAGSHIP AI & DATA SYSTEMS</span>

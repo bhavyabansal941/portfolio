@@ -20,11 +20,12 @@ export function JourneySection() {
               04 / ENGINEERING JOURNEY
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              CHRONOLOGICAL MILESTONES
+              2023 → 2027 SPATIAL TIMELINE
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-mono">
-            Academic progression, competitive hackathons, award recognition, and target graduation.
+            Academic progression from 2023 enrollment, competitive hackathons, award recognition,
+            and target graduation.
           </p>
         </div>
 

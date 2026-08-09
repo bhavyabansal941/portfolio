@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Hero3DScene } from '@/components/ui/hero-3d-scene';
 import { PORTFOLIO_DATA } from '@/data/portfolio-data';
-import { Compass, FileText, ArrowDown, ArrowUpRight, Cpu } from 'lucide-react';
+import { Compass, FileText, ArrowDown, ArrowUpRight, Cpu, Bot } from 'lucide-react';
 
 export function IdentitySection() {
   const { candidate } = PORTFOLIO_DATA;
@@ -43,18 +43,18 @@ export function IdentitySection() {
             <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-mono tracking-widest text-sky-400 uppercase">
               <span className="flex items-center gap-1.5 text-white font-bold">
                 <Cpu className="w-4 h-4 text-sky-400" />
-                ARTIFICIAL INTELLIGENCE & DATA SCIENCE
+                B.Tech AI & Data Science Candidate
               </span>
               <span>•</span>
               <span className="text-zinc-400">EXPECTED GRADUATION: MAY 2027</span>
             </div>
           </div>
 
-          {/* Concise Confident Statement */}
+          {/* Supporting Statement */}
           <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
-            Engineering practical software at the intersection of Computer Vision, Machine Learning,
-            and Data Analytics. Focused on real-world landmark tracking, statistical pipelines, and
-            clean software architecture.
+            Building practical Artificial Intelligence, Machine Learning, Computer Vision, and Data
+            Analytics systems. Focused on MediaPipe 33 pose landmark geometry, clinical
+            classification pipelines, time-series forecasting, and LLM applications.
           </p>
 
           {/* Key Metrics Grid */}
@@ -77,14 +77,14 @@ export function IdentitySection() {
             </div>
           </div>
 
-          {/* Primary Action Buttons: [ EXPLORE WORK ] & [ VIEW RESUME ] */}
+          {/* Primary Action Buttons: [ EXPLORE MY WORK ], [ VIEW RESUME ], [ ASK BHAVYA ] */}
           <div className="pt-4 flex flex-wrap items-center gap-4">
             <a
               href="#system-map"
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#09090b] font-semibold text-sm tracking-wide hover:bg-sky-300 transition-all shadow-lg hover:shadow-sky-500/20 group"
             >
               <Compass className="w-4 h-4 text-[#09090b]" />
-              <span>EXPLORE WORK</span>
+              <span>EXPLORE MY WORK</span>
               <ArrowDown className="w-4 h-4 text-[#09090b] group-hover:translate-y-0.5 transition-transform" />
             </a>
 
@@ -98,6 +98,14 @@ export function IdentitySection() {
               <span>VIEW RESUME</span>
               <ArrowUpRight className="w-4 h-4 text-sky-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
+
+            <a
+              href="#agent"
+              className="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-xl bg-white/5 text-zinc-300 border border-white/10 hover:bg-white/10 hover:text-white transition-all text-sm font-mono"
+            >
+              <Bot className="w-4 h-4 text-sky-400" />
+              <span>ASK BHAVYA</span>
+            </a>
           </div>
         </div>
 
@@ -109,7 +117,7 @@ export function IdentitySection() {
 
             <Image
               src="/images/hero-portrait.jpg"
-              alt="Bhavya Bansal — Artificial Intelligence & Data Science Undergraduate (Expected Graduation: May 2027)"
+              alt="Bhavya Bansal — B.Tech Artificial Intelligence & Data Science Candidate (Expected Graduation: May 2027)"
               fill
               sizes="(max-width: 768px) 100vw, 400px"
               priority
@@ -125,7 +133,7 @@ export function IdentitySection() {
                 </span>
               </div>
               <div className="text-xs font-mono text-zinc-300">
-                B.Tech AI & Data Science • GGSIPU Expected Graduation May 2027
+                B.Tech AI & Data Science Candidate • GGSIPU Expected Graduation May 2027
               </div>
               <div className="flex items-center gap-2 pt-1 border-t border-white/10 text-[11px] font-mono text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

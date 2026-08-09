@@ -194,7 +194,7 @@ export const PORTFOLIO_DATA: {
       subtitle: 'Clinical Feature Engineering & Classification Modeling',
       category: 'Machine Learning / Healthcare Analytics',
       summary:
-        'A machine learning classification pipeline using clinical data preprocessing, median imputation, feature scaling, and model evaluation to explore CKD risk prediction.',
+        'A machine learning classification pipeline using clinical data preprocessing, median imputation, feature scaling, and model evaluation to explore CKD prediction.',
       problem:
         'Clinical tabular datasets frequently suffer from missing laboratory values (up to 40% missingness) and high feature correlation, requiring structured data pipelines for reliable analytics.',
       approach:
@@ -502,7 +502,7 @@ export const PORTFOLIO_DATA: {
       categoryLabel: 'WEB ARCHITECTURE',
       howApplied:
         'Built production web applications utilizing App Router, Server Components, TypeScript, Tailwind CSS v4, and Three.js 3D WebGL scenes.',
-      whereUsed: ['Bhavya Personal Portfolio V4: Digital Lab web experience & web resume route'],
+      whereUsed: ['Bhavya Personal Portfolio V5.1: Digital Lab web experience & web resume route'],
       relatedProjectIds: [],
       relatedProjectNames: [],
     },
@@ -513,7 +513,7 @@ export const PORTFOLIO_DATA: {
       categoryLabel: '3D GRAPHICS',
       howApplied:
         'WebGL 3D scene rendering, procedural geometry generation, particle clouds, orbital rings, and mouse parallax interaction.',
-      whereUsed: ['Portfolio V4 Hero: Interactive 3D AI Core WebGL scene background'],
+      whereUsed: ['Portfolio V5.1 Hero: Interactive 3D AI Core WebGL scene background'],
       relatedProjectIds: [],
       relatedProjectNames: [],
     },
@@ -532,15 +532,28 @@ export const PORTFOLIO_DATA: {
 
   journey: [
     {
-      year: '2024',
-      title: 'Academic Foundations & Initial Building',
+      year: '2023',
+      title: 'Enrollment & Foundational CS Programming',
       role: 'B.Tech AI & Data Science Student',
       description:
-        'Enrolled in B.Tech Artificial Intelligence & Data Science at GGSIPU (Current CGPA: 9.03/10.0). Built core programming foundations in Python, Data Structures, Algorithms, SQL, and Object-Oriented Programming.',
+        'Enrolled in B.Tech Artificial Intelligence & Data Science at Guru Gobind Singh Indraprastha University (GGSIPU), New Delhi. Established core programming foundations in Python, C++, Object-Oriented Programming, Data Structures, and SQL relational modeling.',
+      badge: '2023 ENROLLMENT',
+      highlights: [
+        'Enrolled in B.Tech AI & Data Science degree program at GGSIPU, New Delhi.',
+        'Mastered foundational programming in Python, C++, Data Structures, Algorithms, and Object-Oriented Design.',
+        'Wrote initial relational database schemas and automated data processing scripts.',
+      ],
+    },
+    {
+      year: '2024',
+      title: 'Core Machine Learning & Analytical Modeling',
+      role: 'Academic & Hackathon Developer',
+      description:
+        'Advanced into machine learning algorithms, statistical data analysis, and relational database systems. Maintained high academic standing (Current CGPA: 9.03/10.0) while building foundation projects in data processing and analytics.',
       highlights: [
         'Maintained 9.03 / 10.0 cumulative CGPA across rigorous AI & Data Science curriculum.',
-        'Built foundation projects in Python data processing, SQL database design, and statistical data visualization.',
-        'Began competitive hackathon participation, learning team leadership and rapid prototyping.',
+        'Engineered statistical data cleaning pipelines and exploratory data analysis notebooks.',
+        'Began competitive hackathon participation, learning rapid prototyping and software teamwork.',
       ],
     },
     {
@@ -612,6 +625,19 @@ export const PORTFOLIO_DATA: {
 
   buildLogs: [
     {
+      version: 'v5.1',
+      date: '2026-08-09',
+      title: 'Spatial Engineering Experience & Timeline Alignment',
+      summary:
+        'Corrected B.Tech journey timeline to 2023-2027, enhanced spatial domain map, and verified production truth standards.',
+      changes: [
+        'Corrected B.Tech AI & Data Science timeline start year to 2023 (2023 → 2027 sequence).',
+        'Verified Machine Learning / Healthcare Analytics CKD project framing without medical diagnostic claims.',
+        'Maintained single root layout footer tag and single hero candidate portrait on main page.',
+        'Executed clean Prettier, ESLint, Next.js static build, and automated live HTML audit.',
+      ],
+    },
+    {
       version: 'v4.2',
       date: '2026-08-09',
       title: 'Production Bug Fix & Final UX Polish Pass',
@@ -635,18 +661,6 @@ export const PORTFOLIO_DATA: {
         'Extended Engineering Journey to 4 chronological nodes ending at May 2027 Expected Graduation.',
         'Created interactive System Map ("HOW BHAVYA BUILDS") and Skills Constellation taxonomy.',
         'Wired interactive 6-stage visual pipeline controllers across all 4 flagship project cards.',
-      ],
-    },
-    {
-      version: 'v3.2',
-      date: '2026-08-09',
-      title: 'Resume Synchronization & Production Build QA',
-      summary:
-        'Synchronized Expected Graduation: May 2027 across web resume route and single-page ATS PDF artifact.',
-      changes: [
-        'Updated app/resume/page.tsx with May 2027 graduation date.',
-        'Re-generated single-page PDF bhavya_bansal_resume.pdf & 300 DPI preview.',
-        'Verified clean Prettier, ESLint, and Next.js production build.',
       ],
     },
   ],
@@ -676,7 +690,7 @@ export const PORTFOLIO_DATA: {
     {
       question: 'Show me his engineering journey',
       answer:
-        'Bhavya is a B.Tech Artificial Intelligence & Data Science candidate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA). His journey spans foundational computer science in 2024, winning 1st Place in 2025, Generative AI specialization & National Finalist recognition in 2026, and expected graduation in May 2027.',
+        'Bhavya is a B.Tech Artificial Intelligence & Data Science candidate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA). His journey spans foundational computer science in 2023, core machine learning in 2024, winning 1st Place in 2025, Generative AI specialization & National Finalist recognition in 2026, and expected graduation in May 2027.',
       actionType: 'journey',
       actionLabel: 'VIEW JOURNEY',
     },
