@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { ProjectData } from '@/data/portfolio-data';
 import { usePortfolio } from '@/context/portfolio-context';
 import { ExternalLink, Layers, Play, CheckCircle2, ArrowRight } from 'lucide-react';
+import { PhysiotherapyVisualization } from './visualizations/physiotherapy-visualization';
+import { CKDVisualization } from './visualizations/ckd-visualization';
+import { CryptoVisualization } from './visualizations/crypto-visualization';
+import { CareerAgentVisualization } from './visualizations/career-agent-visualization';
 
 export function ProjectCard({ project }: { project: ProjectData }) {
   const { openCaseStudy } = usePortfolio();
@@ -55,6 +59,18 @@ export function ProjectCard({ project }: { project: ProjectData }) {
 
       {/* Summary */}
       <p className="text-sm text-zinc-300 leading-relaxed">{project.summary}</p>
+
+      {/* Distinct System Visualization Component */}
+      <div className="pt-2">
+        {project.id === 'ai-physiotherapy' && (
+          <PhysiotherapyVisualization activeStage={activeStage} />
+        )}
+        {project.id === 'ckd-prediction' && <CKDVisualization activeStage={activeStage} />}
+        {project.id === 'crypto-analysis' && (
+          <CryptoVisualization activeStage={activeStage} selectedCoin={selectedCoin} />
+        )}
+        {project.id === 'career-agent' && <CareerAgentVisualization activeStage={activeStage} />}
+      </div>
 
       {/* Project-Specific Interactive Engineering Visual Pipeline */}
       <div className="space-y-3">
@@ -160,19 +176,19 @@ export function ProjectCard({ project }: { project: ProjectData }) {
         ))}
       </div>
 
-      {/* Case Study CTA Button */}
-      <div className="pt-2 flex items-center justify-between border-t border-white/10">
+      {/* Footer CTAs */}
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
         <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
-          <CheckCircle2 className="w-3.5 h-3.5" />
+          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>VERIFIED IMPLEMENTATION</span>
         </div>
 
         <button
           onClick={() => openCaseStudy(project.id)}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-[#09090b] font-semibold text-xs tracking-wide hover:bg-sky-300 transition-all shadow-md"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#09090b] font-semibold text-xs tracking-wide hover:bg-sky-300 transition-all shadow-md group"
         >
           <span>OPEN CASE STUDY</span>
-          <span>→</span>
+          <ArrowRight className="w-3.5 h-3.5 text-[#09090b] group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
     </div>
