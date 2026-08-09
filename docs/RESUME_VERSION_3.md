@@ -1,7 +1,7 @@
 # BHAVYA BANSAL
 
 New Delhi, India | +91 9205292550 | bansalbhavya941@gmail.com  
-**Portfolio**: [bhavyabansal.com](https://bhavyabansal.com) | **GitHub**: [github.com/bhavyabansal941](https://github.com/bhavyabansal941) | **LinkedIn**: [linkedin.com/in/bhavya-bansal-aa70a3301](https://linkedin.com/in/bhavya-bansal-aa70a3301)
+**Portfolio**: [portfolio-five-steel-94.vercel.app](https://portfolio-five-steel-94.vercel.app/) | **GitHub**: [github.com/bhavyabansal941](https://github.com/bhavyabansal941) | **LinkedIn**: [linkedin.com/in/bhavya-bansal-aa70a3301](https://linkedin.com/in/bhavya-bansal-aa70a3301)
 
 ---
 
@@ -45,11 +45,11 @@ _Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Ex
 
 ## TECHNICAL SKILLS
 
-• **Programming Languages**: Python, SQL  
+• **Programming Languages**: Python, SQL, TypeScript, JavaScript  
 • **Data Analysis**: Pandas, NumPy, Data Preprocessing, Exploratory Data Analysis (EDA), Time-Series Cleaning  
 • **Machine Learning & Computer Vision**: Scikit-learn, OpenCV, MediaPipe, Classification Models, Model Evaluation  
-• **Data Visualization & Prototyping**: Power BI, Excel, Matplotlib, Seaborn, Streamlit  
-• **Tools & Platforms**: Git, GitHub, VS Code, Jupyter Notebooks
+• **Generative AI & LLMs**: LangChain, LLM APIs (Groq / Llama), Prompt Engineering  
+• **Web & Tools**: Next.js, React, Tailwind CSS, Three.js, Power BI, Streamlit, Git, GitHub, VS Code, Jupyter Notebooks
 
 ---
 
@@ -60,7 +60,7 @@ _Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Ex
 • Experimented with prompt engineering patterns to understand enterprise natural language processing workflows.
 
 **Student Innovation Cell & Technical Societies** | _Hackathon Team Leader & Contributor_
-• Led student teams in 20+ university hackathons, handling software development, code integration, and project presentations.
+• Completed 20+ hackathon participations as team leader & contributor, handling software development, code integration, and project presentations.
 
 ---
 

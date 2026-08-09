@@ -218,23 +218,24 @@ export default function ResumePage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-800">
             <div>
-              <strong className="text-gray-900">Programming Languages:</strong> Python, SQL
+              <strong className="text-gray-900">Programming Languages:</strong> Python, SQL,
+              TypeScript, JavaScript
             </div>
             <div>
-              <strong className="text-gray-900">Data Analysis:</strong> Pandas, NumPy,
+              <strong className="text-gray-900">Data Analysis:</strong> Pandas, NumPy, Data
               Preprocessing, EDA, Time-Series Cleaning
             </div>
             <div>
               <strong className="text-gray-900">Machine Learning & CV:</strong> Scikit-learn,
-              OpenCV, MediaPipe, Classification, Evaluation
+              OpenCV, MediaPipe, Classification Models, Evaluation
             </div>
             <div>
-              <strong className="text-gray-900">Visualization:</strong> Power BI, Excel, Matplotlib,
-              Seaborn, Streamlit
+              <strong className="text-gray-900">Generative AI & LLMs:</strong> LangChain, LLM APIs
+              (Groq / Llama), Prompt Engineering
             </div>
             <div className="sm:col-span-2">
-              <strong className="text-gray-900">Tools & Version Control:</strong> Git, GitHub, VS
-              Code, Jupyter Notebooks
+              <strong className="text-gray-900">Web & Tools:</strong> Next.js, React, Tailwind CSS,
+              Three.js, Power BI, Streamlit, Git, GitHub, VS Code, Jupyter Notebooks
             </div>
           </div>
         </section>
