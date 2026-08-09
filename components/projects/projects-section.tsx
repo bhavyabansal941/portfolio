@@ -1,4 +1,7 @@
-import { ExternalLink } from 'lucide-react';
+'use client';
+
+import { usePortfolio } from '@/context/portfolio-context';
+import { Sparkles } from 'lucide-react';
 
 function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
   return (
@@ -24,7 +27,6 @@ interface Project {
     outcome: string;
   };
   githubUrl: string;
-  liveUrl?: string;
 }
 
 const PROJECTS: Project[] = [
@@ -99,6 +101,8 @@ const PROJECTS: Project[] = [
 ];
 
 export function ProjectsSection() {
+  const { openCaseStudy } = usePortfolio();
+
   return (
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#09090b]">
       <div className="max-w-7xl mx-auto">
@@ -113,8 +117,8 @@ export function ProjectsSection() {
             </h2>
           </div>
           <p className="text-xs text-zinc-400 max-w-md font-mono">
-            Every project represents a verified problem, technical approach, and measurable
-            engineering outcome.
+            Click any project card to expand into an interactive case study with full technical
+            insights and engineering trade-offs.
           </p>
         </div>
 
@@ -123,19 +127,22 @@ export function ProjectsSection() {
           {PROJECTS.map((project) => (
             <article
               key={project.id}
-              className="group relative p-8 sm:p-10 rounded-2xl glass-panel border border-white/[0.08] hover:border-sky-500/30 transition-all duration-300 overflow-hidden"
+              className="group relative p-8 sm:p-10 rounded-2xl glass-panel border border-white/[0.08] hover:border-sky-500/40 transition-all duration-300 overflow-hidden cursor-pointer"
+              onClick={() => openCaseStudy(project.id)}
             >
               {/* Subtle Corner Glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl group-hover:bg-sky-500/10 transition-colors pointer-events-none" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
                 {/* Number & Meta */}
-                <div className="lg:col-span-4 space-y-4">
+                <div className="lg:col-span-5 space-y-4 text-left">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-mono text-sky-400 px-2.5 py-1 rounded bg-sky-500/10 border border-sky-500/20">
                       {project.number}
                     </span>
-                    <span className="text-xs font-mono text-zinc-500 uppercase">CASE STUDY</span>
+                    <span className="text-xs font-mono text-zinc-500 uppercase">
+                      CLICK TO EXPAND CASE STUDY
+                    </span>
                   </div>
 
                   <h3 className="text-2xl font-bold text-white group-hover:text-sky-300 transition-colors">
@@ -158,23 +165,34 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  {/* Action Link */}
-                  <div className="pt-4">
+                  {/* Action Link & Expand Trigger */}
+                  <div className="pt-4 flex items-center gap-3">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openCaseStudy(project.id);
+                      }}
+                      className="px-4 py-2.5 rounded-lg bg-sky-500/20 text-sky-300 font-mono text-xs font-bold border border-sky-500/40 hover:bg-sky-400 hover:text-[#09090b] transition-all flex items-center gap-1.5"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>EXPLORE CASE STUDY →</span>
+                    </button>
+
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-mono text-white bg-white/5 hover:bg-white/10 px-4 py-2.5 rounded-lg border border-white/10 hover:border-sky-500/40 transition-all"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
                     >
                       <GithubIcon className="w-4 h-4 text-sky-400" />
-                      <span>VIEW CODE ON GITHUB</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
+                      <span>CODE</span>
                     </a>
                   </div>
                 </div>
 
                 {/* Problem -> Approach -> Outcome Architecture */}
-                <div className="lg:col-span-8 space-y-4 bg-white/[0.02] p-6 rounded-xl border border-white/[0.06]">
+                <div className="lg:col-span-7 space-y-4 bg-white/[0.02] p-6 rounded-xl border border-white/[0.06] text-left">
                   <div>
                     <div className="text-[11px] font-mono text-zinc-500 uppercase mb-1">
                       [01] PROBLEM SOLVED

@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { FileText, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { number: '01', id: 'focus', label: 'Focus' },
-  { number: '02', id: 'projects', label: 'Projects' },
-  { number: '03', id: 'experience', label: 'Experience' },
-  { number: '04', id: 'toolkit', label: 'Toolkit' },
-  { number: '05', id: 'recognition', label: 'Recognition' },
+  { number: '01', id: 'projects', label: 'Projects' },
+  { number: '02', id: 'journey', label: 'Journey' },
+  { number: '03', id: 'toolkit', label: 'Skills' },
+  { number: '04', id: 'recognition', label: 'Recognition' },
+  { number: '05', id: 'log', label: 'Build Log' },
   { number: '06', id: 'contact', label: 'Contact' },
 ];
 

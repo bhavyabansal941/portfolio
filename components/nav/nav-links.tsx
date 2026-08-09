@@ -3,11 +3,11 @@
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
 const NAV_ITEMS = [
-  { id: 'focus', label: 'Focus' },
   { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'toolkit', label: 'Toolkit' },
+  { id: 'journey', label: 'Journey' },
+  { id: 'toolkit', label: 'Skills' },
   { id: 'recognition', label: 'Recognition' },
+  { id: 'log', label: 'Build Log' },
   { id: 'contact', label: 'Contact' },
 ];
 

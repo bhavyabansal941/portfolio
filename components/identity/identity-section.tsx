@@ -3,19 +3,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Hero3DScene } from '@/components/ui/hero-3d-scene';
-import { ArrowUpRight, FileText, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Compass, FileText } from 'lucide-react';
+
+const SYSTEM_NODES = [
+  { label: '9.03 CGPA', subtitle: 'Academic Rigor' },
+  { label: '20+ Hackathons', subtitle: 'Rapid Building' },
+  { label: '4 Flagship Projects', subtitle: 'Computer Vision & ML' },
+  { label: 'AI & Data Science', subtitle: 'GGSIPU Class of 2026' },
+];
 
 export function IdentitySection() {
   return (
     <section
       id="identity"
-      className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#09090b]"
+      className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#09090b]"
     >
       {/* Interactive 3D Spatial Canvas Background */}
       <Hero3DScene />
 
       {/* Subtle Background Radial Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-sky-500/10 rounded-full blur-[130px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Identity & Primary CTAs */}
@@ -23,8 +30,8 @@ export function IdentitySection() {
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-wide text-zinc-300 backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-            <span className="text-zinc-400">STATUS:</span> Open for AI, Data Science & Analytics
-            Internships
+            <span className="text-zinc-400">STATUS:</span> Open to Technical Internship
+            Opportunities
           </div>
 
           {/* Heading & Subtitle */}
@@ -40,59 +47,55 @@ export function IdentitySection() {
           {/* Concise Confident Supporting Statement */}
           <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
             Building practical software at the intersection of Computer Vision, Machine Learning,
-            and Data Analytics. Focused on real-world application, statistical data preprocessing,
-            and clean software architecture.
+            and Data Analytics. Focused on real-world application, statistical preprocessing, and
+            clean architecture.
           </p>
 
-          {/* Action CTAs */}
+          {/* Primary Action Buttons: [ EXPLORE ] & [ VIEW RESUME ] */}
           <div className="pt-4 flex flex-wrap items-center gap-4">
+            {/* Explore Button */}
+            <a
+              href="#discovery"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#09090b] font-semibold text-sm tracking-wide hover:bg-sky-300 transition-all shadow-lg hover:shadow-sky-500/20 group"
+            >
+              <Compass className="w-4 h-4 text-[#09090b]" />
+              <span>EXPLORE</span>
+              <ArrowDown className="w-4 h-4 text-[#09090b] group-hover:translate-y-0.5 transition-transform" />
+            </a>
+
             {/* View Resume Button - Visible, High-Contrast, Opens /resume */}
             <Link
               href="/resume"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#09090b] font-semibold text-sm tracking-wide hover:bg-sky-300 transition-all shadow-lg hover:shadow-sky-500/20 group"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] text-zinc-200 font-medium text-sm border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/40 hover:text-white transition-all backdrop-blur-md group"
             >
-              <FileText className="w-4 h-4 text-[#09090b]" />
+              <FileText className="w-4 h-4 text-sky-400" />
               <span>VIEW RESUME</span>
-              <ArrowUpRight className="w-4 h-4 text-[#09090b] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
-
-            {/* Explore Projects Button */}
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] text-zinc-200 font-medium text-sm border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/40 hover:text-white transition-all backdrop-blur-md"
-            >
-              <Sparkles className="w-4 h-4 text-sky-400" />
-              <span>EXPLORE PROJECTS</span>
-            </a>
           </div>
 
-          {/* Key Metrics Strip */}
-          <div className="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-4 text-left">
-            <div>
-              <div className="text-xl sm:text-2xl font-bold font-mono text-white">
-                9.03<span className="text-sky-400 text-sm">/10</span>
+          {/* Interactive Spatial System Visualization Nodes */}
+          <div className="pt-8 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {SYSTEM_NODES.map((node) => (
+              <div
+                key={node.label}
+                className="p-3 rounded-xl bg-white/[0.02] border border-white/10 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all group cursor-default"
+              >
+                <div className="text-sm font-bold font-mono text-white group-hover:text-sky-300 transition-colors">
+                  {node.label}
+                </div>
+                <div className="text-[10px] font-mono text-zinc-400 mt-0.5">{node.subtitle}</div>
               </div>
-              <div className="text-xs text-zinc-400 font-mono mt-0.5">B.Tech CGPA</div>
-            </div>
-            <div>
-              <div className="text-xl sm:text-2xl font-bold font-mono text-white">
-                1st<span className="text-sky-400 text-sm"> Place</span>
-              </div>
-              <div className="text-xs text-zinc-400 font-mono mt-0.5">Entrepreneurs Day 2025</div>
-            </div>
-            <div>
-              <div className="text-xl sm:text-2xl font-bold font-mono text-white">20+</div>
-              <div className="text-xs text-zinc-400 font-mono mt-0.5">Hackathons Completed</div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Column: Hero Portrait Integrated with 3D Spatial Frame */}
+        {/* Right Column: Hero Portrait Integrated with 3D Frame */}
         <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
           <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-2xl overflow-hidden glass-panel p-2 border border-white/10 shadow-2xl group transition-all duration-500 hover:border-sky-500/30">
-            {/* Soft Ambient Inner Glow */}
+            {/* Ambient Inner Shadow */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent z-10 opacity-70" />
 
             <Image
