@@ -1,112 +1,75 @@
-# Bhavya Bansal — AI & Data Science Portfolio
+# Bhavya Bansal — Personal Portfolio V4 (Bhavya // Digital Lab)
 
-Applied software engineering and data science portfolio representing computer vision tools, machine learning classification pipelines, time-series data analytics, and interactive web applications.
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.3.0-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19.2.8-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Three.js](https://img.shields.io/badge/Three.js-0.185-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Deployment Status](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-five-steel-94.vercel.app/)
 
-Live Website: [https://portfolio-five-steel-94.vercel.app/](https://portfolio-five-steel-94.vercel.app/)  
-Resume: [https://portfolio-five-steel-94.vercel.app/resume](https://portfolio-five-steel-94.vercel.app/resume)
+An immersive personal digital laboratory web application (**BHAVYA // DIGITAL LAB**) demonstrating practical engineering across **AI, Data Science, Computer Vision, Machine Learning, and Software Architecture**.
 
----
-
-## Overview
-
-This portfolio demonstrates practical software development, machine learning model building, and data analytics engineering by **Bhavya Bansal**, a B.Tech Artificial Intelligence & Data Science undergraduate at Guru Gobind Singh Indraprastha University (GGSIPU, Class of 2026, 9.03 CGPA).
-
-It is built as an interactive digital experience featuring 3D hardware-accelerated spatial canvas backgrounds, interactive case study drawers, skills usage maps, chronological timeline, guided assistant, and an executive Recruiter Mode.
-
----
-
-## Featured Projects
-
-### 01 — AI-Based Physiotherapy Assistance System
-
-- **Stack**: Python, MediaPipe, OpenCV, Streamlit
-- **Description**: Real-time computer vision application calculating 2D joint angle geometry across 33 MediaPipe pose landmarks at 30 FPS to guide at-home exercise posture calibration. Awarded 1st Place at World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator).
-
-### 02 — Chronic Kidney Disease Prediction Pipeline
-
-- **Stack**: Python, Scikit-learn, Pandas, Seaborn
-- **Description**: Machine learning diagnostic classification pipeline preprocessing clinical patient health indicators, handling missing medical data via median imputation, and evaluating Random Forest and Logistic Regression models via precision/recall curves.
-
-### 03 — Cryptocurrency Market Analysis & Trend Forecasting
-
-- **Stack**: Python, SQL, Pandas, Matplotlib
-- **Description**: Automated time-series data cleaning and SQL data analytics workflow processing financial market records, computing 7-day and 30-day rolling moving averages, and rendering asset volatility trends.
-
-### 04 — CareerAgent — AI Career Navigation Assistant
-
-- **Stack**: Python, Streamlit, LangChain, LLM APIs
-- **Description**: LLM-assisted student career analysis tool structuring prompt templates and API query logic to extract core competency requirements from job descriptions and compare them against student resumes.
+Live Production Web App: [https://portfolio-five-steel-94.vercel.app/](https://portfolio-five-steel-94.vercel.app/)  
+Web Resume Route: [https://portfolio-five-steel-94.vercel.app/resume](https://portfolio-five-steel-94.vercel.app/resume)  
+GitHub Profile: [https://github.com/bhavyabansal941/](https://github.com/bhavyabansal941/)
 
 ---
 
-## Portfolio Features
+## Candidate Fact Sheet
 
-- **Interactive Hero & Spatial Canvas (`Hero3DScene`)**: Lightweight Three.js WebGL canvas rendering spatial wireframe geometry and particle clouds with mouse parallax tracking.
-- **Recruiter Mode (`RecruiterModeModal`)**: Header toggle switch launching a 20-second executive summary snapshot overlay highlighting key metrics, 4 featured projects, core skills, and direct action links.
-- **Interactive Case Study Drawers (`ProjectCaseStudyModal`)**: Expandable project drawers revealing detailed Problem, Technical Approach, What I Built, Engineering Insight, Verified Status, and GitHub code.
-- **Chronological Engineering Journey (`JourneySection`)**: Interactive timeline from 2024 to 2026 showcasing academic, hackathon, and technical milestones.
-- **Interactive Skills Constellation (`ToolkitSection`)**: Category-grouped skill map revealing applied real-world usage cards for Python, SQL, OpenCV, MediaPipe, Scikit-learn, and Power BI. Zero percentage progress bars.
-- **Engineering Build Log (`BuildLogSection`)**: Compact repository changelog tracking version releases and updates.
-- **Guided Portfolio Assistant (`AssistantSection`)**: Deterministic "Ask About Bhavya" Q&A interface providing verified factual responses with auto-scrolling section navigation.
-- **Printable ATS Resume Route (`/resume`)**: Standalone, print-ready web route presenting Resume Version 3.0 Final with a 1-click `Print / Save PDF` action.
-
----
-
-## Technology Stack
-
-Verified technologies from codebase and `package.json`:
-
-- **Core Framework**: Next.js 16.3.0 (App Router, Turbopack)
-- **Language**: TypeScript (`strict: true`)
-- **3D Graphics**: Three.js (`three`, `@types/three`)
-- **Styling**: Tailwind CSS v4 + Vanilla CSS Variables (Obsidian Dark `#09090b` Theme)
-- **Icons**: Lucide React (`lucide-react`)
-- **Typography**: Inter & JetBrains Mono (`next/font/google`)
-- **Code Quality**: ESLint + Prettier
+- **Name**: Bhavya Bansal
+- **Degree**: Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science
+- **University**: Guru Gobind Singh Indraprastha University (GGSIPU), New Delhi, India
+- **Graduation Status**: Expected Graduation: May 2027
+- **Academic Standing**: 9.03 / 10.0 CGPA
+- **Competitive Building**: 20+ Hackathon Participations (Team Leader & Contributor)
+- **Primary Recognition**: 1st Place Winner — World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator)
 
 ---
 
-## Repository Structure
+## Experience Architecture & Core Features
 
-```text
-bhavya-portfolio/
-├── app/
-│   ├── layout.tsx             # Root layout, PortfolioProvider, Google Fonts, JSON-LD Schema
-│   ├── page.tsx               # Main page assembling V3.2 interactive modules & modals
-│   ├── globals.css            # Obsidian design tokens & Tailwind v4 imports
-│   ├── resume/page.tsx        # Printable ATS Resume Version 3.0 route (/resume)
-│   ├── manifest.ts            # Web App Manifest route (/manifest.webmanifest)
-│   ├── robots.ts              # Dynamic robots.txt generator (/robots.txt)
-│   └── sitemap.ts             # Dynamic sitemap.xml generator (/sitemap.xml)
-├── components/
-│   ├── navbar.tsx             # Sticky header wrapper with Recruiter Mode toggle
-│   ├── footer.tsx             # Editorial footer
-│   ├── assistant/             # Guided Assistant ("Ask About Bhavya")
-│   ├── discovery/             # Choose Your Path discovery section
-│   ├── experience/            # Experience & Leadership components
-│   ├── focus/                 # Current Focus 4-card matrix
-│   ├── identity/              # Identity Hero section & spatial node overlays
-│   ├── journey/               # Chronological Engineering Journey timeline
-│   ├── learning/              # Learning flow components
-│   ├── log/                   # Build Log engineering changelog
-│   ├── profile/               # Contact & Profile section
-│   ├── projects/              # Projects stream & Case Study modal drawer
-│   ├── recognition/           # Recognition & Awards components
-│   ├── recruiter/             # Recruiter Mode executive snapshot modal
-│   ├── toolkit/               # Skills Constellation & applied context cards
-│   └── ui/                    # Three.js 3D spatial canvas (Hero3DScene)
-├── context/
-│   └── portfolio-context.tsx  # React Context for Recruiter Mode & Case Study Modal state
-├── docs/                      # Engineering documentation & Resume Version 3.0 markdown
-├── hooks/                     # Custom useScrollSpy hook
-└── public/                    # Production photography assets & favicons
-```
+1. **Hero — Enter the Digital Lab**:
+   - Oversized editorial typography featuring candidate credentials, Expected Graduation May 2027, 9.03 CGPA, and primary CTAs `[ EXPLORE WORK ]` & `[ VIEW RESUME ↗ ]`.
+   - Procedural Three.js 3D **AI Core** WebGL scene (icosahedron node network, orbital rings, particle streams, mouse parallax, and `prefers-reduced-motion` accessibility compliance).
+   - **Single Portrait Strategy**: Candidate portrait (`/images/hero-portrait.jpg`) featured exclusively once in the Hero Identity Card with status `AVAILABLE FOR INTERNSHIP OPPORTUNITIES` and `MAY 2027` tag.
+
+2. **01 / System Map (`HOW BHAVYA BUILDS`)**:
+   - Interactive node map connecting `AI`, `DATA`, `MACHINE LEARNING`, `COMPUTER VISION`, `SOFTWARE`, and `PROJECTS` with contextual tooltips and interactive filtering.
+
+3. **02 / Interactive Flagship Projects**:
+   - **Project 01 — AI Physiotherapy Assistance System**: Visual skeletal 2D vector geometry pipeline (`CAMERA → MEDIAPIPE → 33 LANDMARKS → JOINT GEOMETRY → POSTURE ANALYSIS → FEEDBACK`).
+   - **Project 02 — Chronic Kidney Disease Prediction Pipeline**: Visual ML diagnostic pipeline (`DATA → CLEANING → FEATURE ENGINEERING → MODEL → PREDICTION`).
+   - **Project 03 — Cryptocurrency Market Analysis**: Multi-coin time-series analytics pipeline (`COINGECKO API → SQL → PANDAS → MOVING AVERAGES → TREND ANALYSIS → FORECASTING`) with multi-coin selector (`BTC`, `ETH`, `SOL`, `ADA`, `DOGE`) showing naive baseline model evaluation.
+   - **Project 04 — CareerAgent**: Conversational AI Agent workspace UI (`RESUME → PARSER → SKILL EXTRACTION → JOB DESCRIPTION → MATCHING → SKILL GAP → CAREER ROADMAP`).
+   - Every project opens a detailed **Case Study Drawer** (`ProjectCaseStudyModal`) displaying engineering decisions, tech stack, and GitHub links.
+
+4. **03 / Skills Constellation (`SKILL → EVIDENCE`)**:
+   - Interactive skill taxonomy across `PROGRAMMING`, `DATA`, `MACHINE LEARNING`, `COMPUTER VISION`, `GENERATIVE AI`, and `WEB & TOOLS`.
+   - Selecting a skill illuminates its node, highlights connected projects, and presents an evidence panel detailing Where Used, How Applied, and Related Projects.
+
+5. **04 & 05 / Engineering Journey & Evidence Frames**:
+   - Vertical timeline covering 2024 to 2027 (`Expected B.Tech Graduation`).
+   - World Entrepreneurs Day 1st Place (2025) and India Innovates 2026 National Finalist showcased with interactive **Evidence Frames** over verified event photography.
+   - Verified Event Demonstration panel for AI Physiotherapy booth photo (`/images/ai-physiotherapy-demo.jpg`) with MediaPipe/OpenCV technical overlays.
+
+6. **08 / Bhavya // Portfolio Agent**:
+   - Deterministic AI Agent (`STATUS: ● ONLINE - VERIFIED KNOWLEDGE`) with suggestion chips and spatial node illumination triggers.
+
+7. **09 / Open Channel Contact & Recruiter Mode**:
+   - Contact form with `mailto:` fallback + direct links to Email (`bansalbhavya941@gmail.com`), GitHub, and LinkedIn.
+   - **Recruiter Mode Modal**: 20-second candidate executive overview.
 
 ---
 
-## Local Development
+## Local Development & Setup
 
-### Installation
+### Prerequisites
+
+- Node.js 18.17+ or 20.0+
+- npm or yarn
+
+### Quick Start
 
 ```bash
 # Clone the repository
@@ -115,42 +78,30 @@ cd portfolio
 
 # Install dependencies
 npm install
-```
 
-### Development Server
-
-```bash
+# Run local development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Quality & Build Verification Commands
+---
+
+## Verification & Build Commands
 
 ```bash
-# Prettier code formatting
+# Prettier code formatting check
 npm run format
 
 # ESLint code quality check
 npm run lint
 
-# Next.js static production build
+# Next.js production build verification
 npm run build
-
-# Start local production server
-npm run start
 ```
-
----
-
-## Production Deployment
-
-This project is deployed on **Vercel** with automatic deployment connected to the `main` branch of GitHub repository [`bhavyabansal941/portfolio`](https://github.com/bhavyabansal941/portfolio).
-
-- **Production URL**: [https://portfolio-five-steel-94.vercel.app/](https://portfolio-five-steel-94.vercel.app/)
 
 ---
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](file:///c:/Users/Bhavya%20Bansal/bhavya-portfolio/LICENSE) for details.
+MIT License — Copyright (c) 2026 Bhavya Bansal

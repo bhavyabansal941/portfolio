@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { FileText, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { number: '01', id: 'projects', label: 'Projects' },
-  { number: '02', id: 'journey', label: 'Journey' },
-  { number: '03', id: 'toolkit', label: 'Skills' },
-  { number: '04', id: 'recognition', label: 'Recognition' },
-  { number: '05', id: 'log', label: 'Build Log' },
-  { number: '06', id: 'contact', label: 'Contact' },
+  { number: '01', id: 'system-map', label: 'SYSTEM MAP' },
+  { number: '02', id: 'projects', label: 'INTERACTIVE PROJECTS' },
+  { number: '03', id: 'skills', label: 'SKILLS CONSTELLATION' },
+  { number: '04', id: 'journey', label: 'ENGINEERING JOURNEY' },
+  { number: '05', id: 'achievements', label: 'ACHIEVEMENTS' },
+  { number: '06', id: 'agent', label: 'PORTFOLIO AGENT' },
+  { number: '07', id: 'contact', label: 'OPEN A CHANNEL' },
 ];
 
 export function NavMobile() {
@@ -67,16 +68,16 @@ export function NavMobile() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#09090b] font-mono text-xs font-bold"
+                className="flex items-center justify-center gap-2 p-3.5 rounded-xl bg-sky-500 text-white font-mono text-xs font-bold shadow-lg"
               >
                 <FileText className="w-4 h-4" />
-                <span>VIEW RESUME</span>
+                <span>VIEW RESUME ↗</span>
               </Link>
             </div>
           </nav>
 
           <div className="text-xs font-mono text-zinc-500 pt-4 border-t border-white/10">
-            Bhavya Bansal • AI & Data Science Portfolio
+            BHAVYA // DIGITAL LAB • GGSIPU Expected Graduation: May 2027
           </div>
         </div>
       )}

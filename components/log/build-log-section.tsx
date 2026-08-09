@@ -1,78 +1,61 @@
-import { History } from 'lucide-react';
+'use client';
 
-interface LogEntry {
-  date: string;
-  version: string;
-  title: string;
-  description: string;
-}
-
-const LOG_ENTRIES: LogEntry[] = [
-  {
-    date: '2026-08-09',
-    version: 'v3.0.0',
-    title: 'Interactive Digital Experience & Recruiter Mode Release',
-    description:
-      'Engineered Portfolio V3 with Three.js 3D spatial canvas, interactive case study drawers, skills constellation, and executive Recruiter Mode.',
-  },
-  {
-    date: '2026-08-07',
-    version: 'v2.1.0',
-    title: 'Resume Version 3.0 Final Integration',
-    description:
-      'Refined factual candidate resume data (CGPA 9.03/10.0, exact project bullets) and established printable /resume web route.',
-  },
-  {
-    date: '2026-08-05',
-    version: 'v2.0.0',
-    title: 'Public GitHub Repository & Vercel Deployment',
-    description:
-      'Cleaned internal AI instruction files, initialized public repository bhavyabansal941/portfolio, and verified static Turbopack production builds.',
-  },
-  {
-    date: '2025-08-21',
-    version: 'v1.0.0',
-    title: 'World Entrepreneurs Day 1st Place Win',
-    description:
-      'Awarded 1st place for AI Physiotherapy Assistance System prototype pitch at Chandigarh University Incubator.',
-  },
-];
+import { PORTFOLIO_DATA } from '@/data/portfolio-data';
+import { GitBranch } from 'lucide-react';
 
 export function BuildLogSection() {
+  const { buildLogs } = PORTFOLIO_DATA;
+
   return (
-    <section id="log" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0c0c0e]">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-12 text-left flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <section
+      id="build-log"
+      className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#09090b] border-t border-white/[0.08]"
+    >
+      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-2">
-              05 / ENGINEERING CHANGELOG
+            <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-1">
+              07 / BUILD LOG & DISCIPLINE
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">BUILD LOG</h2>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight flex items-center gap-3">
+              <span>PORTFOLIO ITERATIONS</span>
+            </h2>
           </div>
-          <div className="text-xs font-mono text-zinc-400 flex items-center gap-2">
-            <History className="w-4 h-4 text-sky-400" />
-            <span>ACTIVE REPOSITORY MAINTENANCE</span>
-          </div>
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-mono">
+            Documenting the engineering evolution, visual refinements, and content truth audits of
+            this web application.
+          </p>
         </div>
 
-        {/* Changelog Entries Stream */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {LOG_ENTRIES.map((entry) => (
+        <div className="space-y-6">
+          {buildLogs.map((log) => (
             <div
-              key={entry.date}
-              className="p-5 rounded-2xl glass-panel border border-white/[0.08] hover:border-sky-500/30 transition-all text-left space-y-2"
+              key={log.version}
+              className="p-6 sm:p-8 rounded-2xl glass-panel border border-white/10 space-y-4 bg-white/[0.01]"
             >
-              <div className="flex items-center justify-between font-mono text-xs">
-                <span className="text-sky-400 font-bold">{entry.version}</span>
-                <span className="text-zinc-500">{entry.date}</span>
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3">
+                <div className="flex items-center gap-3">
+                  <span className="px-2.5 py-1 rounded bg-sky-500/10 border border-sky-500/30 text-xs font-mono font-bold text-sky-300">
+                    {log.version}
+                  </span>
+                  <h3 className="text-lg font-bold text-[#f4f4f5] tracking-tight">{log.title}</h3>
+                </div>
+                <span className="text-xs font-mono text-zinc-500">{log.date}</span>
               </div>
 
-              <h3 className="text-base font-bold text-white leading-snug">{entry.title}</h3>
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">{log.summary}</p>
 
-              <p className="text-xs text-zinc-400 leading-relaxed font-normal">
-                {entry.description}
-              </p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                {log.changes.map((change, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-300 flex items-center gap-1.5"
+                  >
+                    <GitBranch className="w-3 h-3 text-sky-400" />
+                    {change}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>

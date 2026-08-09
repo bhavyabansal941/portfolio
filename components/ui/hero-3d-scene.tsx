@@ -10,7 +10,6 @@ export function Hero3DScene() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Scene setup
@@ -22,7 +21,7 @@ export function Hero3DScene() {
       0.1,
       1000
     );
-    camera.position.z = 18;
+    camera.position.z = 16;
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -33,70 +32,89 @@ export function Hero3DScene() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    // Group for objects
+    // AI Core Group
     const group = new THREE.Group();
     scene.add(group);
 
-    // 1. Central Icosahedron Wireframe (Abstract Spatial Data Node)
-    const icoGeometry = new THREE.IcosahedronGeometry(4.2, 1);
-    const icoMaterial = new THREE.MeshBasicMaterial({
+    // 1. Central AI Core - Outer Node Lattice
+    const outerGeo = new THREE.IcosahedronGeometry(3.8, 1);
+    const outerMat = new THREE.MeshBasicMaterial({
       color: 0x38bdf8,
       wireframe: true,
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.22,
     });
-    const icoMesh = new THREE.Mesh(icoGeometry, icoMaterial);
-    group.add(icoMesh);
+    const outerMesh = new THREE.Mesh(outerGeo, outerMat);
+    group.add(outerMesh);
 
-    // Inner Octahedron
-    const innerGeometry = new THREE.OctahedronGeometry(2.5, 0);
-    const innerMaterial = new THREE.MeshBasicMaterial({
-      color: 0x60a5fa,
+    // Inner Core Geometry
+    const innerGeo = new THREE.OctahedronGeometry(2.2, 0);
+    const innerMat = new THREE.MeshBasicMaterial({
+      color: 0x6366f1,
       wireframe: true,
+      transparent: true,
+      opacity: 0.35,
+    });
+    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+    group.add(innerMesh);
+
+    // Central Radiant Point Node
+    const corePointGeo = new THREE.SphereGeometry(0.6, 16, 16);
+    const corePointMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.7,
+    });
+    const corePointMesh = new THREE.Mesh(corePointGeo, corePointMat);
+    group.add(corePointMesh);
+
+    // 2. Orbital Rings
+    const ring1Geo = new THREE.TorusGeometry(5.4, 0.015, 16, 100);
+    const ring1Mat = new THREE.MeshBasicMaterial({
+      color: 0x0284c7,
+      transparent: true,
+      opacity: 0.35,
+    });
+    const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+    ring1.rotation.x = Math.PI / 3;
+    group.add(ring1);
+
+    const ring2Geo = new THREE.TorusGeometry(6.6, 0.012, 16, 100);
+    const ring2Mat = new THREE.MeshBasicMaterial({
+      color: 0x818cf8,
       transparent: true,
       opacity: 0.25,
     });
-    const innerMesh = new THREE.Mesh(innerGeometry, innerMaterial);
-    group.add(innerMesh);
+    const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+    ring2.rotation.y = Math.PI / 4;
+    ring2.rotation.x = -Math.PI / 6;
+    group.add(ring2);
 
-    // 2. Floating Data Point Cloud
-    const particleCount = 120;
-    const particlesGeometry = new THREE.BufferGeometry();
+    // 3. Floating Data Particle Stream Cloud
+    const particleCount = 140;
+    const particlesGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
-    const particleScales = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 16;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 16;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 16;
-      particleScales[i] = Math.random() * 0.15 + 0.05;
+      positions[i * 3] = (Math.random() - 0.5) * 15;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
     }
 
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    const particlesMaterial = new THREE.PointsMaterial({
+    const particlesMat = new THREE.PointsMaterial({
       color: 0x38bdf8,
-      size: 0.15,
+      size: 0.12,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.5,
       blending: THREE.AdditiveBlending,
     });
 
-    const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
+    const particleSystem = new THREE.Points(particlesGeo, particlesMat);
     group.add(particleSystem);
 
-    // 3. Subtle Connection Ring
-    const ringGeometry = new THREE.TorusGeometry(6, 0.015, 16, 100);
-    const ringMaterial = new THREE.MeshBasicMaterial({
-      color: 0x94a3b8,
-      transparent: true,
-      opacity: 0.15,
-    });
-    const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
-    ringMesh.rotation.x = Math.PI / 3;
-    group.add(ringMesh);
-
-    // Parallax mouse tracking
+    // Smooth Cursor Parallax Tracking
     let targetX = 0;
     let targetY = 0;
     let mouseX = 0;
@@ -110,7 +128,6 @@ export function Hero3DScene() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Resize handler
     const handleResize = () => {
       if (!container) return;
       camera.aspect = container.clientWidth / container.clientHeight;
@@ -120,26 +137,24 @@ export function Hero3DScene() {
 
     window.addEventListener('resize', handleResize);
 
-    // Animation Loop
     let animationFrameId: number;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
       if (!prefersReducedMotion) {
-        // Slow ambient rotation
-        icoMesh.rotation.x += 0.0012;
-        icoMesh.rotation.y += 0.0018;
+        outerMesh.rotation.x += 0.001;
+        outerMesh.rotation.y += 0.0015;
 
-        innerMesh.rotation.x -= 0.0015;
-        innerMesh.rotation.y += 0.002;
+        innerMesh.rotation.x -= 0.0012;
+        innerMesh.rotation.y += 0.0018;
 
-        ringMesh.rotation.z += 0.0008;
-        particleSystem.rotation.y += 0.0005;
+        ring1.rotation.z += 0.0008;
+        ring2.rotation.z -= 0.0006;
+        particleSystem.rotation.y += 0.0004;
 
-        // Smooth Mouse Parallax interpolation
-        targetX += (mouseX * 0.4 - targetX) * 0.05;
-        targetY += (-mouseY * 0.4 - targetY) * 0.05;
+        targetX += (mouseX * 0.35 - targetX) * 0.05;
+        targetY += (-mouseY * 0.35 - targetY) * 0.05;
 
         group.rotation.y = targetX;
         group.rotation.x = targetY;
@@ -150,7 +165,6 @@ export function Hero3DScene() {
 
     animate();
 
-    // Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -160,14 +174,18 @@ export function Hero3DScene() {
         container.removeChild(renderer.domElement);
       }
 
-      icoGeometry.dispose();
-      icoMaterial.dispose();
-      innerGeometry.dispose();
-      innerMaterial.dispose();
-      particlesGeometry.dispose();
-      particlesMaterial.dispose();
-      ringGeometry.dispose();
-      ringMaterial.dispose();
+      outerGeo.dispose();
+      outerMat.dispose();
+      innerGeo.dispose();
+      innerMat.dispose();
+      corePointGeo.dispose();
+      corePointMat.dispose();
+      ring1Geo.dispose();
+      ring1Mat.dispose();
+      ring2Geo.dispose();
+      ring2Mat.dispose();
+      particlesGeo.dispose();
+      particlesMat.dispose();
       renderer.dispose();
     };
   }, []);
@@ -175,7 +193,7 @@ export function Hero3DScene() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-80"
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-90"
       aria-hidden="true"
     />
   );

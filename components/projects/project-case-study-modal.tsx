@@ -1,213 +1,161 @@
 'use client';
 
-import React from 'react';
+import { useEffect } from 'react';
 import { usePortfolio } from '@/context/portfolio-context';
-import { ArrowUpRight, X } from 'lucide-react';
-
-interface ProjectDetail {
-  id: string;
-  number: string;
-  title: string;
-  oneLiner: string;
-  tags: string[];
-  problem: string;
-  approach: string;
-  whatIBuilt: string;
-  engineeringInsight: string;
-  resultStatus: string;
-  githubUrl: string;
-}
-
-const PROJECT_DETAILS: Record<string, ProjectDetail> = {
-  'physiotherapy-assistance': {
-    id: 'physiotherapy-assistance',
-    number: '01',
-    title: 'AI-Based Physiotherapy Assistance System',
-    oneLiner:
-      'Real-time computer vision application calculating 2D joint angles to guide at-home exercise posture calibration.',
-    tags: ['Python', 'MediaPipe', 'OpenCV', 'Streamlit', 'Computer Vision'],
-    problem:
-      'Patients performing physical therapy exercises at home lack immediate posture feedback, increasing injury risk and slowing rehabilitation progress.',
-    approach:
-      'Engineered a 30 FPS camera processing loop utilizing 33 MediaPipe pose landmarks and custom vector angle geometry math to compare patient posture against clinical motion thresholds.',
-    whatIBuilt:
-      'Built a modular Python application featuring a real-time OpenCV video renderer, MediaPipe 2D coordinate calculation engine, and a responsive Streamlit camera dashboard with visual angle overlays.',
-    engineeringInsight:
-      'Calculating joint vectors in 2D spatial coordinates requires normalising landmark points relative to torso orientation to prevent false posture triggers during camera perspective shifts.',
-    resultStatus:
-      'Awarded 1st Place at World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator). Live prototype demonstrated at university innovation summits.',
-    githubUrl: 'https://github.com/bhavyabansal941',
-  },
-  'ckd-prediction': {
-    id: 'ckd-prediction',
-    number: '02',
-    title: 'Chronic Kidney Disease (CKD) Prediction Pipeline',
-    oneLiner:
-      'Diagnostic machine learning classification pipeline processing patient health indicators.',
-    tags: ['Python', 'Scikit-learn', 'Pandas', 'Seaborn', 'Machine Learning', 'Classification'],
-    problem:
-      'Early detection of chronic kidney disease requires analyzing multi-dimensional lab test records containing missing medical measurements and non-linear feature correlations.',
-    approach:
-      'Implemented automated median value data imputation, categorical feature encoding, and robust standard feature scaling using Scikit-learn preprocessors.',
-    whatIBuilt:
-      'Constructed a reproducible machine learning classification pipeline training Random Forest and Logistic Regression models evaluated via confusion matrix precision, recall, and ROC-AUC curves.',
-    engineeringInsight:
-      'Handling medical missingness required evaluating feature correlation matrices before imputation to avoid introducing synthetic bias into sensitive blood indicator attributes.',
-    resultStatus:
-      'Model pipeline validated on clinical benchmark datasets, achieving high recall metrics to prioritize early diagnostic screening accuracy.',
-    githubUrl: 'https://github.com/bhavyabansal941',
-  },
-  'crypto-analytics': {
-    id: 'crypto-analytics',
-    number: '03',
-    title: 'Cryptocurrency Market Analysis & Trend Forecasting',
-    oneLiner:
-      'Automated time-series data cleaning and SQL analytics pipeline processing daily financial datasets.',
-    tags: ['Python', 'SQL', 'Pandas', 'Matplotlib', 'Data Analytics', 'Time-Series'],
-    problem:
-      'High volatility and missing data points in raw cryptocurrency time-series data hinder reliable trend estimation and risk analysis.',
-    approach:
-      'Constructed automated Python extraction scripts executing SQL window functions, moving average calculations, and rolling asset correlation matrices.',
-    whatIBuilt:
-      'Developed a data processing workflow storing cleansed daily market records, computing 7-day and 30-day moving averages, and rendering volume distribution charts.',
-    engineeringInsight:
-      'Preventing lookahead bias in time-series data requires strict chronological data splitting before applying rolling transformations.',
-    resultStatus:
-      'Functional financial analytics workflow generating automated visual risk metrics and price trend charts.',
-    githubUrl: 'https://github.com/bhavyabansal941',
-  },
-  'career-agent': {
-    id: 'career-agent',
-    number: '04',
-    title: 'CareerAgent — AI Career Navigation Assistant',
-    oneLiner:
-      'LLM-assisted student career analysis tool comparing user resumes against industry job requirements.',
-    tags: ['Python', 'Streamlit', 'LangChain', 'LLM APIs', 'Prompt Engineering'],
-    problem:
-      'Students often struggle to identify specific skill gaps required for target data science, AI, and analytics roles.',
-    approach:
-      'Formulated structured prompt templates and API query logic to extract core competency requirements from job descriptions and compare them against uploaded student resume profiles.',
-    whatIBuilt:
-      'Designed a responsive Streamlit web application providing instant document text extraction, competency matching, and personalized skill roadmap recommendations.',
-    engineeringInsight:
-      'Structuring LLM API outputs with strict schema constraints prevents hallucinated skill recommendations and delivers actionable learning advice.',
-    resultStatus:
-      'Functional career analysis prototype enabling interactive resume document parsing and roadmap generation.',
-    githubUrl: 'https://github.com/bhavyabansal941',
-  },
-};
+import { PORTFOLIO_DATA } from '@/data/portfolio-data';
+import { X, ExternalLink, CheckCircle2, Layers, Cpu, Code2 } from 'lucide-react';
 
 export function ProjectCaseStudyModal() {
   const { activeCaseStudyId, closeCaseStudy } = usePortfolio();
 
-  if (!activeCaseStudyId) return null;
-  const project = PROJECT_DETAILS[activeCaseStudyId];
+  const project = PORTFOLIO_DATA.projects.find((p) => p.id === activeCaseStudyId);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeCaseStudy();
+    };
+    if (activeCaseStudyId) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [activeCaseStudyId, closeCaseStudy]);
+
   if (!project) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-xl animate-in fade-in duration-200"
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Case Study: ${project.title}`}
-    >
-      <div className="relative w-full max-w-4xl rounded-2xl glass-panel p-6 sm:p-10 border border-sky-500/40 bg-[#09090b]/95 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="flex items-start justify-between border-b border-white/10 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-sky-400 px-2.5 py-1 rounded bg-sky-500/10 border border-sky-500/20">
-              {project.number}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-[#09090b]/80 backdrop-blur-xl animate-fade-in">
+      {/* Modal Container */}
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl glass-panel border border-white/10 bg-[#09090b]/95 p-6 sm:p-10 text-left space-y-8 shadow-2xl">
+        {/* Close Button */}
+        <button
+          onClick={closeCaseStudy}
+          className="absolute top-6 right-6 p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-all"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Modal Header */}
+        <div className="space-y-3 border-b border-white/10 pb-6 pr-12">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-sky-400">
+            <span className="px-2.5 py-1 rounded bg-sky-500/10 border border-sky-500/30">
+              PROJECT {project.number}
             </span>
-            <span className="text-xs font-mono text-zinc-400 uppercase">
-              INTERACTIVE CASE STUDY
-            </span>
+            <span>•</span>
+            <span>{project.category}</span>
           </div>
-
-          <button
-            onClick={closeCaseStudy}
-            className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-all"
-            aria-label="Close Case Study"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Title & One-Liner */}
-        <div className="space-y-2">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
             {project.title}
           </h2>
-          <p className="text-sm text-zinc-300 leading-relaxed font-medium">{project.oneLiner}</p>
+          <p className="text-sm font-mono text-zinc-400">{project.subtitle}</p>
+        </div>
 
-          {/* Tech Tags */}
-          <div className="flex flex-wrap gap-1.5 pt-2">
-            {project.tags.map((tag) => (
+        {/* Problem & Approach Split */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-5 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
+            <h4 className="text-xs font-mono font-bold text-sky-400 uppercase flex items-center gap-2">
+              <Cpu className="w-3.5 h-3.5" />
+              01 / THE PROBLEM
+            </h4>
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">{project.problem}</p>
+          </div>
+
+          <div className="p-5 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
+            <h4 className="text-xs font-mono font-bold text-sky-400 uppercase flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5" />
+              02 / TECHNICAL APPROACH
+            </h4>
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">{project.approach}</p>
+          </div>
+        </div>
+
+        {/* Tech Stack */}
+        <div className="space-y-3">
+          <h4 className="text-xs font-mono font-bold text-sky-400 uppercase flex items-center gap-2">
+            <Code2 className="w-3.5 h-3.5" />
+            03 / TECH STACK & LIBRARIES
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
               <span
-                key={tag}
-                className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-zinc-300 border border-white/10"
+                key={tech}
+                className="px-3 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/20 text-xs font-mono text-sky-300"
               >
-                {tag}
+                {tech}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Detailed Breakdown Grid */}
-        <div className="space-y-4 pt-2">
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10">
-            <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
-              [01] THE PROBLEM
-            </div>
-            <p className="text-xs text-zinc-300 leading-relaxed">{project.problem}</p>
-          </div>
+        {/* Key Implementations */}
+        <div className="space-y-3">
+          <h4 className="text-xs font-mono font-bold text-sky-400 uppercase">
+            04 / ENGINEERING IMPLEMENTATION DETAILS
+          </h4>
+          <ul className="space-y-2 text-xs sm:text-sm text-zinc-300">
+            {project.implementation.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2.5">
+                <span className="text-sky-400 font-mono font-bold">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          <div className="p-4 rounded-xl bg-sky-500/[0.03] border border-sky-500/20">
-            <div className="text-xs font-mono text-sky-400 uppercase tracking-wider mb-1">
-              [02] TECHNICAL APPROACH
-            </div>
-            <p className="text-xs text-zinc-300 leading-relaxed">{project.approach}</p>
-          </div>
+        {/* Key Engineering Decisions */}
+        <div className="space-y-3">
+          <h4 className="text-xs font-mono font-bold text-sky-400 uppercase">
+            05 / ARCHITECTURAL DECISIONS & TRADEOFFS
+          </h4>
+          <ul className="space-y-2 text-xs sm:text-sm text-zinc-300">
+            {project.decisions.map((decision, idx) => (
+              <li key={idx} className="flex items-start gap-2.5">
+                <span className="text-sky-400 font-mono font-bold">•</span>
+                <span>{decision}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10">
-            <div className="text-xs font-mono text-white uppercase tracking-wider mb-1">
-              [03] WHAT I BUILT
-            </div>
-            <p className="text-xs text-zinc-300 leading-relaxed">{project.whatIBuilt}</p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-purple-500/[0.03] border border-purple-500/20">
-            <div className="text-xs font-mono text-purple-300 uppercase tracking-wider mb-1">
-              [04] ENGINEERING INSIGHT & DECISION
-            </div>
-            <p className="text-xs text-zinc-300 leading-relaxed">{project.engineeringInsight}</p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-emerald-500/[0.03] border border-emerald-500/20">
-            <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-1">
-              [05] RESULT & VERIFIED STATUS
-            </div>
-            <p className="text-xs text-zinc-300 leading-relaxed">{project.resultStatus}</p>
+        {/* Outcome */}
+        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs sm:text-sm text-emerald-300 flex items-start gap-3">
+          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+          <div>
+            <strong className="block text-emerald-200 font-mono">
+              06 / VERIFIED OUTCOME & STATUS:
+            </strong>
+            <span>{project.outcome}</span>
           </div>
         </div>
 
-        {/* Action Bar */}
-        <div className="pt-4 flex items-center justify-between border-t border-white/10">
+        {/* Footer Actions */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-white text-[#09090b] font-mono text-xs font-bold hover:bg-sky-300 transition-all inline-flex items-center gap-2"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-[#09090b] font-semibold text-xs tracking-wide hover:bg-sky-300 transition-all shadow-md"
           >
-            <span>VIEW CODE ON GITHUB</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>VIEW ON GITHUB</span>
           </a>
 
-          <button
-            onClick={closeCaseStudy}
-            className="text-xs font-mono text-zinc-400 hover:text-white underline underline-offset-4"
-          >
-            Close Case Study →
-          </button>
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 font-medium text-xs hover:bg-sky-500/20 transition-all"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span>LIVE DEMO</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

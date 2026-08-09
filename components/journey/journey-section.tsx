@@ -1,147 +1,93 @@
 'use client';
 
-import React, { useState } from 'react';
-import { CheckCircle2, ChevronDown } from 'lucide-react';
-
-interface TimelineYear {
-  year: string;
-  badge: string;
-  headline: string;
-  summary: string;
-  milestones: string[];
-}
-
-const TIMELINE_DATA: TimelineYear[] = [
-  {
-    year: '2024',
-    badge: 'FOUNDATIONS',
-    headline: 'Computer Science & Artificial Intelligence Fundamentals',
-    summary:
-      'Established core algorithmic problem solving, Python programming foundations, and linear algebra coursework at GGSIPU.',
-    milestones: [
-      'Data Structures & Algorithms coursework in Python & C++',
-      'Database Management Systems & SQL relational querying',
-      'Exploratory Data Analysis (EDA) using NumPy & Pandas',
-      'First hackathon prototypes & peer study groups',
-    ],
-  },
-  {
-    year: '2025',
-    badge: 'APPLIED ML & HACKATHONS',
-    headline: 'Machine Learning Classification & Competitive Success',
-    summary:
-      'Scaled practical project building, ML model pipelines, time-series SQL analytics, and competitive hackathon leadership.',
-    milestones: [
-      '1st Place Winner — World Entrepreneurs Day Competition (Chandigarh University Incubator)',
-      'Built Chronic Kidney Disease ML diagnostic classification pipeline (Scikit-learn)',
-      'Constructed Cryptocurrency time-series market analytics pipeline (SQL, Pandas)',
-      'Completed 20+ hackathon participations as team leader & contributor',
-      'Samsung Innovation Campus Big Data & Analytics curriculum graduate',
-    ],
-  },
-  {
-    year: '2026',
-    badge: 'SPECIALIZATION & PRODUCTION',
-    headline: 'Computer Vision, Generative AI & Production Systems',
-    summary:
-      'Applied computer vision pose estimation, completed Generative AI technical coursework, and built production web software.',
-    milestones: [
-      'Engineered AI Physiotherapy Assistance System (MediaPipe 33 pose landmarks at 30 FPS)',
-      'National Finalist at India Innovates 2026 (Bharat Mandapam, New Delhi)',
-      'IBM SkillsBuild Generative AI & Foundation Models certificate',
-      'Engineered & published production AI Engineer Portfolio (Next.js 16, TypeScript, Three.js)',
-      'Published Resume Version 3.0 Final (CGPA 9.03/10.0)',
-    ],
-  },
-];
+import { useState } from 'react';
+import { PORTFOLIO_DATA } from '@/data/portfolio-data';
+import { ChevronRight, Award } from 'lucide-react';
 
 export function JourneySection() {
-  const [expandedYear, setExpandedYear] = useState<string>('2026');
+  const { journey } = PORTFOLIO_DATA;
+  const [expandedYear, setExpandedYear] = useState<string>('2027');
 
   return (
-    <section id="journey" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0c0c0e]">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-16 text-left">
-          <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-2">
-            03 / CHRONOLOGICAL PROGRESSION
+    <section
+      id="journey"
+      className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#09090b] border-t border-white/[0.08]"
+    >
+      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-1">
+              04 / ENGINEERING JOURNEY
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              CHRONOLOGICAL MILESTONES
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Engineering & Learning Journey
-          </h2>
-          <p className="text-xs text-zinc-400 font-mono mt-2">
-            Click any year to inspect verified technical milestones and hackathon achievements.
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-mono">
+            Academic progression, competitive hackathons, award recognition, and target graduation.
           </p>
         </div>
 
-        {/* Interactive Timeline Stream */}
-        <div className="space-y-6">
-          {TIMELINE_DATA.map((item) => {
+        <div className="relative border-l-2 border-white/10 ml-4 sm:ml-8 space-y-8 pl-6 sm:pl-10">
+          {journey.map((item) => {
             const isExpanded = expandedYear === item.year;
-
             return (
-              <div
-                key={item.year}
-                className={`rounded-2xl glass-panel border transition-all duration-300 overflow-hidden ${
-                  isExpanded
-                    ? 'border-sky-500/40 bg-sky-500/[0.02]'
-                    : 'border-white/[0.08] hover:border-white/20'
-                }`}
-              >
-                {/* Year Header Accordion Bar */}
-                <button
-                  onClick={() => setExpandedYear(isExpanded ? '' : item.year)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
+              <div key={item.year} className="relative group">
+                <div
+                  onClick={() => setExpandedYear(item.year)}
+                  className={`absolute -left-[31px] sm:-left-[47px] top-1.5 w-5 h-5 rounded-full border-2 transition-all cursor-pointer ${
+                    isExpanded
+                      ? 'bg-sky-400 border-white ring-4 ring-sky-500/20 scale-125'
+                      : 'bg-[#09090b] border-zinc-600 hover:border-sky-400'
+                  }`}
+                />
+
+                <div
+                  onClick={() => setExpandedYear(item.year)}
+                  className={`p-6 sm:p-8 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                    isExpanded
+                      ? 'bg-white/[0.03] border-sky-500/40 shadow-xl shadow-sky-500/5'
+                      : 'bg-white/[0.01] border-white/10 hover:border-white/20'
+                  }`}
                 >
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl sm:text-3xl font-extrabold font-mono text-white">
-                      {item.year}
-                    </span>
-                    <span className="text-xs font-mono px-2.5 py-1 rounded bg-sky-500/10 text-sky-300 border border-sky-500/20">
-                      {item.badge}
-                    </span>
-                    <h3 className="text-sm sm:text-base font-bold text-zinc-200 hidden md:inline">
-                      {item.headline}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-zinc-500 hidden sm:inline">
-                      {isExpanded ? 'COLLAPSE' : 'EXPAND DETAILS'}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-zinc-400 transition-transform duration-300 ${
-                        isExpanded ? 'rotate-180 text-sky-400' : ''
-                      }`}
-                    />
-                  </div>
-                </button>
-
-                {/* Expanded Content Details */}
-                {isExpanded && (
-                  <div className="px-6 pb-6 pt-2 border-t border-white/10 space-y-4 animate-in fade-in duration-200">
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
-                      {item.summary}
-                    </p>
-
-                    <div className="space-y-2 pt-2">
-                      <div className="text-[11px] font-mono text-sky-400 uppercase tracking-wider">
-                        VERIFIED MILESTONES:
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                        {item.milestones.map((m) => (
-                          <div
-                            key={m}
-                            className="p-3 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-2.5"
-                          >
-                            <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                            <span className="text-zinc-200 leading-snug">{m}</span>
-                          </div>
-                        ))}
-                      </div>
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl font-black font-mono text-sky-400">
+                        {item.year}
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                        {item.title}
+                      </h3>
                     </div>
+                    {item.badge && (
+                      <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-mono font-bold text-sky-300 flex items-center gap-1.5">
+                        <Award className="w-3.5 h-3.5" />
+                        {item.badge}
+                      </span>
+                    )}
                   </div>
-                )}
+
+                  <div className="text-xs font-mono text-zinc-400 mb-3">{item.role}</div>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
+                    {item.description}
+                  </p>
+
+                  {isExpanded && (
+                    <div className="pt-4 border-t border-white/10 space-y-2 animate-fade-in">
+                      <h4 className="text-xs font-mono font-bold text-sky-400 uppercase">
+                        KEY HIGHLIGHTS:
+                      </h4>
+                      <ul className="space-y-1.5 text-xs text-zinc-300">
+                        {item.highlights.map((h, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <ChevronRight className="w-3.5 h-3.5 text-sky-400 shrink-0 mt-0.5" />
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}

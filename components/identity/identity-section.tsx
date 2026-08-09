@@ -3,100 +3,109 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Hero3DScene } from '@/components/ui/hero-3d-scene';
-import { ArrowDown, ArrowUpRight, Compass, FileText } from 'lucide-react';
-
-const SYSTEM_NODES = [
-  { label: '9.03 CGPA', subtitle: 'Academic Rigor' },
-  { label: '20+ Hackathon Participations', subtitle: 'Competitive Building' },
-  { label: '4 Featured Projects', subtitle: 'Computer Vision & ML' },
-  { label: 'AI & Data Science', subtitle: 'GGSIPU Class of 2026' },
-];
+import { PORTFOLIO_DATA } from '@/data/portfolio-data';
+import { Compass, FileText, ArrowDown, ArrowUpRight, Cpu } from 'lucide-react';
 
 export function IdentitySection() {
+  const { candidate } = PORTFOLIO_DATA;
+
   return (
     <section
       id="identity"
-      className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#09090b]"
+      className="relative min-h-[95vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#09090b]"
     >
-      {/* Interactive 3D Spatial Canvas Background */}
+      {/* Interactive 3D AI Core Canvas Background */}
       <Hero3DScene />
 
       {/* Subtle Background Radial Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-sky-500/10 rounded-full blur-[130px] pointer-events-none z-0" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Identity & Primary CTAs */}
         <div className="lg:col-span-7 space-y-6 text-left">
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-wide text-zinc-300 backdrop-blur-md">
+          {/* Brand Tag / Status Badge */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-wide text-zinc-300 backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-            <span className="text-zinc-400">STATUS:</span> Open to Technical Internship
-            Opportunities
+            <span className="text-sky-400 font-bold">BHAVYA // DIGITAL LAB</span>
+            <span className="text-zinc-500">•</span>
+            <span className="text-zinc-400">AI × DATA × CV × SOFTWARE</span>
           </div>
 
           {/* Heading & Subtitle */}
-          <div className="space-y-2">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-none">
-              BHAVYA BANSAL
+          <div className="space-y-3">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-none">
+              BHAVYA
+              <br />
+              <span className="bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent">
+                BANSAL
+              </span>
             </h1>
-            <p className="text-xs sm:text-sm font-mono tracking-widest text-sky-400 uppercase">
-              ARTIFICIAL INTELLIGENCE & DATA SCIENCE UNDERGRADUATE
-            </p>
+            <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-mono tracking-widest text-sky-400 uppercase">
+              <span className="flex items-center gap-1.5 text-white font-bold">
+                <Cpu className="w-4 h-4 text-sky-400" />
+                ARTIFICIAL INTELLIGENCE & DATA SCIENCE
+              </span>
+              <span>•</span>
+              <span className="text-zinc-400">EXPECTED GRADUATION: MAY 2027</span>
+            </div>
           </div>
 
-          {/* Concise Confident Supporting Statement */}
+          {/* Concise Confident Statement */}
           <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
-            Building practical software at the intersection of Computer Vision, Machine Learning,
-            and Data Analytics. Focused on real-world application, statistical preprocessing, and
-            clean architecture.
+            Engineering practical software at the intersection of Computer Vision, Machine Learning,
+            and Data Analytics. Focused on real-world landmark tracking, statistical pipelines, and
+            clean software architecture.
           </p>
 
-          {/* Primary Action Buttons: [ EXPLORE ] & [ VIEW RESUME ] */}
+          {/* Key Metrics Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+              <div className="text-base font-bold font-mono text-white">{candidate.cgpa}</div>
+              <div className="text-[11px] font-mono text-zinc-400 mt-0.5">Academic Rigor</div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+              <div className="text-base font-bold font-mono text-white">20+ Hackathons</div>
+              <div className="text-[11px] font-mono text-zinc-400 mt-0.5">Participations</div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+              <div className="text-base font-bold font-mono text-white">4 Flagships</div>
+              <div className="text-[11px] font-mono text-zinc-400 mt-0.5">AI & CV Systems</div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+              <div className="text-base font-bold font-mono text-white">GGSIPU &apos;27</div>
+              <div className="text-[11px] font-mono text-zinc-400 mt-0.5">May 2027 Degree</div>
+            </div>
+          </div>
+
+          {/* Primary Action Buttons: [ EXPLORE WORK ] & [ VIEW RESUME ] */}
           <div className="pt-4 flex flex-wrap items-center gap-4">
-            {/* Explore Button */}
             <a
-              href="#discovery"
+              href="#system-map"
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#09090b] font-semibold text-sm tracking-wide hover:bg-sky-300 transition-all shadow-lg hover:shadow-sky-500/20 group"
             >
               <Compass className="w-4 h-4 text-[#09090b]" />
-              <span>EXPLORE</span>
+              <span>EXPLORE WORK</span>
               <ArrowDown className="w-4 h-4 text-[#09090b] group-hover:translate-y-0.5 transition-transform" />
             </a>
 
-            {/* View Resume Button - Visible, High-Contrast, Opens /resume */}
             <Link
               href="/resume"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] text-zinc-200 font-medium text-sm border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/40 hover:text-white transition-all backdrop-blur-md group"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-sky-500/10 text-sky-300 font-medium text-sm border border-sky-500/30 hover:bg-sky-500/20 hover:border-sky-400 hover:text-white transition-all backdrop-blur-md group shadow-md"
             >
               <FileText className="w-4 h-4 text-sky-400" />
               <span>VIEW RESUME</span>
-              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-sky-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
-          </div>
-
-          {/* Interactive Spatial System Visualization Nodes */}
-          <div className="pt-8 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {SYSTEM_NODES.map((node) => (
-              <div
-                key={node.label}
-                className="p-3 rounded-xl bg-white/[0.02] border border-white/10 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all group cursor-default"
-              >
-                <div className="text-sm font-bold font-mono text-white group-hover:text-sky-300 transition-colors">
-                  {node.label}
-                </div>
-                <div className="text-[10px] font-mono text-zinc-400 mt-0.5">{node.subtitle}</div>
-              </div>
-            ))}
           </div>
         </div>
 
-        {/* Right Column: Hero Portrait Integrated with 3D Frame */}
+        {/* Right Column: Hero Identity Card (Single Portrait Strategy) */}
         <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-2xl overflow-hidden glass-panel p-2 border border-white/10 shadow-2xl group transition-all duration-500 hover:border-sky-500/30">
-            {/* Ambient Inner Shadow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent z-10 opacity-70" />
+          <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-2xl overflow-hidden glass-panel p-2.5 border border-white/10 shadow-2xl group transition-all duration-500 hover:border-sky-500/40">
+            {/* Ambient Inner Glow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent z-10 opacity-80" />
 
             <Image
               src="/images/hero-portrait.jpg"
@@ -107,16 +116,20 @@ export function IdentitySection() {
               className="object-cover object-center rounded-xl transition-transform duration-700 group-hover:scale-[1.02]"
             />
 
-            {/* Overlay Badge */}
-            <div className="absolute bottom-4 left-4 right-4 z-20 p-3.5 rounded-xl bg-[#09090b]/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
-              <div>
-                <div className="text-xs font-semibold text-white">Bhavya Bansal</div>
-                <div className="text-[10px] font-mono text-zinc-400">
-                  GGSIPU AI & DS • Class of 2026
-                </div>
+            {/* Overlay Metadata Badge */}
+            <div className="absolute bottom-4 left-4 right-4 z-20 p-4 rounded-xl bg-[#09090b]/90 backdrop-blur-md border border-white/10 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-bold text-white tracking-wide">BHAVYA BANSAL</span>
+                <span className="px-2 py-0.5 rounded bg-sky-500/20 border border-sky-500/40 text-[10px] font-mono text-sky-300">
+                  MAY 2027
+                </span>
               </div>
-              <div className="px-2 py-1 rounded bg-sky-500/10 border border-sky-500/20 text-[10px] font-mono text-sky-400">
-                VERIFIED
+              <div className="text-xs font-mono text-zinc-300">
+                B.Tech AI & Data Science • GGSIPU
+              </div>
+              <div className="flex items-center gap-2 pt-1 border-t border-white/10 text-[11px] font-mono text-emerald-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>{candidate.status}</span>
               </div>
             </div>
           </div>
