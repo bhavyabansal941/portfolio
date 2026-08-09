@@ -1,77 +1,87 @@
+import { Cpu, Database, Eye, LineChart } from 'lucide-react';
+
+const FOCUS_AREAS = [
+  {
+    number: '01',
+    title: 'Artificial Intelligence & Data Science',
+    description:
+      'Applying statistical modeling, feature engineering, and core AI algorithms to solve practical analytical challenges.',
+    icon: Cpu,
+  },
+  {
+    number: '02',
+    title: 'Data Analytics & SQL',
+    description:
+      'Extracting insights from structured data using SQL, Pandas, NumPy, and building interactive dashboards in Power BI and Excel.',
+    icon: Database,
+  },
+  {
+    number: '03',
+    title: 'Computer Vision',
+    description:
+      'Developing real-time posture tracking and spatial motion estimation systems using MediaPipe 33 landmark tracking and OpenCV.',
+    icon: Eye,
+  },
+  {
+    number: '04',
+    title: 'Machine Learning',
+    description:
+      'Building diagnostic classification pipelines with Scikit-learn, handling missing value imputation, scaling, and precision/recall evaluation.',
+    icon: LineChart,
+  },
+];
+
 export function FocusSection() {
-  const focusItems = [
-    {
-      label: 'ACADEMICS',
-      title: 'Artificial Intelligence & Data Science',
-      description:
-        'Undergraduate student building strong foundations in computer science, machine learning algorithms, applied mathematics, and data structures.',
-    },
-    {
-      label: 'TECHNICAL FOCUS',
-      title: 'AI & Machine Learning Concepts',
-      description:
-        'Actively studying core AI concepts, neural networks, data modeling, and practical machine learning workflows through hands-on coursework and projects.',
-    },
-    {
-      label: 'CORE STACK',
-      title: 'Python, SQL & Data Analytics',
-      description:
-        'Working with Python, SQL, and data analysis tools to explore data, extract insights, and build practical software solutions.',
-    },
-    {
-      label: 'OPPORTUNITIES',
-      title: 'Seeking Early-Career & Internship Roles',
-      description:
-        'Eager to contribute as an intern or entry-level team member in AI Engineering, Machine Learning, or Data Analytics to learn from experienced engineering teams.',
-    },
-  ];
-
   return (
-    <section
-      id="focus"
-      className="max-w-6xl mx-auto px-6 py-20 lg:py-28 border-t border-[var(--surface-border)]"
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-        {/* Left Column (4 cols): Meta & Heading */}
-        <div className="lg:col-span-4 flex flex-col">
-          <div className="mb-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium">
-              01 / CURRENT FOCUS
-            </span>
+    <section id="focus" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0c0c0e]">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="mb-12 text-left">
+          <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-2">
+            01 / CORE CAPABILITIES
           </div>
-
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--foreground)] leading-tight mb-6 font-sans">
-            Current Focus
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Current Focus & Technical Specializations
           </h2>
-
-          <p className="text-base text-[var(--foreground-muted)] leading-relaxed font-sans">
-            A snapshot of active learning, core CS fundamentals, and practical technical
-            exploration.
-          </p>
         </div>
 
-        {/* Right Column (8 cols): 2x2 Focus Grid */}
-        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {focusItems.map((item) => (
-            <div
-              key={item.label}
-              className="border border-[var(--surface-border)] bg-[var(--surface)] p-6 rounded-lg flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium block mb-3">
-                  {item.label}
-                </span>
+        {/* 4-Area Compact Grid Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {FOCUS_AREAS.map((area) => {
+            const Icon = area.icon;
+            return (
+              <div
+                key={area.number}
+                className="group relative p-6 rounded-2xl glass-panel border border-white/[0.08] hover:border-sky-500/30 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-xs font-mono text-zinc-500 group-hover:text-sky-400 transition-colors">
+                      {area.number}
+                    </span>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 group-hover:border-sky-500/30 group-hover:bg-sky-500/10 transition-all">
+                      <Icon className="w-5 h-5 text-zinc-300 group-hover:text-sky-400 transition-colors" />
+                    </div>
+                  </div>
 
-                <h3 className="text-lg font-bold text-[var(--foreground)] mb-3 font-sans tracking-tight">
-                  {item.title}
-                </h3>
+                  <h3 className="text-lg font-bold text-white mb-2.5 group-hover:text-sky-300 transition-colors">
+                    {area.title}
+                  </h3>
 
-                <p className="text-sm text-[var(--foreground-muted)] leading-relaxed font-sans">
-                  {item.description}
-                </p>
+                  <p className="text-xs text-zinc-400 leading-relaxed font-normal">
+                    {area.description}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-zinc-500 group-hover:text-zinc-300">
+                  <span>ACTIVE PRACTICE</span>
+                  <span className="text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    →
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

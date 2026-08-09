@@ -1,226 +1,107 @@
+import Link from 'next/link';
+import { ArrowUpRight, FileText, Mail } from 'lucide-react';
+
+function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+      />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.49 1.49 0 1 0 0 2.98 1.49 1.49 0 0 0 0-2.98z" />
+    </svg>
+  );
+}
+
 export function ProfileSection() {
   return (
     <section
-      id="profile"
-      className="max-w-6xl mx-auto px-6 py-20 lg:py-28 border-t border-[var(--surface-border)]"
+      id="contact"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0c0c0e] relative overflow-hidden"
     >
-      {/* Section Header */}
-      <div className="mb-16 lg:mb-20">
-        <div className="mb-4">
-          <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium">
-            07 / PROFESSIONAL PROFILE & VERIFICATION
-          </span>
+      {/* Background Accent Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
+
+      <div className="max-w-5xl mx-auto relative z-10 text-center space-y-8">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-xs font-mono text-sky-400">
+          <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+          <span>07 / GET IN TOUCH</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--foreground)] leading-tight mb-4 font-sans">
-          Professional Profile & Verification
+
+        <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+          LET&apos;S CONNECT
         </h2>
-        <p className="text-base sm:text-lg text-[var(--foreground-muted)] max-w-2xl leading-relaxed font-sans">
-          Engineering work should be transparent, verifiable, and easy to explore. Access source
-          code, academic credentials, and professional updates.
+
+        <p className="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto font-normal leading-relaxed">
+          Have an opportunity, project idea, or technical question? Feel free to reach out directly
+          via email or connect on LinkedIn.
         </p>
-      </div>
 
-      {/* 12-Column Asymmetric Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-        {/* Left Meta Description Column (4 cols) */}
-        <div className="lg:col-span-4 flex flex-col justify-between">
-          <div>
-            <h3 className="text-sm font-mono uppercase tracking-widest text-[var(--foreground-subtle)] mb-3">
-              Verification Entry
-            </h3>
-            <p className="text-sm text-[var(--foreground-muted)] leading-relaxed font-sans mb-6">
-              A transparent overview of academic status, open-source code repositories, professional
-              updates, and direct contact channels.
-            </p>
-          </div>
-
-          <div className="hidden lg:block p-4 rounded-lg border border-[var(--surface-border)] bg-[var(--surface)] text-xs font-mono text-[var(--foreground-subtle)] leading-relaxed">
-            Currently pursuing B.Tech in AI & Data Science while actively building projects and
-            seeking internship opportunities.
-          </div>
+        {/* Primary Email Address Display */}
+        <div className="pt-2">
+          <a
+            href="mailto:bansalbhavya941@gmail.com"
+            className="text-xl sm:text-3xl font-mono font-bold text-white hover:text-sky-400 transition-colors inline-block underline decoration-sky-500/40 underline-offset-8"
+          >
+            bansalbhavya941@gmail.com
+          </a>
         </div>
 
-        {/* Right Profile Verification Cards (8 cols) */}
-        <div className="lg:col-span-8 space-y-6">
-          {/* Card 1: Resume */}
-          <article className="p-6 lg:p-8 rounded-lg border border-[var(--surface-border)] bg-[var(--surface)] flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium block mb-2">
-                ACADEMIC & EXPERIENCE SUMMARY
-              </span>
-              <h3 className="text-xl font-bold text-[var(--foreground)] mb-4 font-sans">
-                Resume & Curriculum Vitae
-              </h3>
+        {/* Action Button Strip */}
+        <div className="pt-8 flex flex-wrap items-center justify-center gap-4">
+          {/* Email Me Button */}
+          <a
+            href="mailto:bansalbhavya941@gmail.com"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#09090b] font-semibold text-sm tracking-wide hover:bg-sky-300 transition-all shadow-lg hover:shadow-sky-500/20"
+          >
+            <Mail className="w-4 h-4 text-[#09090b]" />
+            <span>EMAIL ME</span>
+          </a>
 
-              <div className="space-y-3 text-xs sm:text-sm font-sans text-[var(--foreground-muted)] mb-6">
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    ACADEMIC BACKGROUND:
-                  </strong>
-                  <p className="leading-relaxed">
-                    B.Tech in Artificial Intelligence & Data Science (GGSIPU).
-                  </p>
-                </div>
+          {/* LinkedIn Button */}
+          <a
+            href="https://www.linkedin.com/in/bhavya-bansal-aa70a3301/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] text-zinc-200 font-medium text-sm border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/40 hover:text-white transition-all backdrop-blur-md"
+          >
+            <LinkedinIcon className="w-4 h-4 text-sky-400" />
+            <span>LINKEDIN</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
+          </a>
 
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    INTERNSHIP FOCUS:
-                  </strong>
-                  <p className="leading-relaxed">
-                    Seeking early-career & internship roles in AI Engineering, Machine Learning, or
-                    Data Analytics.
-                  </p>
-                </div>
+          {/* GitHub Button */}
+          <a
+            href="https://github.com/bhavyabansal941/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] text-zinc-200 font-medium text-sm border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/40 hover:text-white transition-all backdrop-blur-md"
+          >
+            <GithubIcon className="w-4 h-4 text-sky-400" />
+            <span>GITHUB</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
+          </a>
 
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    TECHNICAL FOUNDATIONS:
-                  </strong>
-                  <p className="leading-relaxed text-[var(--foreground-subtle)]">
-                    Software design, CS algorithms, computer vision, data pipelines, and analytics
-                    modeling.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="/resume"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-xs font-mono font-medium bg-[var(--foreground)] text-[var(--background)] hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)]"
-              >
-                View Resume →
-              </a>
-            </div>
-          </article>
-
-          {/* Card 2: GitHub */}
-          <article className="p-6 lg:p-8 rounded-lg border border-[var(--surface-border)] bg-[var(--surface)] flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium block mb-2">
-                OPEN-SOURCE & CODE EVIDENCE
-              </span>
-              <h3 className="text-xl font-bold text-[var(--foreground)] mb-4 font-sans">
-                GitHub Code Repositories
-              </h3>
-
-              <div className="space-y-3 text-xs sm:text-sm font-sans text-[var(--foreground-muted)] mb-6">
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    ENGINEERING EVIDENCE:
-                  </strong>
-                  <p className="leading-relaxed">
-                    Public project repositories, architecture evolution, MediaPipe computer vision
-                    experiments, and version history.
-                  </p>
-                </div>
-
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    IMPLEMENTATION:
-                  </strong>
-                  <p className="leading-relaxed text-[var(--foreground-subtle)]">
-                    Verifiable Python scripts, data processing logic, and commit iterations.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-xs font-mono font-medium border border-[var(--surface-border)] text-[var(--foreground)] hover:border-[var(--foreground-subtle)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)]"
-              >
-                Explore GitHub →
-              </a>
-            </div>
-          </article>
-
-          {/* Card 3: LinkedIn */}
-          <article className="p-6 lg:p-8 rounded-lg border border-[var(--surface-border)] bg-[var(--surface)] flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium block mb-2">
-                PROFESSIONAL NETWORK & EVENTS
-              </span>
-              <h3 className="text-xl font-bold text-[var(--foreground)] mb-4 font-sans">
-                LinkedIn Professional Network
-              </h3>
-
-              <div className="space-y-3 text-xs sm:text-sm font-sans text-[var(--foreground-muted)] mb-6">
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    PROFESSIONAL UPDATES:
-                  </strong>
-                  <p className="leading-relaxed">
-                    Event coverage, World Entrepreneurs Day recognition, hackathons, community
-                    participation, and technical milestones.
-                  </p>
-                </div>
-
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    ENGINEERING NETWORK:
-                  </strong>
-                  <p className="leading-relaxed text-[var(--foreground-subtle)]">
-                    Connecting with researchers, industry developers, policy delegates, and peers.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-xs font-mono font-medium border border-[var(--surface-border)] text-[var(--foreground)] hover:border-[var(--foreground-subtle)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)]"
-              >
-                View LinkedIn →
-              </a>
-            </div>
-          </article>
-
-          {/* Card 4: Email & Direct Inquiries */}
-          <article className="p-6 lg:p-8 rounded-lg border border-[var(--surface-border)] bg-[var(--surface)] flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)] font-medium block mb-2">
-                DIRECT INQUIRIES & OPPORTUNITIES
-              </span>
-              <h3 className="text-xl font-bold text-[var(--foreground)] mb-4 font-sans">
-                Direct Engineering Inquiries
-              </h3>
-
-              <div className="space-y-3 text-xs sm:text-sm font-sans text-[var(--foreground-muted)] mb-6">
-                <div>
-                  <strong className="text-[var(--foreground)] font-mono uppercase text-xs block mb-1">
-                    AVAILABLE FOR:
-                  </strong>
-                  <p className="leading-relaxed">
-                    AI Engineering internships, Machine Learning internships, Data Analytics
-                    opportunities, technical collaboration, and engineering discussions.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <a
-                href="mailto:bhavyabansal@example.com"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-xs font-mono font-medium bg-[var(--foreground)] text-[var(--background)] hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)]"
-              >
-                Send Email →
-              </a>
-            </div>
-          </article>
+          {/* View Resume Button */}
+          <Link
+            href="/resume"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] text-zinc-200 font-medium text-sm border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/40 hover:text-white transition-all backdrop-blur-md"
+          >
+            <FileText className="w-4 h-4 text-sky-400" />
+            <span>VIEW RESUME</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
+          </Link>
         </div>
-      </div>
-
-      {/* Refined Closing Editorial Statement */}
-      <div className="mt-16 pt-8 border-t border-[var(--surface-border)] text-xs sm:text-sm font-mono text-[var(--foreground-subtle)]">
-        &quot;The best engineering conversations begin with transparent work, thoughtful discussion,
-        and continuous learning.&quot;
       </div>
     </section>
   );

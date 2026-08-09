@@ -2,39 +2,39 @@
 
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
-export function NavLinks() {
-  const chapters = [
-    { id: 'focus', label: 'Current Focus' },
-    { id: 'work', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'toolkit', label: 'Toolkit' },
-    { id: 'learning', label: 'Learning' },
-    { id: 'recognition', label: 'Recognition' },
-    { id: 'profile', label: 'Profile' },
-  ];
+const NAV_ITEMS = [
+  { id: 'focus', label: 'Focus' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'toolkit', label: 'Toolkit' },
+  { id: 'recognition', label: 'Recognition' },
+  { id: 'contact', label: 'Contact' },
+];
 
-  const sectionIds = chapters.map((chapter) => chapter.id);
+export function NavLinks() {
+  const sectionIds = NAV_ITEMS.map((item) => item.id);
   const activeId = useScrollSpy(sectionIds);
 
   return (
     <nav
-      aria-label="Main Editorial Navigation"
-      className="hidden md:flex items-center gap-5 lg:gap-6 text-xs lg:text-sm font-sans"
+      aria-label="Main Navigation"
+      className="hidden md:flex items-center gap-6 text-xs font-mono tracking-wide uppercase"
     >
-      {chapters.map((chapter) => {
-        const isActive = activeId === chapter.id;
+      {NAV_ITEMS.map((item) => {
+        const isActive = activeId === item.id;
 
         return (
           <a
-            key={chapter.id}
-            href={`#${chapter.id}`}
-            className={`transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)] ${
-              isActive
-                ? 'text-[var(--foreground)] font-semibold'
-                : 'text-[var(--foreground-muted)] hover:text-[var(--foreground)] font-normal'
+            key={item.id}
+            href={`#${item.id}`}
+            className={`transition-all duration-200 relative py-1 ${
+              isActive ? 'text-white font-bold' : 'text-zinc-400 hover:text-white'
             }`}
           >
-            {chapter.label}
+            {item.label}
+            {isActive && (
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-400 rounded-full" />
+            )}
           </a>
         );
       })}

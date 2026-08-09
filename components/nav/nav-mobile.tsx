@@ -1,31 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { FileText, Menu, X } from 'lucide-react';
+
+const NAV_ITEMS = [
+  { number: '01', id: 'focus', label: 'Focus' },
+  { number: '02', id: 'projects', label: 'Projects' },
+  { number: '03', id: 'experience', label: 'Experience' },
+  { number: '04', id: 'toolkit', label: 'Toolkit' },
+  { number: '05', id: 'recognition', label: 'Recognition' },
+  { number: '06', id: 'contact', label: 'Contact' },
+];
 
 export function NavMobile() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const chapters = [
-    { number: '01', id: 'focus', label: 'Current Focus' },
-    { number: '02', id: 'work', label: 'Projects' },
-    { number: '03', id: 'experience', label: 'Experience' },
-    { number: '04', id: 'toolkit', label: 'Toolkit' },
-    { number: '05', id: 'learning', label: 'Learning' },
-    { number: '06', id: 'recognition', label: 'Recognition & Impact' },
-    { number: '07', id: 'profile', label: 'Professional Profile' },
-  ];
-
-  // Lock body scroll when drawer is open & handle Escape key
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          setIsOpen(false);
-        }
+        if (e.key === 'Escape') setIsOpen(false);
       };
-
       window.addEventListener('keydown', handleKeyDown);
       return () => {
         document.body.style.overflow = '';
@@ -36,52 +32,51 @@ export function NavMobile() {
 
   return (
     <div className="flex md:hidden items-center">
-      {/* Menu Toggle Button */}
       <button
         type="button"
         aria-expanded={isOpen}
-        aria-label="Table of Contents Menu"
+        aria-label="Toggle Mobile Navigation"
         onClick={() => setIsOpen(!isOpen)}
-        className="px-3 py-1.5 rounded border border-[var(--surface-border)] bg-[var(--surface)] text-xs font-mono text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)]"
+        className="p-2 rounded-lg bg-white/5 border border-white/10 text-zinc-200 hover:text-white"
       >
-        {isOpen ? 'CLOSE [ESC]' : 'MENU'}
+        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {/* Slide-over Table of Contents Drawer Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 top-16 z-50 bg-[var(--background)] border-t border-[var(--surface-border)] p-6 flex flex-col justify-between"
+          className="fixed inset-0 top-16 z-50 bg-[#09090b]/95 backdrop-blur-xl p-6 flex flex-col justify-between"
           role="dialog"
           aria-modal="true"
-          aria-label="Table of Contents Navigation"
         >
-          <div>
-            <div className="mb-6 pb-2 border-b border-[var(--surface-border)]">
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--foreground-subtle)]">
-                TABLE OF CONTENTS
-              </span>
+          <nav className="flex flex-col space-y-4 pt-4">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-4 py-2 border-b border-white/5 text-base font-mono text-zinc-300 hover:text-sky-400"
+              >
+                <span className="text-xs text-sky-400 font-mono">{item.number}</span>
+                <span className="font-semibold text-white">{item.label}</span>
+              </a>
+            ))}
+
+            <div className="pt-4">
+              <Link
+                href="/resume"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#09090b] font-mono text-xs font-bold"
+              >
+                <FileText className="w-4 h-4" />
+                <span>VIEW RESUME</span>
+              </Link>
             </div>
+          </nav>
 
-            <nav className="flex flex-col space-y-4">
-              {chapters.map((chapter) => (
-                <a
-                  key={chapter.id}
-                  href={`#${chapter.id}`}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-4 text-base font-sans text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground-muted)]"
-                >
-                  <span className="font-mono text-xs text-[var(--foreground-subtle)]">
-                    {chapter.number}
-                  </span>
-                  <span className="font-medium text-[var(--foreground)]">{chapter.label}</span>
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Drawer Footer Note */}
-          <div className="pt-4 border-t border-[var(--surface-border)] text-xs font-mono text-[var(--foreground-subtle)]">
-            Bhavya Bansal — Engineering Portfolio
+          <div className="text-xs font-mono text-zinc-500 pt-4 border-t border-white/10">
+            Bhavya Bansal • AI & Data Science Portfolio
           </div>
         </div>
       )}
