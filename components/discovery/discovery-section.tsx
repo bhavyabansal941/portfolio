@@ -1,107 +1,54 @@
-import { Award, Bot, Code2, Compass, GitCommit, Layers } from 'lucide-react';
+'use client';
 
-const PATH_OPTIONS = [
-  {
-    id: 'projects',
-    title: 'Featured Projects',
-    subtitle: '4 Verified Case Studies',
-    icon: Code2,
-    anchor: '#projects',
-    badge: 'INTERACTIVE CASE STUDIES',
-  },
-  {
-    id: 'journey',
-    title: 'Engineering Journey',
-    subtitle: '2024 → 2026 Chronological Progression',
-    icon: GitCommit,
-    anchor: '#journey',
-    badge: 'TIMELINE',
-  },
-  {
-    id: 'toolkit',
-    title: 'Skills Constellation',
-    subtitle: 'Interactive Skill Map & Usage Cards',
-    icon: Layers,
-    anchor: '#toolkit',
-    badge: 'CAPABILITIES',
-  },
-  {
-    id: 'recognition',
-    title: 'Recognition & Impact',
-    subtitle: 'World Entrepreneurs Day 1st Place',
-    icon: Award,
-    anchor: '#recognition',
-    badge: 'AWARDS',
-  },
-  {
-    id: 'assistant',
-    title: 'Ask About Bhavya',
-    subtitle: 'Guided Portfolio Assistant',
-    icon: Bot,
-    anchor: '#assistant',
-    badge: 'ASSISTANT',
-  },
-];
+import { PORTFOLIO_DATA } from '@/data/portfolio-data';
 
 export function DiscoverySection() {
+  const { journey } = PORTFOLIO_DATA;
+
   return (
-    <section id="discovery" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0c0c0e]">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-12 text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-xs font-mono text-sky-400">
-            <Compass className="w-3.5 h-3.5" />
-            <span>DISCOVERY MODE</span>
+    <section
+      id="journey-legacy"
+      className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#09090b] border-t border-white/[0.08]"
+    >
+      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-1">
+              CHRONOLOGICAL TIMELINE
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              2024 → 2027 ENGINEERING PROGRESSION
+            </h2>
           </div>
-
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            WHAT WOULD YOU LIKE TO EXPLORE?
-          </h2>
-
-          <p className="text-xs sm:text-sm text-zinc-400 font-mono">
-            Select a pathway below to jump directly to verified engineering proof, timeline
-            progression, or guided assistant answers.
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-mono">
+            Key milestones from academic enrollment to 1st place competitive recognition and
+            Expected May 2027 graduation.
           </p>
         </div>
 
-        {/* Discovery Pathway Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {PATH_OPTIONS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={item.id}
-                href={item.anchor}
-                className="p-5 rounded-2xl glass-panel border border-white/[0.08] hover:border-sky-500/40 hover:bg-sky-500/[0.04] transition-all group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 group-hover:border-sky-500/30 group-hover:bg-sky-500/10 transition-all">
-                      <Icon className="w-4 h-4 text-zinc-300 group-hover:text-sky-400 transition-colors" />
-                    </div>
-                    <span className="text-[10px] font-mono text-zinc-500 group-hover:text-sky-400 transition-colors">
-                      {item.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base font-bold text-white group-hover:text-sky-300 transition-colors mb-1">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-[11px] text-zinc-400 leading-relaxed font-mono">
-                    {item.subtitle}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-zinc-500 group-hover:text-white">
-                  <span>EXPLORE PATH</span>
-                  <span className="text-sky-400 group-hover:translate-x-1 transition-transform">
-                    →
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {journey.map((item) => (
+            <div
+              key={item.year}
+              className="p-6 rounded-2xl glass-panel border border-white/10 space-y-4 bg-white/[0.01] hover:border-sky-500/30 transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-black font-mono text-sky-400">{item.year}</span>
+                {item.badge && (
+                  <span className="px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-[10px] font-mono text-sky-300 font-bold">
+                    {item.badge}
                   </span>
-                </div>
-              </a>
-            );
-          })}
+                )}
+              </div>
+
+              <div>
+                <h3 className="text-base font-bold text-white tracking-tight">{item.title}</h3>
+                <span className="text-xs font-mono text-zinc-400">{item.role}</span>
+              </div>
+
+              <p className="text-xs text-zinc-300 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

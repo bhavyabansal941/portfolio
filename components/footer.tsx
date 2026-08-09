@@ -11,7 +11,7 @@ export function Footer() {
           <span>•</span>
           <span>B.Tech Artificial Intelligence & Data Science</span>
           <span>•</span>
-          <span className="text-sky-400">GGSIPU Expected Graduation: May 2027</span>
+          <span className="text-sky-400">GGSIPU Class of 2027 (Expected Graduation: May 2027)</span>
         </div>
 
         <div className="flex items-center justify-center gap-6 text-zinc-400 pt-2">

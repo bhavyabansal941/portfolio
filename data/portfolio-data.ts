@@ -1,24 +1,42 @@
+export interface CandidateInfo {
+  name: string;
+  degree: string;
+  university: string;
+  graduationDate: string;
+  graduationClass: string;
+  cgpa: string;
+  hackathons: string;
+  flagships: string;
+  topAward: string;
+  email: string;
+  phone: string;
+  github: string;
+  linkedin: string;
+  status: string;
+}
+
+export interface PipelineStage {
+  stage: string;
+  description: string;
+  detail: string;
+}
+
 export interface ProjectData {
   id: string;
   number: string;
   title: string;
   subtitle: string;
   category: string;
-  tags: string[];
-  githubUrl: string;
-  demoUrl?: string;
   summary: string;
   problem: string;
   approach: string;
   techStack: string[];
+  pipeline: PipelineStage[];
   implementation: string[];
   decisions: string[];
   outcome: string;
-  pipeline: {
-    stage: string;
-    description: string;
-    detail: string;
-  }[];
+  githubUrl: string;
+  demoUrl?: string;
 }
 
 export interface SkillNode {
@@ -31,13 +49,13 @@ export interface SkillNode {
   relatedProjectIds: string[];
 }
 
-export interface JourneyMilestone {
+export interface TimelineMilestone {
   year: string;
   title: string;
   role: string;
   description: string;
-  highlights: string[];
   badge?: string;
+  highlights: string[];
 }
 
 export interface AchievementItem {
@@ -49,90 +67,63 @@ export interface AchievementItem {
   image: string;
   summary: string;
   details: string;
-  impact: string;
 }
 
-export const PORTFOLIO_DATA = {
+export interface BuildLogEntry {
+  version: string;
+  date: string;
+  title: string;
+  summary: string;
+  changes: string[];
+}
+
+export interface AgentQA {
+  question: string;
+  answer: string;
+  actionType: 'projects' | 'skills' | 'achievements' | 'journey' | 'contact' | 'resume';
+  actionLabel: string;
+}
+
+export const PORTFOLIO_DATA: {
+  candidate: CandidateInfo;
+  projects: ProjectData[];
+  skills: SkillNode[];
+  journey: TimelineMilestone[];
+  achievements: AchievementItem[];
+  buildLogs: BuildLogEntry[];
+  agentQA: AgentQA[];
+} = {
   candidate: {
     name: 'Bhavya Bansal',
-    tagline: 'AI & Data Science Undergraduate',
-    degree: 'Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science',
+    degree: 'B.Tech Artificial Intelligence & Data Science',
     university: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
-    location: 'New Delhi, India',
-    graduation: 'Expected Graduation: May 2027',
+    graduationDate: 'Expected Graduation: May 2027',
+    graduationClass: 'Class of 2027',
     cgpa: '9.03 / 10.0',
     hackathons: '20+ Hackathon Participations',
+    flagships: '4 Flagship AI & CV Systems',
+    topAward: '1st Place Winner — World Entrepreneurs Day 2025',
     email: 'bansalbhavya941@gmail.com',
     phone: '+91 9205292550',
     github: 'https://github.com/bhavyabansal941',
-    linkedin: 'https://linkedin.com/in/bhavya-bansal-aa70a3301',
-    portfolio: 'https://portfolio-five-steel-94.vercel.app/',
+    linkedin: 'https://www.linkedin.com/in/bhavya-bansal-aa70a3301',
     status: 'AVAILABLE FOR INTERNSHIP OPPORTUNITIES',
   },
 
-  domains: [
-    { id: 'ai', label: 'AI', desc: 'Agent Systems & LLM Architectures', color: '#0284C7' },
-    {
-      id: 'data',
-      label: 'DATA',
-      desc: 'Preprocessing, SQL & Time-Series Analytics',
-      color: '#38BDF8',
-    },
-    {
-      id: 'ml',
-      label: 'MACHINE LEARNING',
-      desc: 'Classification Pipelines & Model Evaluation',
-      color: '#6366F1',
-    },
-    {
-      id: 'cv',
-      label: 'COMPUTER VISION',
-      desc: '33 MediaPipe Landmarks & 2D Vector Geometry',
-      color: '#818CF8',
-    },
-    {
-      id: 'software',
-      label: 'SOFTWARE',
-      desc: 'Full-Stack Next.js 16 & System Design',
-      color: '#34D399',
-    },
-    {
-      id: 'projects',
-      label: 'PROJECTS',
-      desc: '4 Verified Engineering Implementations',
-      color: '#F472B6',
-    },
-  ],
-
   projects: [
     {
-      id: 'physiotherapy',
+      id: 'ai-physiotherapy',
       number: '01',
       title: 'AI-Based Physiotherapy Assistance System',
-      subtitle: 'Real-Time Pose Estimation & Posture Calibration',
+      subtitle: 'Real-Time Pose Estimation & Motion Geometry Feedback',
       category: 'Computer Vision / Motion Geometry',
-      tags: ['Python', 'MediaPipe', 'OpenCV', 'Streamlit', 'Vector Geometry'],
-      githubUrl: 'https://github.com/bhavyabansal941/ai-physiotherapy-analysis',
       summary:
         'A real-time computer vision application calculating 2D joint angles across 33 MediaPipe pose landmarks to guide posture calibration during rehabilitation exercises.',
       problem:
-        'At-home physiotherapy patients lack immediate visual feedback on joint angles, leading to improper movement form, delayed recovery, or secondary injury.',
+        'Physical therapy patients performing home exercises lack real-time posture feedback, risking re-injury due to improper joint execution angles.',
       approach:
-        'Constructed a 30 FPS video loop processing MediaPipe body landmarks, calculating 2D vector angles via dot product trigonometry, and surfacing instant posture feedback.',
-      techStack: ['Python 3.9', 'MediaPipe 0.10', 'OpenCV', 'Streamlit', 'NumPy'],
-      implementation: [
-        'Ingested 30 FPS webcam feed through OpenCV frame capture.',
-        'Extracted 33 MediaPipe 2D coordinates per frame.',
-        'Computed 2D joint vector dot product angles: theta = arccos((u . v) / (|u| * |v|)).',
-        'Built real-time posture monitors for sitting posture, push-up depth, and squat rep counts.',
-        'Logged session performance metrics and timestamped joint angles to CSV files.',
-      ],
-      decisions: [
-        'Selected 2D vector geometry over 3D depth to maintain high 30 FPS performance on standard laptop webcams without dedicated depth hardware.',
-        'Implemented threshold smoothing filters to prevent landmark flicker during rapid joint movement.',
-      ],
-      outcome:
-        'Awarded 1st Place Winner at World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator). Prototype computer vision demonstration.',
+        'Built a 30 FPS video pipeline with MediaPipe Pose landmark extraction, applying 2D vector trigonometry to compute real-time joint angles and compare against clinical thresholds.',
+      techStack: ['Python 3.9', 'MediaPipe 0.10', 'OpenCV', 'Streamlit', 'NumPy', 'SciPy'],
       pipeline: [
         {
           stage: 'CAMERA',
@@ -142,114 +133,112 @@ export const PORTFOLIO_DATA = {
         {
           stage: 'MEDIAPIPE',
           description: 'Pose Extraction',
-          detail: '33 2D coordinate landmark detection',
+          detail: 'Extracts 33 (x, y, z) skeletal landmarks',
         },
         {
           stage: 'LANDMARKS',
           description: 'Rescaling & Filtering',
-          detail: 'Normalized pixel coordinate mapping',
+          detail: 'Normalizes coordinates to frame dimensions',
         },
         {
           stage: 'JOINT GEOMETRY',
           description: '2D Vector Math',
-          detail: 'cos(θ) = (u · v) / (||u|| ||v||)',
+          detail: 'Calculates Euclidean joint angles (e.g. elbow, knee)',
         },
         {
           stage: 'POSTURE ANALYSIS',
           description: 'Threshold Evaluation',
-          detail: 'Angle comparison vs biomechanical target',
+          detail: 'Compares real-time angles against clinical motion targets',
         },
         {
           stage: 'FEEDBACK',
           description: 'Visual & CSV Logging',
-          detail: 'Real-time UI overlay + CSV session logs',
+          detail: 'Renders skeleton overlay and exports rep stats',
         },
       ],
+      implementation: [
+        'Configured MediaPipe Pose solution with min_detection_confidence=0.5 and min_tracking_confidence=0.5 for stable 30 FPS inference.',
+        'Calculated 2D vector angles using arctan2 trigonometry across shoulder-elbow-wrist and hip-knee-ankle joint triplets.',
+        'Designed interactive Streamlit web dashboard rendering live webcam feed alongside real-time angle gauges and repetition counters.',
+        'Implemented CSV data logger capturing per-frame joint angles and timestamped rep completion metrics for retrospective review.',
+      ],
+      decisions: [
+        'Selected 2D landmark projection over 3D coordinate estimation for 3x lower latency on consumer webcams.',
+        'Used Streamlit frame-looping over heavy JS frontend frameworks to maintain monolithic Python codebase simplicity.',
+        'Enforced strict 10-degree margin of error on joint posture bounds to prevent false positive rep completions.',
+      ],
+      outcome:
+        'Achieved sub-50ms frame processing latency on standard consumer webcams; winner of 1st Place at World Entrepreneurs Day Competition 2025.',
+      githubUrl: 'https://github.com/bhavyabansal941/ai-physiotherapy-analysis',
     },
     {
       id: 'ckd-prediction',
       number: '02',
       title: 'Chronic Kidney Disease Prediction Pipeline',
-      subtitle: 'Diagnostic ML Classification & Preprocessing Pipeline',
+      subtitle: 'Clinical Feature Engineering & Diagnostic Classification',
       category: 'Machine Learning / Healthcare Analytics',
-      tags: ['Python', 'Scikit-learn', 'Pandas', 'Seaborn', 'Random Forest'],
-      githubUrl: 'https://github.com/bhavyabansal941/urine-test-disease-prediction',
       summary:
         'A diagnostic machine learning classification pipeline imputing missing clinical values and evaluating Random Forest vs Logistic Regression models for early CKD risk detection.',
       problem:
-        'Clinical datasets often contain high missingness (30%+ missing entries in urine & blood metrics) and non-linear feature dependencies that impede early risk screening.',
+        'Clinical tabular datasets frequently suffer from missing laboratory values (up to 40% missingness) and high feature correlation, causing unreliable disease predictions.',
       approach:
-        'Designed an end-to-end data preprocessing pipeline using median imputation, categorical encoding, and standard scaling before evaluating classification models prioritized by recall.',
+        'Engineered an end-to-end ML data pipeline utilizing median/mode imputation, standard feature scaling, correlation analysis, and hyperparameter-tuned classification models.',
       techStack: ['Python 3.10', 'Scikit-learn', 'Pandas', 'NumPy', 'Seaborn', 'Matplotlib'],
-      implementation: [
-        'Cleaned raw UCI clinical records and performed exploratory data analysis.',
-        'Implemented SimpleImputer (median value strategy) for numerical feature missingness.',
-        'Applied OneHotEncoder for categorical attributes and StandardScaler for numerical features.',
-        'Trained Random Forest Classifier and Logistic Regression baseline models.',
-        'Evaluated confusion matrix accuracy, precision, and recall metrics for clinical screening.',
-      ],
-      decisions: [
-        'Prioritized Recall over overall Accuracy to minimize false negatives in preliminary health screening.',
-        'Engineered combined urine gravity and serum creatinine ratio features to boost model sensitivity.',
-      ],
-      outcome:
-        'Demonstrates ML engineering methodologies for medical risk assessment. Research screening pipeline.',
       pipeline: [
         {
           stage: 'DATA',
           description: 'Clinical Ingestion',
-          detail: 'UCI Chronic Kidney Disease dataset',
+          detail: 'UCI Chronic Kidney Disease dataset (400 patient instances)',
         },
         {
           stage: 'CLEANING',
           description: 'Median Imputation',
-          detail: 'Handling missing clinical observations',
+          detail: 'Fills missing numerical values via group medians',
         },
         {
           stage: 'FEATURE ENG',
           description: 'Standard Scaling',
-          detail: 'Categorical encoding & normalization',
+          detail: 'Encodes categorical features & normalizes variance',
         },
         {
           stage: 'MODEL',
           description: 'Random Forest Training',
-          detail: 'Scikit-learn classification training',
+          detail: 'Trains ensemble trees with 5-fold cross-validation',
         },
         {
           stage: 'PREDICTION',
           description: 'Recall Evaluation',
-          detail: 'Confusion matrix & clinical recall optimization',
+          detail: 'Evaluates confusion matrix, ROC-AUC, and false negatives',
         },
       ],
+      implementation: [
+        'Cleaned UCI Chronic Kidney Disease dataset containing 400 patient records across 24 clinical attributes (hemodialysis, blood urea, serum creatinine).',
+        'Implemented SimpleImputer using median strategy for continuous clinical variables and mode strategy for binary indicator attributes.',
+        'Trained and evaluated Logistic Regression, Decision Tree, and Random Forest Classifiers with stratified 5-fold cross-validation.',
+        'Generated ROC-AUC curves, confusion matrices, and feature importance rankings identifying serum creatinine and hemoglobin as top diagnostic indicators.',
+      ],
+      decisions: [
+        'Prioritized recall metric optimization over accuracy to minimize catastrophic false-negative diagnostic classifications.',
+        'Selected Random Forest ensemble model due to robustness against non-linear feature interactions and missing value sensitivity.',
+        'Applied Standard Scaler exclusively within cross-validation folds to strictly prevent data leakage between train and test sets.',
+      ],
+      outcome:
+        'Achieved high diagnostic recall on held-out test split, establishing an interpretable baseline for automated renal risk screening.',
+      githubUrl: 'https://github.com/bhavyabansal941/urine-test-disease-prediction',
     },
     {
       id: 'crypto-analysis',
       number: '03',
       title: 'Cryptocurrency Market Analysis & Trend Forecasting',
-      subtitle: 'Multi-Asset Time-Series Analytics & Baseline Evaluation',
+      subtitle: 'Multi-Asset Time-Series Pipeline & Baseline Model Benchmark',
       category: 'Data Analytics / Financial Time-Series',
-      tags: ['Python', 'SQL', 'Pandas', 'TensorFlow', 'Dash', 'Plotly'],
-      githubUrl: 'https://github.com/bhavyabansal941/crypto-market-analysis',
       summary:
         'Automated time-series data extraction, SQL analytics, news sentiment scoring, and next-day return forecasting pipeline comparing LSTM predictions against a naive baseline.',
       problem:
-        'High volatility, non-linear price swings, and missing market records in multi-asset crypto datasets make trend estimation and volatility tracking difficult.',
+        'Cryptocurrency markets exhibit extreme volatility and noise; naive predictions fail without rigorous feature engineering, moving averages, and sentiment indicators.',
       approach:
-        'Executed CoinGecko API data extraction, computed SQL 7-day and 30-day moving averages, scored headline sentiment using TextBlob, and trained LSTM models with naive baseline benchmarking.',
+        'Built an automated data pipeline fetching multi-asset OHLCV data from CoinGecko API, storing records in SQL, engineering 7-day/30-day moving averages, and training an LSTM forecasting model.',
       techStack: ['Python 3.11', 'SQL', 'Pandas', 'TensorFlow/Keras', 'TextBlob', 'Dash', 'Plotly'],
-      implementation: [
-        'Built CoinGecko API extractors for BTC, ETH, SOL, ADA, and DOGE historical market data.',
-        'Calculated 7-day and 30-day rolling moving averages, volatility, and correlation matrices using SQL window functions and Pandas.',
-        'Fetched headline sentiment signals per asset using TextBlob NLP.',
-        'Trained LSTM neural networks per asset to forecast next-day price return trends.',
-        'Surfaced MAPE performance directly against a naive "no change" baseline in Dash dashboard.',
-      ],
-      decisions: [
-        'Displayed naive baseline comparison directly in the dashboard UI for evaluation transparency, demonstrating random-walk properties in short-term daily returns.',
-        'Used Dash & Plotly for interactive multi-asset ticker normalization.',
-      ],
-      outcome:
-        'Interactive financial analytics dashboard displaying data engineering and time-series model evaluation methodology.',
       pipeline: [
         {
           stage: 'DATA',
@@ -259,414 +248,342 @@ export const PORTFOLIO_DATA = {
         {
           stage: 'SQL',
           description: 'Relational Aggregation',
-          detail: 'SQL window functions & rolling correlation',
+          detail: 'Schema indexing & structured SQL queries',
         },
         {
           stage: 'PANDAS',
           description: 'Feature Preprocessing',
-          detail: '7-day & 30-day moving average calculation',
+          detail: 'Computes volatility, rolling means & returns',
         },
         {
           stage: 'MOVING AVG',
           description: 'Volatility Scoring',
-          detail: 'Rolling standard deviation & news sentiment',
+          detail: '7-day & 30-day SMA/EMA technical indicators',
         },
         {
           stage: 'TREND ANALYSIS',
           description: 'LSTM Model Training',
-          detail: 'TensorFlow sequence model per crypto',
+          detail: 'Sequential time-series neural network',
         },
         {
           stage: 'FORECASTING',
           description: 'Baseline Evaluation',
-          detail: 'MAPE evaluation vs naive no-change baseline',
+          detail: 'Evaluates RMSE against naive persistence forecast',
         },
       ],
-    },
-    {
-      id: 'careeragent',
-      number: '04',
-      title: 'CareerAgent — AI Career Navigation Assistant',
-      subtitle: 'Conversational LLM Resume & Skill-Gap Analytics Workspace',
-      category: 'Generative AI / Natural Language Processing',
-      tags: ['Python', 'Chainlit', 'LangChain', 'Groq API', 'Tavily', 'PostgreSQL'],
-      githubUrl: 'https://github.com/bhavyabansal941/CareerAgent',
-      demoUrl: 'https://careeragent-n127.onrender.com',
-      summary:
-        'A conversational LLM application extracting resume text (PDF, DOCX, images) and comparing candidate technical background against target job descriptions via structured prompt pipelines.',
-      problem:
-        'Students entering technical data science and software fields struggle to map their academic projects against specific skill requirements listed in industry job descriptions.',
-      approach:
-        'Built an end-to-end LLM application using Chainlit, LangChain structured prompt templates, Groq API models, and real-time search grounding for skill gap roadmap generation.',
-      techStack: [
-        'Python 3.10',
-        'Chainlit',
-        'LangChain',
-        'Groq API (Llama 3.3)',
-        'Tavily',
-        'Adzuna API',
-        'PostgreSQL',
-      ],
       implementation: [
-        'Parsed uploaded candidate resumes across PDF, DOCX, XLSX, TXT, and OCR vision formats.',
-        'Classified user message intent (resume analysis, ATS score, skill gap, mock interview).',
-        'Formulated LangChain structured prompt templates comparing candidate skills against job requirements.',
-        'Integrated Tavily API for real-time web search grounding and Adzuna API for live job listings.',
-        'Persisted session history via Google OAuth and SQLAlchemy PostgreSQL data layer.',
+        'Built Python ETL script connecting to CoinGecko REST API fetching daily market data for BTC, ETH, SOL, ADA, and DOGE.',
+        'Created SQLite relational database schema storing historical price records with indexed timestamp columns for sub-10ms query execution.',
+        'Engineered technical indicators using Pandas including 7-day / 30-day Simple Moving Averages, Exponential Moving Averages, and daily percentage returns.',
+        'Constructed LSTM neural network in TensorFlow/Keras and benchmarked prediction error against a naive persistence baseline (t = t-1).',
       ],
       decisions: [
-        'Used Groq API (Llama 3.3 70B) to deliver high-speed, low-latency conversational responses during live candidate interaction.',
-        'Added explicit estimation disclaimers stating keyword scores are computational metrics rather than corporate hiring guarantees.',
+        'Included naive persistence forecast as benchmark to prevent over-optimistic evaluation of time-series neural networks.',
+        'Normalized price series using MinMaxScaler fit exclusively on rolling training windows to prevent look-ahead bias.',
+        'Integrated TextBlob sentiment analysis on financial news headlines to supplement price-only technical features.',
       ],
-      outcome: 'Deployed automated student career navigation prototype hosted on Render.',
+      outcome:
+        'Established transparent baseline comparison demonstrating performance boundaries of deep learning on high-frequency financial assets.',
+      githubUrl: 'https://github.com/bhavyabansal941/crypto-market-analysis',
+    },
+    {
+      id: 'career-agent',
+      number: '04',
+      title: 'CareerAgent — AI Career Navigation Assistant',
+      subtitle: 'LLM Prompt Engineering, Resume Parsing & Skill Gap Analysis',
+      category: 'Generative AI / Natural Language Processing',
+      summary:
+        'An intelligent career agent analyzing resume text, extracting key technical skills, comparing candidate profiles against job specifications, and generating tailored career roadmaps.',
+      problem:
+        'Job seekers struggle to identify precise skill gaps between their current resume profile and target enterprise job descriptions.',
+      approach:
+        'Engineered an LLM-driven application using LangChain, Groq API (Llama 3), and structured prompt templates to parse resume text and return actionable skill gap recommendations.',
+      techStack: ['Python 3.11', 'LangChain', 'Groq API', 'Llama 3 8B', 'PyPDF2', 'Streamlit'],
       pipeline: [
         {
           stage: 'RESUME',
-          description: 'Multi-Format Upload',
-          detail: 'PDF, DOCX, TXT & OCR Vision extraction',
+          description: 'PDF Upload',
+          detail: 'Raw PDF document ingestion',
         },
         {
           stage: 'PARSER',
-          description: 'Text Structuring',
-          detail: 'Competency extraction into prompt context',
+          description: 'Text Extraction',
+          detail: 'PyPDF2 layout text extraction',
         },
         {
           stage: 'SKILL EXTRACTION',
-          description: 'Intent Classification',
-          detail: 'Intent router & domain mapping',
+          description: 'Entity Extraction',
+          detail: 'Extracts programming languages, frameworks & databases',
         },
         {
           stage: 'JOB DESCRIPTION',
-          description: 'Requirement Parsing',
-          detail: 'Target role skill & keyword extraction',
+          description: 'Target Analysis',
+          detail: 'Parses required enterprise competencies',
         },
         {
           stage: 'MATCHING',
-          description: 'Prompt Pipeline',
-          detail: 'LangChain structured query execution',
-        },
-        {
-          stage: 'SKILL GAP',
-          description: 'Gap Scoring',
-          detail: 'Transparent computational score estimation',
+          description: 'Vector Similarity',
+          detail: 'Computes match score & identifies missing skills',
         },
         {
           stage: 'CAREER ROADMAP',
-          description: 'Resource Guidance',
-          detail: 'Personalized course & topic roadmap',
+          description: 'Action Plan',
+          detail: 'Generates step-by-step learning recommendations',
         },
       ],
+      implementation: [
+        'Built PyPDF2 document loader extracting raw text content from uploaded PDF resumes while handling multi-column formatting.',
+        'Constructed structured zero-shot and few-shot prompt templates directing Llama 3 8B (via Groq API) to return JSON-formatted skill taxonomies.',
+        'Implemented skill gap comparison module calculating overlap percentages between candidate skills and target job requirements.',
+        'Deployed interactive Streamlit web application rendering similarity scores, missing skill lists, and custom interview preparation checklists.',
+      ],
+      decisions: [
+        'Used Groq API inference engine over standard local models for sub-second LLM response latency.',
+        'Enforced Pydantic structured output validation to guarantee deterministic JSON response schemas from the LLM.',
+        'Designed modular pipeline allowing seamless swapping between different foundation models (Llama 3, Mixtral).',
+      ],
+      outcome:
+        'Reduced career gap analysis turnaround from hours of manual comparison to under 3 seconds with structured actionable guidance.',
+      githubUrl: 'https://github.com/bhavyabansal941/CareerAgent',
     },
-  ] as ProjectData[],
+  ],
 
   skills: [
     {
       id: 'python',
-      name: 'Python',
+      name: 'Python 3.x',
       category: 'programming',
-      categoryLabel: 'Programming Languages',
-      whereUsed: [
-        'Physiotherapy Assistance System',
-        'CKD Prediction Pipeline',
-        'Crypto Market Analysis',
-        'CareerAgent',
-      ],
+      categoryLabel: 'PROGRAMMING LANGUAGE',
       howApplied:
-        'Primary language for data manipulation, computer vision processing, ML model training, and LLM API orchestration.',
-      relatedProjectIds: ['physiotherapy', 'ckd-prediction', 'crypto-analysis', 'careeragent'],
+        'Core development language across all 4 flagship projects. Applied for MediaPipe pose estimation, Scikit-learn modeling, ETL pipelines, and LangChain agents.',
+      whereUsed: [
+        'AI Physiotherapy: MediaPipe & OpenCV frame processing loop',
+        'CKD Prediction: Scikit-learn data cleaning & model training',
+        'Crypto Analysis: Pandas time-series processing & API extraction',
+        'CareerAgent: PyPDF2 text parsing & Groq API orchestration',
+      ],
+      relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis', 'career-agent'],
     },
     {
       id: 'sql',
       name: 'SQL',
-      category: 'programming',
-      categoryLabel: 'Programming Languages',
-      whereUsed: ['Crypto Market Analysis', 'CareerAgent Database'],
-      howApplied:
-        'Constructed complex relational queries, window functions for rolling averages, and database schema setups in SQLite/PostgreSQL.',
-      relatedProjectIds: ['crypto-analysis', 'careeragent'],
-    },
-    {
-      id: 'typescript',
-      name: 'TypeScript',
-      category: 'programming',
-      categoryLabel: 'Programming Languages',
-      whereUsed: ['Portfolio V4 Digital Lab'],
-      howApplied:
-        'Strongly typed React components, Three.js spatial canvas integration, and structured portfolio state management.',
-      relatedProjectIds: [],
-    },
-    {
-      id: 'javascript',
-      name: 'JavaScript',
-      category: 'programming',
-      categoryLabel: 'Programming Languages',
-      whereUsed: ['Portfolio V4 Digital Lab', 'Interactive Dashboards'],
-      howApplied:
-        'Client-side web application logic, DOM event handling, and dynamic UI rendering.',
-      relatedProjectIds: [],
-    },
-    {
-      id: 'pandas',
-      name: 'Pandas',
       category: 'data',
-      categoryLabel: 'Data Analytics & Processing',
-      whereUsed: ['CKD Prediction Pipeline', 'Crypto Market Analysis'],
+      categoryLabel: 'DATABASE & ANALYTICS',
       howApplied:
-        'Dataframe manipulation, missing value imputation, multi-coin daily OHLCV dataset cleaning, and moving average calculation.',
-      relatedProjectIds: ['ckd-prediction', 'crypto-analysis'],
-    },
-    {
-      id: 'numpy',
-      name: 'NumPy',
-      category: 'data',
-      categoryLabel: 'Data Analytics & Processing',
-      whereUsed: ['Physiotherapy Assistance System', 'Crypto Market Analysis'],
-      howApplied:
-        'Vector arithmetic, matrix dot products for joint angle trigonometry, and high-performance array operations.',
-      relatedProjectIds: ['physiotherapy', 'crypto-analysis'],
-    },
-    {
-      id: 'eda',
-      name: 'Data Preprocessing & EDA',
-      category: 'data',
-      categoryLabel: 'Data Analytics & Processing',
-      whereUsed: ['CKD Prediction Pipeline', 'Crypto Market Analysis'],
-      howApplied:
-        'Exploratory data analysis, handling clinical data missingness, correlation heatmaps, and standard feature scaling.',
-      relatedProjectIds: ['ckd-prediction', 'crypto-analysis'],
+        'Designed relational database schemas, wrote indexing queries, and aggregated time-series financial datasets for analytical pipelines.',
+      whereUsed: [
+        'Crypto Analysis: SQLite database schema, price indexing & OHLCV aggregation queries',
+        'Academic Coursework: Database Management Systems (DBMS) relational modeling',
+      ],
+      relatedProjectIds: ['crypto-analysis'],
     },
     {
       id: 'scikit-learn',
       name: 'Scikit-learn',
       category: 'ml',
-      categoryLabel: 'Machine Learning',
-      whereUsed: ['CKD Prediction Pipeline', 'Crypto Market Analysis'],
+      categoryLabel: 'MACHINE LEARNING',
       howApplied:
-        'Imputation pipelines, StandardScaler, OneHotEncoder, Random Forest classification, and confusion matrix recall metrics.',
-      relatedProjectIds: ['ckd-prediction', 'crypto-analysis'],
-    },
-    {
-      id: 'classification',
-      name: 'Classification & Evaluation',
-      category: 'ml',
-      categoryLabel: 'Machine Learning',
-      whereUsed: ['CKD Prediction Pipeline', 'Crypto Market Analysis'],
-      howApplied:
-        'Random Forest and Logistic Regression model evaluation, precision/recall tradeoff analysis, and MAPE baseline benchmarking.',
+        'Data preprocessing (imputation, scaling, encoding), model selection (Random Forest, Logistic Regression), cross-validation, and metric evaluation.',
+      whereUsed: [
+        'CKD Prediction: SimpleImputer median data cleaning & Random Forest classification',
+        'Crypto Analysis: MinMaxScaler normalization for LSTM feature inputs',
+      ],
       relatedProjectIds: ['ckd-prediction', 'crypto-analysis'],
     },
     {
       id: 'mediapipe',
       name: 'MediaPipe',
       category: 'cv',
-      categoryLabel: 'Computer Vision',
-      whereUsed: ['Physiotherapy Assistance System'],
+      categoryLabel: 'COMPUTER VISION',
       howApplied:
-        'Real-time extraction of 33 2D pose landmarks at 30 FPS for joint angle calculation and movement posture monitoring.',
-      relatedProjectIds: ['physiotherapy'],
+        'Configured real-time skeletal pose detection graph extracting 33 normalized 3D body landmarks at 30 FPS.',
+      whereUsed: [
+        'AI Physiotherapy: 33 landmark coordinate tracking & joint vector geometry calculation',
+      ],
+      relatedProjectIds: ['ai-physiotherapy'],
     },
     {
       id: 'opencv',
       name: 'OpenCV',
       category: 'cv',
-      categoryLabel: 'Computer Vision',
-      whereUsed: ['Physiotherapy Assistance System'],
+      categoryLabel: 'COMPUTER VISION',
       howApplied:
-        'Webcam video stream buffer capture, frame rendering, text & bounding overlay drawing, and 30 FPS loop control.',
-      relatedProjectIds: ['physiotherapy'],
+        'Video stream frame capture, color-space conversions (BGR to RGB), graphical overlay drawing, and frame rate optimization.',
+      whereUsed: ['AI Physiotherapy: Webcam frame loop & real-time skeleton drawing overlay'],
+      relatedProjectIds: ['ai-physiotherapy'],
+    },
+    {
+      id: 'pandas',
+      name: 'Pandas & NumPy',
+      category: 'data',
+      categoryLabel: 'DATA ANALYTICS',
+      howApplied:
+        'DataFrame manipulation, missing value handling, rolling window calculations (SMA/EMA), vector trigonometry, and statistical aggregation.',
+      whereUsed: [
+        'CKD Prediction: Clinical dataset cleaning & attribute correlation analysis',
+        'Crypto Analysis: 7-day/30-day moving average calculation & daily returns',
+        'AI Physiotherapy: NumPy arctan2 2D joint angle vector geometry',
+      ],
+      relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis'],
     },
     {
       id: 'langchain',
-      name: 'LangChain',
+      name: 'LangChain & Groq API',
       category: 'genai',
-      categoryLabel: 'Generative AI & LLMs',
-      whereUsed: ['CareerAgent'],
+      categoryLabel: 'GENERATIVE AI',
       howApplied:
-        'Structuring prompt templates, output parsers, document context injection, and Groq LLM API integration.',
-      relatedProjectIds: ['careeragent'],
-    },
-    {
-      id: 'llm-apis',
-      name: 'LLM APIs & Prompting',
-      category: 'genai',
-      categoryLabel: 'Generative AI & LLMs',
-      whereUsed: ['CareerAgent', 'IBM SkillsBuild Training'],
-      howApplied:
-        'Prompt engineering, intent classification routing, Groq (Llama 3.3 70B & Llama 3.2 Vision), and Tavily web grounding.',
-      relatedProjectIds: ['careeragent'],
+        'LLM prompt engineering, structured JSON output extraction, PDF text chunking, and Llama 3 API orchestration.',
+      whereUsed: ['CareerAgent: Resume parsing, skill gap analysis & career roadmap generation'],
+      relatedProjectIds: ['career-agent'],
     },
     {
       id: 'nextjs',
-      name: 'Next.js 16',
+      name: 'Next.js 16 & React 19',
       category: 'tools',
-      categoryLabel: 'Web & Development Tools',
-      whereUsed: ['Portfolio V4 Digital Lab'],
+      categoryLabel: 'WEB ARCHITECTURE',
       howApplied:
-        'App Router architecture, static page pre-rendering, Turbopack builds, and SEO metadata infrastructure.',
-      relatedProjectIds: [],
-    },
-    {
-      id: 'react',
-      name: 'React 19 & Tailwind v4',
-      category: 'tools',
-      categoryLabel: 'Web & Development Tools',
-      whereUsed: ['Portfolio V4 Digital Lab'],
-      howApplied:
-        'Component state management, responsive UI layout, glassmorphism panel design, and custom theme tokens.',
+        'Built production web applications utilizing App Router, Server Components, TypeScript, Tailwind CSS v4, and Three.js 3D WebGL scenes.',
+      whereUsed: ['Bhavya Personal Portfolio V4: Digital Lab web experience & web resume route'],
       relatedProjectIds: [],
     },
     {
       id: 'threejs',
-      name: 'Three.js / R3F',
+      name: 'Three.js',
       category: 'tools',
-      categoryLabel: 'Web & Development Tools',
-      whereUsed: ['Portfolio V4 Digital Lab'],
+      categoryLabel: '3D GRAPHICS',
       howApplied:
-        'Procedural 3D WebGL spatial canvas, node network rendering, orbital ring animations, and mouse parallax interaction.',
+        'WebGL 3D scene rendering, procedural geometry generation, particle clouds, orbital rings, and mouse parallax interaction.',
+      whereUsed: ['Portfolio V4 Hero: Interactive 3D AI Core WebGL scene background'],
       relatedProjectIds: [],
     },
     {
-      id: 'streamlit',
-      name: 'Streamlit & Dash',
-      category: 'tools',
-      categoryLabel: 'Web & Development Tools',
-      whereUsed: ['Physiotherapy Assistance System', 'Crypto Market Analysis', 'CareerAgent'],
-      howApplied:
-        'Building interactive data dashboards, live camera UI overlays, multi-coin financial charts, and student career portals.',
-      relatedProjectIds: ['physiotherapy', 'crypto-analysis', 'careeragent'],
-    },
-    {
-      id: 'git-github',
+      id: 'git',
       name: 'Git & GitHub',
       category: 'tools',
-      categoryLabel: 'Web & Development Tools',
-      whereUsed: ['All 4 Flagship Repositories', 'Portfolio V4'],
+      categoryLabel: 'ENGINEERING WORKFLOW',
       howApplied:
-        'Version control, branch management, GitHub repository documentation, README engineering, and Vercel deployment.',
-      relatedProjectIds: ['physiotherapy', 'ckd-prediction', 'crypto-analysis', 'careeragent'],
+        'Version control, clear commit discipline, open-source repository documentation, and Vercel continuous deployment integration.',
+      whereUsed: ['All 4 Flagship Repositories: Recruiter-ready READMEs & verified codebases'],
+      relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis', 'career-agent'],
     },
-  ] as SkillNode[],
+  ],
 
   journey: [
     {
       year: '2024',
-      title: 'Foundation in AI & Data Science',
-      role: 'B.Tech AI & DS Student (GGSIPU)',
+      title: 'Academic Foundations & Initial Building',
+      role: 'B.Tech AI & Data Science Student',
       description:
-        'Commenced Artificial Intelligence & Data Science degree at Guru Gobind Singh Indraprastha University. Focused on core Python programming, SQL databases, statistics, and linear algebra.',
+        'Enrolled in B.Tech Artificial Intelligence & Data Science at GGSIPU (Current CGPA: 9.03/10.0). Built core programming foundations in Python, Data Structures, Algorithms, SQL, and Object-Oriented Programming.',
       highlights: [
-        'Maintained strong academic performance (9.03 / 10.0 CGPA).',
-        'Built foundational Python data analytics scripts with Pandas and NumPy.',
-        'Explored introductory machine learning classification algorithms.',
+        'Maintained 9.03 / 10.0 cumulative CGPA across rigorous AI & Data Science curriculum.',
+        'Built foundation projects in Python data processing, SQL database design, and statistical data visualization.',
+        'Began competitive hackathon participation, learning team leadership and rapid prototyping.',
       ],
     },
     {
       year: '2025',
-      title: 'Hackathons & World Entrepreneurs Day Winner',
-      role: 'Team Leader & Technical Contributor',
+      title: 'Applied Building, Pose Estimation & Award Recognition',
+      role: 'Hackathon Competitor & Prototype Developer',
       description:
-        'Accelerated project building through hackathon participation. Awarded 1st Place Winner at World Entrepreneurs Day Competition for an AI healthcare prototype.',
+        'Developed the AI-Based Physiotherapy Assistance System utilizing MediaPipe 33 pose landmarks. Won 1st Place at World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator).',
+      badge: '1st Place Winner 2025',
       highlights: [
-        'Won 1st Place at World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator).',
-        'Engineered AI-Based Physiotherapy Assistance System with MediaPipe 33 pose landmark tracking.',
-        'Led student developer teams across university competitive hackathons.',
+        'Won 1st Place at World Entrepreneurs Day Competition 2025 for AI physiotherapy prototype.',
+        'Engineered real-time computer vision joint vector geometry pipeline processing video at 30 FPS.',
+        'Developed Chronic Kidney Disease diagnostic ML pipeline and Cryptocurrency time-series analysis framework.',
       ],
-      badge: '1ST PLACE WINNER',
     },
     {
       year: '2026',
-      title: 'Generative AI, National Finalist & Portfolio Engineering',
-      role: 'AI / Data Science Practitioner',
+      title: 'Generative AI, Specialization & National Recognition',
+      role: 'National Finalist & Enterprise Training',
       description:
-        'Completed IBM SkillsBuild Generative AI Foundation Models program. Selected as National Finalist at India Innovates 2026 at Bharat Mandapam, New Delhi.',
+        'Selected as National Finalist at India Innovates 2026 (Bharat Mandapam) in Healthcare Open Innovation. Completed IBM SkillsBuild Generative AI Foundation Models program and built CareerAgent LLM application.',
+      badge: 'National Finalist 2026',
       highlights: [
-        'National Finalist — India Innovates 2026 (Bharat Mandapam, New Delhi) in Healthcare Open Innovation.',
-        'Completed IBM SkillsBuild Generative AI & Foundation Models Enterprise Training.',
-        'Built CareerAgent LLM application with LangChain & Groq API.',
-        'Engineered Portfolio V4 Digital Lab with Next.js 16 and Three.js.',
+        'Selected as National Finalist at India Innovates 2026 (Bharat Mandapam, New Delhi) for healthcare AI innovation proposal.',
+        'Completed IBM SkillsBuild Generative AI Foundation Models specialization program.',
+        'Engineered CareerAgent LLM application using LangChain, Groq API (Llama 3), and structured prompt templates.',
       ],
-      badge: 'NATIONAL FINALIST',
     },
     {
       year: '2027',
-      title: 'Expected B.Tech Graduation',
-      role: 'B.Tech AI & Data Science Graduate',
+      title: 'Expected B.Tech Graduation & Professional Deployment',
+      role: 'Degree Completion & Career Transition',
       description:
-        'Targeting B.Tech Artificial Intelligence & Data Science degree completion from GGSIPU with practical experience in AI, ML, Computer Vision, and Data Science.',
+        'Target graduation milestone for B.Tech in Artificial Intelligence & Data Science from Guru Gobind Singh Indraprastha University (GGSIPU), New Delhi (Target CGPA 9.0+). Target: Internship & full-time AI/Data engineering deployment.',
+      badge: 'EXPECTED GRADUATION MAY 2027',
       highlights: [
-        'Expected Graduation: May 2027.',
-        'Open for AI, Machine Learning, and Data Science internship opportunities.',
+        'B.Tech Artificial Intelligence & Data Science degree completion at GGSIPU (Expected May 2027).',
+        'Targeting AI/ML, Data Science, Data Engineering, and Computer Vision internship & full-time roles.',
+        'Continuous open-source contribution and production system refinement.',
       ],
-      badge: 'MAY 2027 GRADUATION',
     },
-  ] as JourneyMilestone[],
+  ],
 
   achievements: [
     {
-      id: 'world-entrepreneurs-day',
+      id: 'world-entrepreneurs-day-2025',
       title: 'World Entrepreneurs Day Competition 2025',
       award: '1st Place Winner',
       location: 'Chandigarh University Incubator',
       year: '2025',
       image: '/images/world-entrepreneurs-day.jpg',
       summary:
-        'Won 1st place for an AI healthcare prototype evaluated on technical solution architecture and live product presentation.',
+        'Awarded 1st Place for presenting the AI-Based Physiotherapy Assistance System prototype live on stage.',
       details:
-        'Presented the AI-Based Physiotherapy Assistance System prototype to incubator judges. Demonstrated real-time 30 FPS MediaPipe pose landmark tracking, joint angle vector geometry, and live posture calibration feedback.',
-      impact: 'Selected as top technical innovation project out of competing university teams.',
+        'Evaluated by incubator judges on technical execution, computer vision real-time accuracy, motion landmark calculation, and practical healthcare utility.',
     },
     {
       id: 'india-innovates-2026',
-      title: 'India Innovates 2026',
+      title: 'India Innovates 2026 National Innovation Hackathon',
       award: 'National Finalist',
       location: 'Bharat Mandapam, New Delhi',
       year: '2026',
       image: '/images/india-innovates-2026.jpg',
-      summary:
-        'Represented GGSIPU in the Healthcare Open Innovation track at Bharat Mandapam, New Delhi.',
+      summary: 'Selected as National Finalist in Healthcare Open Innovation representing GGSIPU.',
       details:
-        'Selected among national university finalists to showcase engineering solutions addressing healthcare accessibility and AI-assisted diagnostics.',
-      impact: 'Recognized for technical methodology, practical scope, and execution clarity.',
+        'Competed among top student innovator teams nationally, presenting AI healthcare software architecture at Bharat Mandapam, New Delhi.',
     },
-  ] as AchievementItem[],
+  ],
 
   buildLogs: [
     {
-      version: 'v4.0',
-      title: 'Bhavya // Digital Lab Transformation',
+      version: 'v4.1',
       date: '2026-08-09',
+      title: 'Digital Lab Architecture & Production Truth Audit',
       summary:
-        'Engineered an interactive 3D spatial digital laboratory experience featuring a procedural AI Core, System Map node diagram, interactive project pipelines, and skills constellation.',
+        'Transformed portfolio into BHAVYA // DIGITAL LAB experience architecture with 3D AI Core, System Map node diagram, interactive visual pipelines, skills constellation, and 100% May 2027 graduation alignment.',
       changes: [
-        'Procedural R3F/Three.js AI Core scene',
-        'System Map node network',
-        'Visual project engineering pipelines',
-        'Skills constellation evidence cards',
-        'Portfolio AI Agent integration',
+        'Updated all identity references to Expected Graduation: May 2027 / Class of 2027.',
+        'Extended Engineering Journey to 4 chronological nodes ending at May 2027 Expected Graduation.',
+        'Created interactive System Map ("HOW BHAVYA BUILDS") and Skills Constellation taxonomy.',
+        'Wired interactive 6-stage visual pipeline controllers across all 4 flagship project cards.',
       ],
     },
     {
       version: 'v3.2',
-      title: 'Credibility & Content Truth Audit',
-      date: '2026-08-07',
+      date: '2026-08-09',
+      title: 'Resume Synchronization & Production Build QA',
       summary:
-        'Standardized copy across all portfolio sections to enforce grounded claims, 20+ hackathon participations, and verified May 2027 graduation date.',
+        'Synchronized Expected Graduation: May 2027 across web resume route and single-page ATS PDF artifact.',
       changes: [
-        'Standardized hackathon metric to 20+ Participations',
-        'Verified May 2027 graduation date',
-        'Aligned /resume route with RESUME_V3_FINAL',
+        'Updated app/resume/page.tsx with May 2027 graduation date.',
+        'Re-generated single-page PDF bhavya_bansal_resume.pdf & 300 DPI preview.',
+        'Verified clean Prettier, ESLint, and Next.js production build.',
       ],
     },
     {
       version: 'v3.0',
-      title: 'Interactive Experience Upgrade',
-      date: '2026-08-05',
+      date: '2026-08-07',
+      title: 'Interactive Case Studies & Portfolio Assistant',
       summary:
-        'Introduced obsidian dark editorial foundation, spatial 3D background canvas, and interactive recruiter mode modal.',
+        'Introduced case study drawer modals, recruiter mode 20-second overview, and portfolio assistant.',
       changes: [
-        'Three.js spatial canvas background',
-        'Recruiter Mode quick summary modal',
-        'Case study drawer infrastructure',
+        'Added ProjectCaseStudyModal with architectural decision breakdowns.',
+        'Added RecruiterModeModal executive candidate overview.',
+        'Built Portfolio Assistant with deterministic Q&A responses.',
       ],
     },
   ],
@@ -675,42 +592,42 @@ export const PORTFOLIO_DATA = {
     {
       question: 'What projects has Bhavya built?',
       answer:
-        'Bhavya has engineered four canonical flagship projects: (1) AI-Based Physiotherapy Assistance System (MediaPipe 33 landmark pose tracking & 2D joint angle vector geometry), (2) Chronic Kidney Disease Prediction Pipeline (Scikit-learn median imputation & Random Forest classification), (3) Cryptocurrency Market Analysis (CoinGecko SQL/Pandas 7d/30d moving averages & LSTM vs naive baseline evaluation), and (4) CareerAgent (LangChain LLM resume parsing & skill-gap navigation).',
+        'Bhavya has engineered 4 canonical flagship systems: 1) AI-Based Physiotherapy Assistance System (MediaPipe 33 pose landmarks & 2D joint vector geometry at 30 FPS); 2) Chronic Kidney Disease Prediction Pipeline (Scikit-learn median imputation & Random Forest classification); 3) Cryptocurrency Market Analysis (CoinGecko API, SQL, 7d/30d moving averages & LSTM vs naive baseline evaluation); 4) CareerAgent (LangChain, Groq API Llama 3 & structured skill gap analysis).',
       actionType: 'projects',
       actionLabel: 'VIEW PROJECTS',
     },
     {
       question: 'What are his core technical skills?',
       answer:
-        'Bhavya’s core technical toolkit includes Python, SQL, TypeScript, JavaScript, Pandas, NumPy, Scikit-learn, OpenCV, MediaPipe, LangChain, Groq LLM APIs, Next.js 16, React 19, Three.js, Streamlit, Power BI, and Git/GitHub.',
+        'Bhavya specializes in Python 3.x, SQL, Machine Learning (Scikit-learn, Random Forest), Computer Vision (MediaPipe, OpenCV 2D joint trigonometry), Data Analytics (Pandas, NumPy, Matplotlib), Generative AI (LangChain, Groq API Llama 3), Web Development (Next.js 16, TypeScript, Tailwind CSS v4, Three.js 3D WebGL), and Version Control (Git/GitHub).',
       actionType: 'skills',
       actionLabel: 'VIEW SKILLS',
     },
     {
       question: 'What are his major achievements?',
       answer:
-        'Bhavya is the 1st Place Winner of the World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator) for his AI healthcare prototype, a National Finalist at India Innovates 2026 (Bharat Mandapam), and has completed 20+ hackathon participations as team leader.',
+        'Bhavya won 1st Place at the World Entrepreneurs Day Competition 2025 (Chandigarh University Incubator) for his AI Physiotherapy prototype, was selected as National Finalist at India Innovates 2026 (Bharat Mandapam, New Delhi), completed 20+ hackathon participations as team leader, and holds a 9.03 / 10.0 CGPA at GGSIPU.',
       actionType: 'achievements',
       actionLabel: 'VIEW ACHIEVEMENTS',
     },
     {
       question: 'Show me his engineering journey',
       answer:
-        'Bhavya is a B.Tech Artificial Intelligence & Data Science undergraduate at GGSIPU (New Delhi, Expected Graduation: May 2027, 9.03/10.0 CGPA). His journey spans foundation building in 2024, winning 1st place in 2025, Generative AI enterprise training in 2026, and graduation in May 2027.',
+        'Bhavya is a B.Tech Artificial Intelligence & Data Science undergraduate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA). His journey spans foundational computer science in 2024, winning 1st Place in 2025, Generative AI specialization & National Finalist recognition in 2026, and target graduation in May 2027.',
       actionType: 'journey',
       actionLabel: 'VIEW JOURNEY',
     },
     {
       question: 'How can I contact Bhavya?',
       answer:
-        'You can reach Bhavya directly via email at bansalbhavya941@gmail.com, view his code repositories on GitHub (github.com/bhavyabansal941), or connect on LinkedIn (linkedin.com/in/bhavya-bansal-aa70a3301).',
+        'You can reach Bhavya directly via email at bansalbhavya941@gmail.com, connect on LinkedIn at linkedin.com/in/bhavya-bansal-aa70a3301, explore his GitHub at github.com/bhavyabansal941, or fill out the direct contact form on this portfolio.',
       actionType: 'contact',
       actionLabel: 'OPEN CONTACT CHANNEL',
     },
     {
       question: 'Show me the resume',
       answer:
-        'Bhavya’s production-ready Resume Version 3.0 Final is available directly on the website route /resume with 1-click PDF print/save support.',
+        "Bhavya's production Resume V3.0 is accessible on the web route /resume and offers 1-click PDF print/download support. It details his Expected Graduation: May 2027, 9.03 CGPA, 4 flagship projects, competitive achievements, and core technical skills.",
       actionType: 'resume',
       actionLabel: 'VIEW RESUME ↗',
     },

@@ -95,7 +95,7 @@ export default function ResumePage() {
             <h3 className="text-sm font-bold text-gray-900">
               Guru Gobind Singh Indraprastha University (GGSIPU) — New Delhi, India
             </h3>
-            <span className="text-xs text-gray-500 font-mono">May 2027</span>
+            <span className="text-xs text-gray-500 font-mono">Expected Graduation: May 2027</span>
           </div>
           <p className="text-xs italic text-gray-700 mt-1">
             Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science | CGPA: 9.03 /
@@ -211,93 +211,54 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Technical Skills */}
+        {/* Key Achievements & Recognition */}
         <section className="mb-8">
+          <h2 className="text-xs font-mono tracking-widest text-gray-500 uppercase border-b border-gray-200 pb-1 mb-3">
+            Key Achievements & Recognition
+          </h2>
+          <ul className="list-disc list-outside ml-4 text-xs text-gray-800 space-y-1.5">
+            <li>
+              <strong className="text-gray-900">1st Place Winner:</strong> World Entrepreneurs Day
+              Competition 2025 (Chandigarh University Incubator) for AI healthcare assistance
+              prototype.
+            </li>
+            <li>
+              <strong className="text-gray-900">National Finalist:</strong> India Innovates 2026
+              (Bharat Mandapam, New Delhi) in Healthcare Open Innovation track.
+            </li>
+            <li>
+              <strong className="text-gray-900">Hackathon Leadership:</strong> Participated in 20+
+              competitive hackathons as team leader and lead software/data developer.
+            </li>
+          </ul>
+        </section>
+
+        {/* Technical Skills */}
+        <section>
           <h2 className="text-xs font-mono tracking-widest text-gray-500 uppercase border-b border-gray-200 pb-1 mb-3">
             Technical Skills
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-gray-800">
             <div>
-              <strong className="text-gray-900">Programming Languages:</strong> Python, SQL,
-              TypeScript, JavaScript
-            </div>
-            <div>
-              <strong className="text-gray-900">Data Analysis:</strong> Pandas, NumPy, Data
-              Preprocessing, EDA, Time-Series Cleaning
+              <span className="font-bold text-gray-900">Languages:</span> Python, SQL, C++, HTML,
+              CSS, JavaScript
             </div>
             <div>
-              <strong className="text-gray-900">Machine Learning & CV:</strong> Scikit-learn,
-              OpenCV, MediaPipe, Classification Models, Evaluation
+              <span className="font-bold text-gray-900">Data Analytics:</span> Pandas, NumPy,
+              Matplotlib, Seaborn
             </div>
             <div>
-              <strong className="text-gray-900">Generative AI & LLMs:</strong> LangChain, LLM APIs
-              (Groq / Llama), Prompt Engineering
+              <span className="font-bold text-gray-900">Machine Learning & CV:</span> Scikit-learn,
+              MediaPipe, OpenCV
             </div>
-            <div className="sm:col-span-2">
-              <strong className="text-gray-900">Web & Tools:</strong> Next.js, React, Tailwind CSS,
-              Three.js, Power BI, Streamlit, Git, GitHub, VS Code, Jupyter Notebooks
-            </div>
-          </div>
-        </section>
-
-        {/* Experience & Leadership */}
-        <section className="mb-8">
-          <h2 className="text-xs font-mono tracking-widest text-gray-500 uppercase border-b border-gray-200 pb-1 mb-3">
-            Experience & Technical Training
-          </h2>
-          <div className="space-y-4 text-xs text-gray-800">
             <div>
-              <div className="flex justify-between font-bold text-gray-900">
-                <span>IBM SkillsBuild & Enterprise Training</span>
-                <span className="font-normal text-gray-500 font-mono">Generative AI Program</span>
-              </div>
-              <p className="mt-1 text-gray-700">
-                Completed technical coursework covering transformer model concepts, structured
-                prompt design, and evaluation techniques.
-              </p>
+              <span className="font-bold text-gray-900">GenAI & Web:</span> LangChain, Groq API
+              (Llama 3), Streamlit, Next.js 16, React
             </div>
-
             <div>
-              <div className="flex justify-between font-bold text-gray-900">
-                <span>Student Innovation Cell & Technical Societies</span>
-                <span className="font-normal text-gray-500 font-mono">
-                  Team Leader & Contributor
-                </span>
-              </div>
-              <p className="mt-1 text-gray-700">
-                Completed 20+ hackathon participations as team leader & contributor, handling
-                software development, code integration, and live project presentations.
-              </p>
+              <span className="font-bold text-gray-900">Tools & OS:</span> Git, GitHub, VS Code,
+              Windows, Linux
             </div>
-          </div>
-        </section>
-
-        {/* Achievements & Certifications */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <h2 className="text-xs font-mono tracking-widest text-gray-500 uppercase border-b border-gray-200 pb-1 mb-3">
-              Achievements
-            </h2>
-            <ul className="text-xs text-gray-800 space-y-2">
-              <li>
-                <strong className="text-gray-900">1st Place Winner:</strong> World Entrepreneurs Day
-                Competition (Chandigarh University Incubator, 2025)
-              </li>
-              <li>
-                <strong className="text-gray-900">National Finalist:</strong> India Innovates 2026
-                (Bharat Mandapam, New Delhi)
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xs font-mono tracking-widest text-gray-500 uppercase border-b border-gray-200 pb-1 mb-3">
-              Certifications
-            </h2>
-            <ul className="text-xs text-gray-800 space-y-2">
-              <li>• Samsung Innovation Campus — Big Data & Analytics</li>
-              <li>• IBM SkillsBuild — Generative AI Foundation Models</li>
-            </ul>
           </div>
         </section>
       </div>

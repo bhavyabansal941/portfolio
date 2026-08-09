@@ -17,7 +17,7 @@ export function IdentitySection() {
       {/* Interactive 3D AI Core Canvas Background */}
       <Hero3DScene />
 
-      {/* Subtle Background Radial Glow */}
+      {/* Ambient Background Radial Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -72,8 +72,8 @@ export function IdentitySection() {
               <div className="text-[11px] font-mono text-zinc-400 mt-0.5">AI & CV Systems</div>
             </div>
             <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
-              <div className="text-base font-bold font-mono text-white">GGSIPU &apos;27</div>
-              <div className="text-[11px] font-mono text-zinc-400 mt-0.5">May 2027 Degree</div>
+              <div className="text-base font-bold font-mono text-white">Class of 2027</div>
+              <div className="text-[11px] font-mono text-zinc-400 mt-0.5">GGSIPU May 2027</div>
             </div>
           </div>
 
@@ -109,7 +109,7 @@ export function IdentitySection() {
 
             <Image
               src="/images/hero-portrait.jpg"
-              alt="Bhavya Bansal — Artificial Intelligence & Data Science Undergraduate"
+              alt="Bhavya Bansal — Artificial Intelligence & Data Science Undergraduate (Expected Graduation: May 2027)"
               fill
               sizes="(max-width: 768px) 100vw, 400px"
               priority
@@ -120,12 +120,12 @@ export function IdentitySection() {
             <div className="absolute bottom-4 left-4 right-4 z-20 p-4 rounded-xl bg-[#09090b]/90 backdrop-blur-md border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-white tracking-wide">BHAVYA BANSAL</span>
-                <span className="px-2 py-0.5 rounded bg-sky-500/20 border border-sky-500/40 text-[10px] font-mono text-sky-300">
-                  MAY 2027
+                <span className="px-2.5 py-0.5 rounded bg-sky-500/20 border border-sky-500/40 text-[10px] font-mono text-sky-300 font-bold">
+                  CLASS OF 2027
                 </span>
               </div>
               <div className="text-xs font-mono text-zinc-300">
-                B.Tech AI & Data Science • GGSIPU
+                B.Tech AI & Data Science • GGSIPU Expected Graduation May 2027
               </div>
               <div className="flex items-center gap-2 pt-1 border-t border-white/10 text-[11px] font-mono text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

@@ -46,7 +46,9 @@ export function RecruiterModeModal() {
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             {candidate.name}
           </h2>
-          <p className="text-xs font-mono text-zinc-300">{candidate.degree} • GGSIPU</p>
+          <p className="text-xs font-mono text-zinc-300">
+            {candidate.degree} • GGSIPU Expected Graduation: May 2027
+          </p>
         </div>
 
         {/* Quick Facts Grid */}
@@ -56,8 +58,8 @@ export function RecruiterModeModal() {
             <div className="text-base font-bold font-mono text-white mt-0.5">{candidate.cgpa}</div>
           </div>
           <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
-            <div className="text-xs font-mono text-zinc-400">Graduation</div>
-            <div className="text-base font-bold font-mono text-sky-400 mt-0.5">May 2027</div>
+            <div className="text-xs font-mono text-zinc-400">Graduation Class</div>
+            <div className="text-base font-bold font-mono text-sky-400 mt-0.5">Class of 2027</div>
           </div>
           <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
             <div className="text-xs font-mono text-zinc-400">Hackathons</div>
