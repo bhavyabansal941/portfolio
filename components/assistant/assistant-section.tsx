@@ -32,7 +32,7 @@ const QUESTIONS: GuidedQuestion[] = [
     id: 'achievements',
     question: 'What are his major achievements and hackathons?',
     answer:
-      'Bhavya won 1st Place at the World Entrepreneurs Day Competition (2025) for his AI healthcare prototype, competed as Team Leader in 20+ university hackathons, and was selected as a National Finalist at India Innovates 2026 (Bharat Mandapam).',
+      'Bhavya won 1st Place at the World Entrepreneurs Day Competition (2025) for his AI healthcare prototype, completed 20+ hackathon participations as team leader, and was selected as a National Finalist at India Innovates 2026 (Bharat Mandapam).',
     targetAnchor: '#recognition',
     targetLabel: 'Jump to Recognition & Awards',
   },

@@ -50,7 +50,7 @@ export default function ResumePage() {
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              Portfolio: bhavyabansal.com
+              Portfolio: portfolio-five-steel-94.vercel.app
             </a>
             <span>•</span>
             <a
@@ -264,8 +264,8 @@ export default function ResumePage() {
                 </span>
               </div>
               <p className="mt-1 text-gray-700">
-                Participated as Team Leader across 20+ university hackathons, handling software
-                development, code integration, and live project presentations.
+                Completed 20+ hackathon participations as team leader & contributor, handling
+                software development, code integration, and live project presentations.
               </p>
             </div>
           </div>

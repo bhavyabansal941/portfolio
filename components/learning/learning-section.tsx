@@ -24,7 +24,7 @@ const STEPS = [
     label: 'TEST',
     title: 'Hackathons & Feedback',
     description:
-      'Testing projects under time constraints in 20+ competitive hackathons and live innovation booths.',
+      'Testing projects under time constraints across 20+ hackathon participations and live innovation booths.',
     icon: TestTube2,
     color: 'text-emerald-400',
   },

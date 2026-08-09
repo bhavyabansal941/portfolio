@@ -35,7 +35,7 @@ const TIMELINE_DATA: TimelineYear[] = [
       '1st Place Winner — World Entrepreneurs Day Competition (Chandigarh University Incubator)',
       'Built Chronic Kidney Disease ML diagnostic classification pipeline (Scikit-learn)',
       'Constructed Cryptocurrency time-series market analytics pipeline (SQL, Pandas)',
-      'Participated as Team Leader across 20+ university hackathons',
+      'Completed 20+ hackathon participations as team leader & contributor',
       'Samsung Innovation Campus Big Data & Analytics curriculum graduate',
     ],
   },
@@ -44,7 +44,7 @@ const TIMELINE_DATA: TimelineYear[] = [
     badge: 'SPECIALIZATION & PRODUCTION',
     headline: 'Computer Vision, Generative AI & Production Systems',
     summary:
-      'Advanced computer vision pose estimation, enterprise Generative AI training, and publication-grade software engineering.',
+      'Applied computer vision pose estimation, completed Generative AI technical coursework, and built production web software.',
     milestones: [
       'Engineered AI Physiotherapy Assistance System (MediaPipe 33 pose landmarks at 30 FPS)',
       'National Finalist at India Innovates 2026 (Bharat Mandapam, New Delhi)',

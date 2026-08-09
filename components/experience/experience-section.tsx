@@ -67,9 +67,9 @@ export function ExperienceSection() {
                 </div>
 
                 <p className="text-xs text-zinc-300 leading-relaxed font-normal">
-                  Participated as Team Leader across 20+ hackathons, managing rapid code
-                  integration, statistical model training, and live technical solution
-                  demonstrations.
+                  Gained practical engineering experience across 20+ hackathon participations,
+                  handling rapid code integration, statistical model training, and live technical
+                  solution demonstrations.
                 </p>
               </div>
             </div>

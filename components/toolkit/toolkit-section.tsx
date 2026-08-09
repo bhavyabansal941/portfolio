@@ -95,7 +95,7 @@ const SKILL_MAP: Record<string, Skill[]> = {
       name: 'Excel',
       category: 'VISUALIZATION',
       context:
-        'Advanced formulas, Pivot Tables, conditional formatting, and chart visualizations for structured business datasets.',
+        'Structured formulas, Pivot Tables, conditional formatting, and chart visualizations for business datasets.',
     },
     {
       name: 'Matplotlib & Seaborn',
