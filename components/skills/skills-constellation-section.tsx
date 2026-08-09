@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { PORTFOLIO_DATA, SkillNode } from '@/data/portfolio-data';
-import { CheckCircle2, Code2, Sparkles } from 'lucide-react';
+import { CheckCircle2, Code2, Sparkles, Layers } from 'lucide-react';
 
 export function SkillsConstellationSection() {
-  const { skills } = PORTFOLIO_DATA;
+  const { skills, projects } = PORTFOLIO_DATA;
   const [selectedSkill, setSelectedSkill] = useState<SkillNode>(skills[0]);
   const [filterCategory, setFilterCategory] = useState<string>('all');
 
@@ -28,6 +28,7 @@ export function SkillsConstellationSection() {
       className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#09090b] border-t border-white/[0.08]"
     >
       <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <div className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-1">
@@ -43,6 +44,7 @@ export function SkillsConstellationSection() {
           </p>
         </div>
 
+        {/* Category Filters */}
         <div className="flex flex-wrap items-center gap-2">
           {categories.map((cat) => (
             <button
@@ -59,7 +61,9 @@ export function SkillsConstellationSection() {
           ))}
         </div>
 
+        {/* Interactive Constellation Grid & Evidence Panel Split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Skill Nodes Grid */}
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3">
             {filteredSkills.map((skill) => {
               const isSelected = selectedSkill.id === skill.id;
@@ -91,6 +95,7 @@ export function SkillsConstellationSection() {
             })}
           </div>
 
+          {/* Selected Skill Evidence Card */}
           <div className="lg:col-span-5 rounded-2xl glass-panel border border-white/10 p-6 sm:p-8 space-y-6 bg-white/[0.02] sticky top-24">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
@@ -101,7 +106,7 @@ export function SkillsConstellationSection() {
                   {selectedSkill.name}
                 </h3>
               </div>
-              <div className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-mono text-sky-300">
+              <div className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-mono text-sky-300 font-bold">
                 {selectedSkill.categoryLabel}
               </div>
             </div>
@@ -124,19 +129,48 @@ export function SkillsConstellationSection() {
               <ul className="space-y-1.5 text-xs font-mono text-zinc-300">
                 {selectedSkill.whereUsed.map((use, idx) => (
                   <li key={idx} className="flex items-center gap-2">
-                    <span className="text-sky-400">↳</span>
+                    <span className="text-sky-400 font-bold">↳</span>
                     <span>{use}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {selectedSkill.relatedProjectIds.length > 0 && (
-              <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-sky-400">
-                <span>TIED TO {selectedSkill.relatedProjectIds.length} FLAGSHIP PROJECTS</span>
-                <Sparkles className="w-4 h-4 text-sky-400" />
+            {/* Illuminated Project Dependency Badges */}
+            <div className="pt-3 border-t border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-sky-400 font-bold">
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5" />
+                  TIED TO FLAGSHIP PROJECTS:
+                </span>
+                <Sparkles className="w-3.5 h-3.5 text-sky-400" />
               </div>
-            )}
+
+              {selectedSkill.relatedProjectIds.length > 0 ? (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {selectedSkill.relatedProjectIds.map((projId) => {
+                    const matchedProj = projects.find((p) => p.id === projId);
+                    return (
+                      <button
+                        key={projId}
+                        onClick={() => {
+                          const el = document.getElementById('projects');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="px-3 py-1 rounded-lg bg-sky-500/20 border border-sky-400 text-xs font-mono font-bold text-sky-300 hover:bg-sky-500/30 transition-all flex items-center gap-1.5 shadow-md"
+                      >
+                        <span>{matchedProj?.number || '01'}.</span>
+                        <span>{matchedProj?.title || projId}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-xs font-mono text-zinc-500 italic">
+                  Applied across web architecture & WebGL platform infrastructure.
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

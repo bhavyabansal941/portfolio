@@ -18,6 +18,8 @@ export interface CandidateInfo {
 export interface PipelineStage {
   stage: string;
   description: string;
+  purpose: string;
+  nextStage?: string;
   detail: string;
 }
 
@@ -47,6 +49,7 @@ export interface SkillNode {
   whereUsed: string[];
   howApplied: string;
   relatedProjectIds: string[];
+  relatedProjectNames: string[];
 }
 
 export interface TimelineMilestone {
@@ -122,38 +125,51 @@ export const PORTFOLIO_DATA: {
       problem:
         'Physical therapy patients performing home exercises lack real-time posture feedback, risking re-injury due to improper joint execution angles.',
       approach:
-        'Built a 30 FPS video pipeline with MediaPipe Pose landmark extraction, applying 2D vector trigonometry to compute real-time joint angles and compare against clinical thresholds.',
+        'Built a 30 FPS video pipeline with MediaPipe Pose landmark extraction, applying 2D vector trigonometry to compute real-time joint angles and compare against clinical motion targets.',
       techStack: ['Python 3.9', 'MediaPipe 0.10', 'OpenCV', 'Streamlit', 'NumPy', 'SciPy'],
       pipeline: [
         {
           stage: 'CAMERA',
           description: 'Webcam Frame Capture',
-          detail: '30 FPS OpenCV video stream buffer',
+          purpose: 'Captures live video feed at 30 FPS via OpenCV',
+          nextStage: 'MediaPipe Pose Extraction',
+          detail: '30 FPS OpenCV video stream buffer processing live webcam frames.',
         },
         {
           stage: 'MEDIAPIPE',
           description: 'Pose Extraction',
-          detail: 'Extracts 33 (x, y, z) skeletal landmarks',
+          purpose: 'Extracts 33 skeletal body landmark coordinates',
+          nextStage: 'Coordinate Rescaling & Filtering',
+          detail: 'MediaPipe Pose solution extracting (x, y, z) keypoints with confidence scoring.',
         },
         {
           stage: 'LANDMARKS',
           description: 'Rescaling & Filtering',
-          detail: 'Normalizes coordinates to frame dimensions',
+          purpose: 'Normalizes 2D coordinates to frame dimensions',
+          nextStage: 'Joint Geometry Calculation',
+          detail: 'Scales raw normalized keypoints to pixel space for geometrical analysis.',
         },
         {
           stage: 'JOINT GEOMETRY',
           description: '2D Vector Math',
-          detail: 'Calculates Euclidean joint angles (e.g. elbow, knee)',
+          purpose: 'Calculates joint angles via vector trigonometry',
+          nextStage: 'Posture Threshold Evaluation',
+          detail: 'NumPy arctan2 vector math computing shoulder-elbow-wrist and knee angles.',
         },
         {
           stage: 'POSTURE ANALYSIS',
           description: 'Threshold Evaluation',
-          detail: 'Compares real-time angles against clinical motion targets',
+          purpose: 'Compares real-time angles against Target Thresholds',
+          nextStage: 'Visual & CSV Feedback Logging',
+          detail: 'Evaluates computed joint angles against posture execution bounds.',
         },
         {
           stage: 'FEEDBACK',
           description: 'Visual & CSV Logging',
-          detail: 'Renders skeleton overlay and exports rep stats',
+          purpose: 'Renders UI overlays and logs workout repetitions',
+          nextStage: 'End of Pipeline Frame Loop',
+          detail:
+            'Streamlit visual overlay displaying real-time gauges and logging rep timestamps.',
         },
       ],
       implementation: [
@@ -175,12 +191,12 @@ export const PORTFOLIO_DATA: {
       id: 'ckd-prediction',
       number: '02',
       title: 'Chronic Kidney Disease Prediction Pipeline',
-      subtitle: 'Clinical Feature Engineering & Diagnostic Classification',
+      subtitle: 'Clinical Feature Engineering & Classification Modeling',
       category: 'Machine Learning / Healthcare Analytics',
       summary:
-        'A diagnostic machine learning classification pipeline imputing missing clinical values and evaluating Random Forest vs Logistic Regression models for early CKD risk detection.',
+        'A machine learning classification pipeline using clinical data preprocessing, median imputation, feature scaling, and model evaluation to explore CKD risk prediction.',
       problem:
-        'Clinical tabular datasets frequently suffer from missing laboratory values (up to 40% missingness) and high feature correlation, causing unreliable disease predictions.',
+        'Clinical tabular datasets frequently suffer from missing laboratory values (up to 40% missingness) and high feature correlation, requiring structured data pipelines for reliable analytics.',
       approach:
         'Engineered an end-to-end ML data pipeline utilizing median/mode imputation, standard feature scaling, correlation analysis, and hyperparameter-tuned classification models.',
       techStack: ['Python 3.10', 'Scikit-learn', 'Pandas', 'NumPy', 'Seaborn', 'Matplotlib'],
@@ -188,27 +204,39 @@ export const PORTFOLIO_DATA: {
         {
           stage: 'DATA',
           description: 'Clinical Ingestion',
-          detail: 'UCI Chronic Kidney Disease dataset (400 patient instances)',
+          purpose: 'Ingests clinical laboratory dataset attributes',
+          nextStage: 'Missing Value Imputation',
+          detail:
+            'UCI Chronic Kidney Disease dataset containing 400 patient instances across 24 attributes.',
         },
         {
           stage: 'CLEANING',
           description: 'Median Imputation',
-          detail: 'Fills missing numerical values via group medians',
+          purpose: 'Fills missing numerical values via group medians',
+          nextStage: 'Feature Encoding & Scaling',
+          detail:
+            'SimpleImputer handling missing continuous lab indicators without synthetic distortion.',
         },
         {
           stage: 'FEATURE ENG',
           description: 'Standard Scaling',
-          detail: 'Encodes categorical features & normalizes variance',
+          purpose: 'Encodes categorical features & normalizes variance',
+          nextStage: 'Model Training & Hyperparameter Tuning',
+          detail: 'StandardScaler scaling numerical distributions to zero mean and unit variance.',
         },
         {
           stage: 'MODEL',
           description: 'Random Forest Training',
-          detail: 'Trains ensemble trees with 5-fold cross-validation',
+          purpose: 'Trains Decision Tree & Random Forest classifiers',
+          nextStage: 'Recall & ROC-AUC Metric Evaluation',
+          detail: 'Trains ensemble classifiers with stratified 5-fold cross-validation folds.',
         },
         {
           stage: 'PREDICTION',
           description: 'Recall Evaluation',
-          detail: 'Evaluates confusion matrix, ROC-AUC, and false negatives',
+          purpose: 'Evaluates recall, confusion matrix & false negatives',
+          nextStage: 'Model Performance Reporting',
+          detail: 'Prioritizes high recall evaluation to minimize false-negative risk indicators.',
         },
       ],
       implementation: [
@@ -218,12 +246,12 @@ export const PORTFOLIO_DATA: {
         'Generated ROC-AUC curves, confusion matrices, and feature importance rankings identifying serum creatinine and hemoglobin as top diagnostic indicators.',
       ],
       decisions: [
-        'Prioritized recall metric optimization over accuracy to minimize catastrophic false-negative diagnostic classifications.',
+        'Prioritized recall metric optimization over accuracy to minimize false-negative diagnostic classifications.',
         'Selected Random Forest ensemble model due to robustness against non-linear feature interactions and missing value sensitivity.',
         'Applied Standard Scaler exclusively within cross-validation folds to strictly prevent data leakage between train and test sets.',
       ],
       outcome:
-        'Achieved high diagnostic recall on held-out test split, establishing an interpretable baseline for automated renal risk screening.',
+        'Established an interpretable diagnostic pipeline benchmark exploring machine learning feature importance in renal health analytics.',
       githubUrl: 'https://github.com/bhavyabansal941/urine-test-disease-prediction',
     },
     {
@@ -243,32 +271,44 @@ export const PORTFOLIO_DATA: {
         {
           stage: 'DATA',
           description: 'CoinGecko API Extract',
-          detail: '12 months multi-coin daily OHLCV records',
+          purpose: 'Extracts historical multi-coin daily market data',
+          nextStage: 'Relational SQL Indexing',
+          detail: 'CoinGecko REST API ingestion for BTC, ETH, SOL, ADA, and DOGE assets.',
         },
         {
           stage: 'SQL',
           description: 'Relational Aggregation',
-          detail: 'Schema indexing & structured SQL queries',
+          purpose: 'Stores structured OHLCV time-series records',
+          nextStage: 'Pandas Feature Engineering',
+          detail: 'SQLite relational database indexing daily timestamps for fast analytic queries.',
         },
         {
           stage: 'PANDAS',
           description: 'Feature Preprocessing',
-          detail: 'Computes volatility, rolling means & returns',
+          purpose: 'Computes volatility, rolling means & returns',
+          nextStage: 'Moving Average Indicator Computation',
+          detail: 'Data Cleaning, log-return calculations, and missing data interpolation.',
         },
         {
           stage: 'MOVING AVG',
           description: 'Volatility Scoring',
-          detail: '7-day & 30-day SMA/EMA technical indicators',
+          purpose: 'Calculates 7-day & 30-day SMA/EMA technical metrics',
+          nextStage: 'Sequential LSTM Neural Model Training',
+          detail: 'Engineers technical momentum indicators to capture short-term trend shifts.',
         },
         {
           stage: 'TREND ANALYSIS',
           description: 'LSTM Model Training',
-          detail: 'Sequential time-series neural network',
+          purpose: 'Trains sequential LSTM neural network model',
+          nextStage: 'Naive Persistence Baseline Benchmark Evaluation',
+          detail: 'TensorFlow/Keras LSTM network trained on rolling 30-day sequences.',
         },
         {
           stage: 'FORECASTING',
           description: 'Baseline Evaluation',
-          detail: 'Evaluates RMSE against naive persistence forecast',
+          purpose: 'Compares LSTM RMSE against Naive Persistence Benchmark',
+          nextStage: 'End of Financial Analytics Pipeline',
+          detail: 'Evaluates model forecasting performance against a simple t-1 baseline.',
         },
       ],
       implementation: [
@@ -302,33 +342,45 @@ export const PORTFOLIO_DATA: {
       pipeline: [
         {
           stage: 'RESUME',
-          description: 'PDF Upload',
-          detail: 'Raw PDF document ingestion',
+          description: 'PDF Ingestion',
+          purpose: 'Ingests raw candidate PDF resume documents',
+          nextStage: 'PyPDF2 Text Layout Extraction',
+          detail: 'PyPDF2 file stream reader uploading resume PDF files into memory.',
         },
         {
           stage: 'PARSER',
           description: 'Text Extraction',
-          detail: 'PyPDF2 layout text extraction',
+          purpose: 'Extracts clean layout text from PDF content',
+          nextStage: 'LLM Technical Skill Entity Extraction',
+          detail: 'Extracts multi-column text strings and converts to structured string buffers.',
         },
         {
           stage: 'SKILL EXTRACTION',
           description: 'Entity Extraction',
-          detail: 'Extracts programming languages, frameworks & databases',
+          purpose: 'Parses programming languages, tools & frameworks',
+          nextStage: 'Target Job Specification Analysis',
+          detail: 'LangChain prompt template identifying technical skill taxonomy items.',
         },
         {
           stage: 'JOB DESCRIPTION',
           description: 'Target Analysis',
-          detail: 'Parses required enterprise competencies',
+          purpose: 'Analyzes enterprise job requirement competencies',
+          nextStage: 'Vector Skill Gap Matrix Matching',
+          detail: 'Parses target job postings to establish required competency baselines.',
         },
         {
           stage: 'MATCHING',
-          description: 'Vector Similarity',
-          detail: 'Computes match score & identifies missing skills',
+          description: 'Vector Skill Gap Matrix',
+          purpose: 'Computes skill overlap & highlights missing gaps',
+          nextStage: 'Actionable Career Roadmap Generation',
+          detail: 'Calculates skill similarity matrix and isolates missing required tech skills.',
         },
         {
           stage: 'CAREER ROADMAP',
-          description: 'Action Plan',
-          detail: 'Generates step-by-step learning recommendations',
+          description: 'Actionable Guidance',
+          purpose: 'Generates step-by-step learning recommendations',
+          nextStage: 'End of Agent Execution Loop',
+          detail: 'Groq API Llama 3 generating step-by-step roadmap and project suggestions.',
         },
       ],
       implementation: [
@@ -363,6 +415,7 @@ export const PORTFOLIO_DATA: {
         'CareerAgent: PyPDF2 text parsing & Groq API orchestration',
       ],
       relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis', 'career-agent'],
+      relatedProjectNames: ['AI Physiotherapy', 'CKD Prediction', 'Crypto Analysis', 'CareerAgent'],
     },
     {
       id: 'sql',
@@ -376,6 +429,7 @@ export const PORTFOLIO_DATA: {
         'Academic Coursework: Database Management Systems (DBMS) relational modeling',
       ],
       relatedProjectIds: ['crypto-analysis'],
+      relatedProjectNames: ['Crypto Market Analysis'],
     },
     {
       id: 'scikit-learn',
@@ -389,6 +443,7 @@ export const PORTFOLIO_DATA: {
         'Crypto Analysis: MinMaxScaler normalization for LSTM feature inputs',
       ],
       relatedProjectIds: ['ckd-prediction', 'crypto-analysis'],
+      relatedProjectNames: ['CKD Prediction', 'Crypto Analysis'],
     },
     {
       id: 'mediapipe',
@@ -401,6 +456,7 @@ export const PORTFOLIO_DATA: {
         'AI Physiotherapy: 33 landmark coordinate tracking & joint vector geometry calculation',
       ],
       relatedProjectIds: ['ai-physiotherapy'],
+      relatedProjectNames: ['AI Physiotherapy Assistance'],
     },
     {
       id: 'opencv',
@@ -411,6 +467,7 @@ export const PORTFOLIO_DATA: {
         'Video stream frame capture, color-space conversions (BGR to RGB), graphical overlay drawing, and frame rate optimization.',
       whereUsed: ['AI Physiotherapy: Webcam frame loop & real-time skeleton drawing overlay'],
       relatedProjectIds: ['ai-physiotherapy'],
+      relatedProjectNames: ['AI Physiotherapy Assistance'],
     },
     {
       id: 'pandas',
@@ -425,6 +482,7 @@ export const PORTFOLIO_DATA: {
         'AI Physiotherapy: NumPy arctan2 2D joint angle vector geometry',
       ],
       relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis'],
+      relatedProjectNames: ['AI Physiotherapy', 'CKD Prediction', 'Crypto Analysis'],
     },
     {
       id: 'langchain',
@@ -435,6 +493,7 @@ export const PORTFOLIO_DATA: {
         'LLM prompt engineering, structured JSON output extraction, PDF text chunking, and Llama 3 API orchestration.',
       whereUsed: ['CareerAgent: Resume parsing, skill gap analysis & career roadmap generation'],
       relatedProjectIds: ['career-agent'],
+      relatedProjectNames: ['CareerAgent Navigation Assistant'],
     },
     {
       id: 'nextjs',
@@ -445,6 +504,7 @@ export const PORTFOLIO_DATA: {
         'Built production web applications utilizing App Router, Server Components, TypeScript, Tailwind CSS v4, and Three.js 3D WebGL scenes.',
       whereUsed: ['Bhavya Personal Portfolio V4: Digital Lab web experience & web resume route'],
       relatedProjectIds: [],
+      relatedProjectNames: [],
     },
     {
       id: 'threejs',
@@ -455,6 +515,7 @@ export const PORTFOLIO_DATA: {
         'WebGL 3D scene rendering, procedural geometry generation, particle clouds, orbital rings, and mouse parallax interaction.',
       whereUsed: ['Portfolio V4 Hero: Interactive 3D AI Core WebGL scene background'],
       relatedProjectIds: [],
+      relatedProjectNames: [],
     },
     {
       id: 'git',
@@ -465,6 +526,7 @@ export const PORTFOLIO_DATA: {
         'Version control, clear commit discipline, open-source repository documentation, and Vercel continuous deployment integration.',
       whereUsed: ['All 4 Flagship Repositories: Recruiter-ready READMEs & verified codebases'],
       relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis', 'career-agent'],
+      relatedProjectNames: ['AI Physiotherapy', 'CKD Prediction', 'Crypto Analysis', 'CareerAgent'],
     },
   ],
 
@@ -510,12 +572,12 @@ export const PORTFOLIO_DATA: {
     {
       year: '2027',
       title: 'Expected B.Tech Graduation & Professional Deployment',
-      role: 'Degree Completion & Career Transition',
+      role: 'B.Tech AI & Data Science Candidate (Expected Graduation: May 2027)',
       description:
         'Target graduation milestone for B.Tech in Artificial Intelligence & Data Science from Guru Gobind Singh Indraprastha University (GGSIPU), New Delhi (Target CGPA 9.0+). Target: Internship & full-time AI/Data engineering deployment.',
       badge: 'EXPECTED GRADUATION MAY 2027',
       highlights: [
-        'B.Tech Artificial Intelligence & Data Science degree completion at GGSIPU (Expected May 2027).',
+        'B.Tech Artificial Intelligence & Data Science degree completion candidate at GGSIPU (Expected May 2027).',
         'Targeting AI/ML, Data Science, Data Engineering, and Computer Vision internship & full-time roles.',
         'Continuous open-source contribution and production system refinement.',
       ],
@@ -529,7 +591,7 @@ export const PORTFOLIO_DATA: {
       award: '1st Place Winner',
       location: 'Chandigarh University Incubator',
       year: '2025',
-      image: '/images/world-entrepreneurs-day.jpg',
+      image: '/images/world-entrepreneurs-day-winner.jpg',
       summary:
         'Awarded 1st Place for presenting the AI-Based Physiotherapy Assistance System prototype live on stage.',
       details:
@@ -549,6 +611,19 @@ export const PORTFOLIO_DATA: {
   ],
 
   buildLogs: [
+    {
+      version: 'v4.2',
+      date: '2026-08-09',
+      title: 'Production Bug Fix & Final UX Polish Pass',
+      summary:
+        'Fixed image asset paths, removed root layout footer duplication, updated 2027 candidate terminology, and enhanced pipeline stage tooltips and skill-project dependency highlights.',
+      changes: [
+        'Fixed production image filenames (/images/world-entrepreneurs-day-winner.jpg & /images/ai-posture-analysis-booth.jpg).',
+        'Removed duplicate footer rendering in app/page.tsx, establishing single root footer in app/layout.tsx.',
+        'Updated 2027 milestone role to "B.Tech AI & Data Science Candidate (Expected Graduation: May 2027)".',
+        'Refined CKD description to focus on Machine Learning / Healthcare Analytics data pipeline preprocessing.',
+      ],
+    },
     {
       version: 'v4.1',
       date: '2026-08-09',
@@ -572,18 +647,6 @@ export const PORTFOLIO_DATA: {
         'Updated app/resume/page.tsx with May 2027 graduation date.',
         'Re-generated single-page PDF bhavya_bansal_resume.pdf & 300 DPI preview.',
         'Verified clean Prettier, ESLint, and Next.js production build.',
-      ],
-    },
-    {
-      version: 'v3.0',
-      date: '2026-08-07',
-      title: 'Interactive Case Studies & Portfolio Assistant',
-      summary:
-        'Introduced case study drawer modals, recruiter mode 20-second overview, and portfolio assistant.',
-      changes: [
-        'Added ProjectCaseStudyModal with architectural decision breakdowns.',
-        'Added RecruiterModeModal executive candidate overview.',
-        'Built Portfolio Assistant with deterministic Q&A responses.',
       ],
     },
   ],
@@ -613,7 +676,7 @@ export const PORTFOLIO_DATA: {
     {
       question: 'Show me his engineering journey',
       answer:
-        'Bhavya is a B.Tech Artificial Intelligence & Data Science undergraduate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA). His journey spans foundational computer science in 2024, winning 1st Place in 2025, Generative AI specialization & National Finalist recognition in 2026, and target graduation in May 2027.',
+        'Bhavya is a B.Tech Artificial Intelligence & Data Science candidate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA). His journey spans foundational computer science in 2024, winning 1st Place in 2025, Generative AI specialization & National Finalist recognition in 2026, and expected graduation in May 2027.',
       actionType: 'journey',
       actionLabel: 'VIEW JOURNEY',
     },

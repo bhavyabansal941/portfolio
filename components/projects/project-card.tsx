@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ProjectData } from '@/data/portfolio-data';
 import { usePortfolio } from '@/context/portfolio-context';
-import { ExternalLink, Layers, Play, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, Layers, Play, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export function ProjectCard({ project }: { project: ProjectData }) {
   const { openCaseStudy } = usePortfolio();
@@ -11,6 +11,7 @@ export function ProjectCard({ project }: { project: ProjectData }) {
   const [selectedCoin, setSelectedCoin] = useState<string>('BTC');
 
   const coins = ['BTC', 'ETH', 'SOL', 'ADA', 'DOGE'];
+  const currentPipeline = project.pipeline[activeStage] || project.pipeline[0];
 
   return (
     <div className="rounded-2xl glass-panel border border-white/10 p-6 sm:p-8 space-y-6 hover:border-sky-500/30 transition-all bg-white/[0.01] relative overflow-hidden group">
@@ -60,7 +61,7 @@ export function ProjectCard({ project }: { project: ProjectData }) {
         <div className="flex items-center justify-between text-xs font-mono text-sky-400">
           <span className="flex items-center gap-2">
             <Layers className="w-3.5 h-3.5" />
-            INTERACTIVE TECHNICAL PIPELINE (HOVER / CLICK STAGES)
+            INTERACTIVE TECHNICAL PIPELINE (CLICK / HOVER STAGES)
           </span>
           <span>{project.pipeline.length} STAGES</span>
         </div>
@@ -96,7 +97,7 @@ export function ProjectCard({ project }: { project: ProjectData }) {
                 onClick={() => setActiveStage(idx)}
                 className={`p-2.5 rounded-xl border text-left transition-all ${
                   isCurrent
-                    ? 'bg-sky-500/20 border-sky-400 text-white shadow-lg shadow-sky-500/10'
+                    ? 'bg-sky-500/20 border-sky-400 text-white shadow-lg shadow-sky-500/10 scale-[1.02]'
                     : 'bg-white/[0.02] border-white/10 text-zinc-400 hover:border-white/20 hover:bg-white/[0.04]'
                 }`}
               >
@@ -109,21 +110,41 @@ export function ProjectCard({ project }: { project: ProjectData }) {
           })}
         </div>
 
-        {/* Active Stage Detail Panel */}
-        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-mono text-zinc-300 flex items-start gap-3">
-          <Play className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-          <div>
-            <span className="text-sky-300 font-bold">
-              STAGE 0{activeStage + 1} ({project.pipeline[activeStage]?.stage}):
-            </span>{' '}
-            {project.pipeline[activeStage]?.detail}
+        {/* Active Stage Enriched Detail Tooltip Panel */}
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-mono text-zinc-300 space-y-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+            <span className="text-sky-400 font-bold flex items-center gap-1.5">
+              <Play className="w-3.5 h-3.5 text-sky-400" />
+              STAGE 0{activeStage + 1}: {currentPipeline.stage}
+            </span>
+            <span className="text-zinc-400 text-[11px]">PROJECT: {project.title}</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+            <div>
+              <span className="text-zinc-500 font-bold block">PURPOSE:</span>
+              <span className="text-zinc-200">{currentPipeline.purpose}</span>
+            </div>
+            {currentPipeline.nextStage && (
+              <div>
+                <span className="text-zinc-500 font-bold block">NEXT STAGE:</span>
+                <span className="text-sky-300 flex items-center gap-1">
+                  <span>{currentPipeline.nextStage}</span>
+                  <ArrowRight className="w-3 h-3 text-sky-400" />
+                </span>
+              </div>
+            )}
+          </div>
+
+          <p className="text-xs text-zinc-300 leading-relaxed pt-1 border-t border-white/5">
+            {currentPipeline.detail}
             {project.id === 'crypto-analysis' && (
               <span className="block text-[11px] text-zinc-400 mt-1">
                 Active Selection: {selectedCoin} market data stream & naive baseline evaluation
                 benchmark.
               </span>
             )}
-          </div>
+          </p>
         </div>
       </div>
 

@@ -20,7 +20,7 @@ export function AssistantSection() {
         q.answer.toLowerCase().includes(customInput.toLowerCase())
     ) || {
       question: customInput,
-      answer: `Bhavya Bansal is a B.Tech Artificial Intelligence & Data Science undergraduate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA, 20+ Hackathon Participations). He specializes in Computer Vision (MediaPipe 33 Landmarks), Machine Learning pipelines (Scikit-learn), SQL/Pandas analytics, and LLM applications (LangChain & Groq API).`,
+      answer: `Bhavya Bansal is a B.Tech Artificial Intelligence & Data Science candidate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA, 20+ Hackathon Participations). He specializes in Computer Vision (MediaPipe 33 Landmarks), Machine Learning pipelines (Scikit-learn), SQL/Pandas analytics, and LLM applications (LangChain & Groq API).`,
       actionType: 'resume',
       actionLabel: 'VIEW RESUME ↗',
     };
@@ -43,6 +43,11 @@ export function AssistantSection() {
       const el = document.getElementById(targetId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleSelectQuery = (qa: (typeof agentQA)[0]) => {
+    setSelectedQA(qa);
+    handleActionClick(qa.actionType);
   };
 
   return (
@@ -70,12 +75,14 @@ export function AssistantSection() {
 
         <div className="rounded-2xl glass-panel border border-white/10 p-6 sm:p-10 space-y-8 bg-white/[0.01] relative overflow-hidden">
           <div className="space-y-3">
-            <div className="text-xs font-mono text-zinc-400 uppercase">SUGGESTED QUERIES:</div>
+            <div className="text-xs font-mono text-zinc-400 uppercase">
+              SUGGESTED QUERIES (CLICK TO NAVIGATE):
+            </div>
             <div className="flex flex-wrap gap-2">
               {agentQA.map((qa) => (
                 <button
                   key={qa.question}
-                  onClick={() => setSelectedQA(qa)}
+                  onClick={() => handleSelectQuery(qa)}
                   className={`px-3.5 py-2 rounded-xl text-xs font-mono transition-all text-left ${
                     selectedQA.question === qa.question
                       ? 'bg-sky-500 text-white font-bold shadow-lg shadow-sky-500/20'

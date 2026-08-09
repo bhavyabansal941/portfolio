@@ -9,7 +9,6 @@ import { ExperienceSection } from '@/components/experience/experience-section';
 import { BuildLogSection } from '@/components/log/build-log-section';
 import { AssistantSection } from '@/components/assistant/assistant-section';
 import { ProfileSection } from '@/components/profile/profile-section';
-import { Footer } from '@/components/footer';
 import { RecruiterModeModal } from '@/components/recruiter/recruiter-mode-modal';
 
 export default function Page() {
@@ -25,7 +24,6 @@ export default function Page() {
       <BuildLogSection />
       <AssistantSection />
       <ProfileSection />
-      <Footer />
 
       {/* Interactive Overlays & Modals */}
       <RecruiterModeModal />
