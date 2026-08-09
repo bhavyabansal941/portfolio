@@ -61,7 +61,7 @@ export function RecruiterModeModal() {
           </div>
           <div>
             <div className="text-xl sm:text-2xl font-bold text-white">20+</div>
-            <div className="text-[10px] text-zinc-400">HACKATHONS</div>
+            <div className="text-[10px] text-zinc-400">HACKATHON PARTICIPATIONS</div>
           </div>
           <div>
             <div className="text-xl sm:text-2xl font-bold text-sky-400">1st</div>

@@ -63,12 +63,12 @@ export function ExperienceSection() {
                 </div>
 
                 <div className="text-xs font-mono text-zinc-400 mb-3">
-                  GGSIPU University • 20+ Hackathons Competed
+                  GGSIPU University • 20+ Hackathon Participations
                 </div>
 
                 <p className="text-xs text-zinc-300 leading-relaxed font-normal">
-                  Led cross-functional student teams in 20+ competitive hackathons, managing rapid
-                  code integration, statistical model training, and live technical solution
+                  Participated as Team Leader across 20+ hackathons, managing rapid code
+                  integration, statistical model training, and live technical solution
                   demonstrations.
                 </p>
               </div>

@@ -264,8 +264,8 @@ export default function ResumePage() {
                 </span>
               </div>
               <p className="mt-1 text-gray-700">
-                Led student teams in 20+ university hackathons, handling software development, code
-                integration, and live project presentations.
+                Participated as Team Leader across 20+ university hackathons, handling software
+                development, code integration, and live project presentations.
               </p>
             </div>
           </div>

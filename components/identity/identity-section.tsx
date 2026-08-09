@@ -7,8 +7,8 @@ import { ArrowDown, ArrowUpRight, Compass, FileText } from 'lucide-react';
 
 const SYSTEM_NODES = [
   { label: '9.03 CGPA', subtitle: 'Academic Rigor' },
-  { label: '20+ Hackathons', subtitle: 'Rapid Building' },
-  { label: '4 Flagship Projects', subtitle: 'Computer Vision & ML' },
+  { label: '20+ Hackathon Participations', subtitle: 'Competitive Building' },
+  { label: '4 Featured Projects', subtitle: 'Computer Vision & ML' },
   { label: 'AI & Data Science', subtitle: 'GGSIPU Class of 2026' },
 ];
 

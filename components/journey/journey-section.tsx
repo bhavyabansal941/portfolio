@@ -35,7 +35,7 @@ const TIMELINE_DATA: TimelineYear[] = [
       '1st Place Winner — World Entrepreneurs Day Competition (Chandigarh University Incubator)',
       'Built Chronic Kidney Disease ML diagnostic classification pipeline (Scikit-learn)',
       'Constructed Cryptocurrency time-series market analytics pipeline (SQL, Pandas)',
-      'Competed as Team Leader across 20+ university hackathons',
+      'Participated as Team Leader across 20+ university hackathons',
       'Samsung Innovation Campus Big Data & Analytics curriculum graduate',
     ],
   },
