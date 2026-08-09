@@ -14,7 +14,7 @@ B.Tech Artificial Intelligence & Data Science undergraduate focused on solving p
 ## EDUCATION
 
 **Guru Gobind Singh Indraprastha University (GGSIPU)** — New Delhi, India  
-_Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Expected Graduation: May 2026  
+_Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Expected Graduation: May 2027  
 • CGPA: 9.03 / 10.0
 
 ---

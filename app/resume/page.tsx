@@ -95,7 +95,7 @@ export default function ResumePage() {
             <h3 className="text-sm font-bold text-gray-900">
               Guru Gobind Singh Indraprastha University (GGSIPU) — New Delhi, India
             </h3>
-            <span className="text-xs text-gray-500 font-mono">May 2026</span>
+            <span className="text-xs text-gray-500 font-mono">May 2027</span>
           </div>
           <p className="text-xs italic text-gray-700 mt-1">
             Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science | CGPA: 9.03 /
