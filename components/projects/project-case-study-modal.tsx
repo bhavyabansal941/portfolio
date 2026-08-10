@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePortfolio } from '@/context/portfolio-context';
 import { PORTFOLIO_DATA } from '@/data/portfolio-data';
-import { X, ExternalLink, CheckCircle2, Layers, Cpu, Code2 } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, Layers, Cpu, Code2, FileCode2, BarChart2 } from 'lucide-react';
 
 export function ProjectCaseStudyModal() {
   const { activeCaseStudyId, closeCaseStudy } = usePortfolio();
@@ -131,6 +131,82 @@ export function ProjectCaseStudyModal() {
           </div>
         </div>
 
+        {/* Verified Implementation & Evaluation Evidence */}
+        {project.evidence && (
+          <div className="space-y-4 pt-2 border-t border-white/10">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h4 className="text-xs font-mono font-bold text-sky-400 uppercase flex items-center gap-2">
+                {project.evidence.type === 'code' ? (
+                  <FileCode2 className="w-3.5 h-3.5" />
+                ) : (
+                  <BarChart2 className="w-3.5 h-3.5" />
+                )}
+                07 / VERIFIED IMPLEMENTATION & EVALUATION EVIDENCE
+              </h4>
+              <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-zinc-400">
+                {project.evidence.sourceFile}
+              </span>
+            </div>
+
+            <p className="text-xs text-zinc-300 leading-relaxed font-mono">
+              {project.evidence.description}
+            </p>
+
+            {project.evidence.type === 'code' && project.evidence.codeSnippet && (
+              <div className="relative rounded-xl overflow-hidden border border-white/10 bg-[#060608]">
+                <div className="px-4 py-2 bg-white/5 border-b border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                  <span>{project.evidence.label}</span>
+                  <span className="text-sky-400">PYTHON SOURCE EXCERPT</span>
+                </div>
+                <pre className="p-4 overflow-x-auto text-[11px] font-mono text-sky-300 leading-relaxed selection:bg-sky-500/30 selection:text-white">
+                  <code>{project.evidence.codeSnippet}</code>
+                </pre>
+              </div>
+            )}
+
+            {project.evidence.type === 'evaluation' && project.evidence.evaluationTable && (
+              <div className="rounded-xl overflow-hidden border border-white/10 bg-[#060608]">
+                <div className="px-4 py-2 bg-white/5 border-b border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                  <span>{project.evidence.label}</span>
+                  <span className="text-sky-400">VERIFIED EVALUATION BENCHMARK</span>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-[11px] font-mono border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/10 text-zinc-400 bg-white/[0.02]">
+                        <th className="py-2.5 px-4 font-semibold">ASSET</th>
+                        <th className="py-2.5 px-4 font-semibold">LSTM MODEL MAPE</th>
+                        <th className="py-2.5 px-4 font-semibold">NAIVE BASELINE MAPE</th>
+                        <th className="py-2.5 px-4 font-semibold">EVALUATION VERDICT</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5 text-zinc-300">
+                      {project.evidence.evaluationTable.map((row) => (
+                        <tr key={row.asset} className="hover:bg-white/[0.02] transition-colors">
+                          <td className="py-2.5 px-4 font-bold text-white">{row.asset}</td>
+                          <td className="py-2.5 px-4 text-sky-300">{row.modelMape}</td>
+                          <td className="py-2.5 px-4 text-zinc-400">{row.baselineMape}</td>
+                          <td className="py-2.5 px-4">
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] ${
+                                row.verdict.includes('Superior')
+                                  ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+                                  : 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
+                              }`}
+                            >
+                              {row.verdict}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Footer Actions */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
           <a
@@ -146,15 +222,22 @@ export function ProjectCaseStudyModal() {
           </a>
 
           {project.demoUrl && (
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 font-medium text-xs hover:bg-sky-500/20 transition-all"
-            >
-              <ExternalLink className="w-4 h-4" />
-              <span>LIVE DEMO</span>
-            </a>
+            <div className="flex flex-col items-end gap-1">
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 font-medium text-xs hover:bg-sky-500/20 transition-all"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>LIVE DEMO ↗</span>
+              </a>
+              {project.id === 'career-agent' && (
+                <span className="text-[10px] font-mono text-zinc-500">
+                  Hosted on Render · initial load may take ~30s on cold start
+                </span>
+              )}
+            </div>
           )}
         </div>
       </div>

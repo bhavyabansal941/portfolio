@@ -8,11 +8,11 @@ interface Props {
 
 export function CareerAgentVisualization({ activeStage }: Props) {
   const steps = [
-    { label: 'PDF RESUME', icon: FileText, detail: 'PyPDF2 text stream extraction' },
-    { label: 'LLM PARSER', icon: Cpu, detail: 'LangChain entity prompt templates' },
-    { label: 'SKILL MATRIX', icon: CheckSquare, detail: 'Python, SQL, ML, React taxonomy' },
-    { label: 'JOB MATCHING', icon: Sparkles, detail: 'Vector skill gap comparison' },
-    { label: 'ROADMAP OUTPUT', icon: ArrowRight, detail: 'Groq Llama 3 custom guidance' },
+    { label: 'MULTI-FORMAT INGESTION', icon: FileText, detail: 'PDF, DOCX, XLSX & Vision OCR' },
+    { label: 'LLM PARSER', icon: Cpu, detail: 'Llama 3.3 70B & Llama 3.2 Vision' },
+    { label: 'TAVILY GROUNDING', icon: CheckSquare, detail: 'Tavily web search & Adzuna job APIs' },
+    { label: 'SKILL GAP MATRIX', icon: Sparkles, detail: 'Pydantic-validated skill gap analysis' },
+    { label: 'CHAINLIT & RENDER', icon: ArrowRight, detail: 'SQLAlchemy persistence & Render live demo' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export function CareerAgentVisualization({ activeStage }: Props) {
         </div>
         <div className="flex items-center gap-2 text-[10px] text-zinc-400">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>GROQ API LLAMA 3 8B</span>
+          <span>GROQ API LLAMA 3.3 70B & VISION</span>
         </div>
       </div>
 
@@ -72,12 +72,11 @@ export function CareerAgentVisualization({ activeStage }: Props) {
       <div className="mt-3 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 flex flex-wrap items-center justify-between text-[11px] text-zinc-300 gap-2">
         <span className="text-zinc-400 font-bold">LLM INFERENCE PIPELINE:</span>
         <span className="text-sky-300">
-          {activeStage === 0 && 'PyPDF2 parsing raw PDF layout stream into clean text buffers.'}
-          {activeStage === 1 &&
-            'LangChain zero-shot prompt extracting candidate technical entities.'}
-          {activeStage === 2 && 'Structuring skill taxonomy into verified JSON schemas.'}
-          {activeStage === 3 && 'Comparing candidate taxonomy against target enterprise job specs.'}
-          {activeStage === 4 && 'Llama 3 via Groq API producing step-by-step career roadmaps.'}
+          {activeStage === 0 && 'Extracting text & layout from PDF, DOCX, XLSX & Llama 3.2 Vision OCR.'}
+          {activeStage === 1 && 'Llama 3.3 70B zero-shot prompt extracting candidate technical entities.'}
+          {activeStage === 2 && 'Grounding entity skill requirements with Tavily Web & Adzuna Live Job APIs.'}
+          {activeStage === 3 && 'Pydantic-validated skill gap analysis comparing candidate vs target roles.'}
+          {activeStage === 4 && 'Chainlit chat UI with SQLAlchemy session persistence hosted live on Render.'}
         </span>
         <span className="text-emerald-400 font-bold text-[10px]">SUB-SECOND GROQ INFERENCE</span>
       </div>

@@ -9,11 +9,11 @@ interface Props {
 export function CKDVisualization({ activeStage }: Props) {
   // Preprocessing node pipeline stages
   const nodes = [
-    { stage: 0, label: 'RAW DATA', icon: Database, detail: '400 records, 24 lab features' },
-    { stage: 1, label: 'IMPUTATION', icon: Filter, detail: 'Median strategy continuous' },
-    { stage: 2, label: 'SCALING', icon: Sliders, detail: 'StandardScaler normal variance' },
-    { stage: 3, label: 'RANDOM FOREST', icon: Cpu, detail: '5-fold cross-validation folds' },
-    { stage: 4, label: 'RECALL EVAL', icon: CheckCircle2, detail: 'Recall prioritized & ROC-AUC' },
+    { stage: 0, label: '4,000 RECORDS', icon: Database, detail: '21 clinical features' },
+    { stage: 1, label: 'LEAKAGE DROP', icon: Filter, detail: 'ckd_pred & cluster removal' },
+    { stage: 2, label: 'ENCODING', icon: Sliders, detail: 'Categorical & standard scaling' },
+    { stage: 3, label: 'XGBoost MODEL', icon: Cpu, detail: '98.75% acc / 0.985 5-fold CV F1' },
+    { stage: 4, label: 'STAGE 0–5 PREDICTION', icon: CheckCircle2, detail: 'GFR permutation importance' },
   ];
 
   return (
@@ -73,15 +73,15 @@ export function CKDVisualization({ activeStage }: Props) {
       <div className="mt-3 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 flex flex-wrap items-center justify-between text-[11px] text-zinc-300 gap-2">
         <span className="text-zinc-400 font-bold">PIPELINE METHODOLOGY:</span>
         <span className="text-sky-300">
-          {activeStage === 0 && 'Ingesting 400 patient records across 24 clinical features.'}
-          {activeStage === 1 && 'SimpleImputer continuous median & categorical mode replacement.'}
-          {activeStage === 2 && 'StandardScaler fitting zero mean & unit variance within CV folds.'}
-          {activeStage === 3 && 'Random Forest Ensemble classifier trained with 5-fold CV.'}
-          {activeStage === 4 && 'Evaluating Confusion Matrix, ROC-AUC, and Recall optimization.'}
+          {activeStage === 0 && 'Ingesting 4,000 patient records across 21 clinical & lifestyle features.'}
+          {activeStage === 1 && 'Explicitly dropping ckd_pred & cluster columns to prevent target data leakage.'}
+          {activeStage === 2 && 'One-hot encoding categorical lifestyle factors & standard scaling lab values.'}
+          {activeStage === 3 && 'Evaluating Logistic Regression, Random Forest & XGBoost (98.75% acc / 0.985 CV F1).'}
+          {activeStage === 4 && 'Permutation importance identified GFR as dominant feature in trained model.'}
         </span>
-        <span className="text-emerald-400 font-bold flex items-center gap-1 text-[10px]">
-          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          STRICT DATA LEAKAGE PREVENTION
+        <span className="text-emerald-400 font-bold flex items-center gap-1">
+          <span>✓</span>
+          <span>STRICT DATA LEAKAGE PREVENTION</span>
         </span>
       </div>
     </div>

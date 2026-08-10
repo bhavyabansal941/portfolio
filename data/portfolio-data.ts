@@ -23,6 +23,20 @@ export interface PipelineStage {
   detail: string;
 }
 
+export interface EvidenceData {
+  type: 'code' | 'evaluation';
+  label: string;
+  sourceFile: string;
+  description: string;
+  codeSnippet?: string;
+  evaluationTable?: {
+    asset: string;
+    modelMape: string;
+    baselineMape: string;
+    verdict: string;
+  }[];
+}
+
 export interface ProjectData {
   id: string;
   number: string;
@@ -39,6 +53,7 @@ export interface ProjectData {
   outcome: string;
   githubUrl: string;
   demoUrl?: string;
+  evidence?: EvidenceData;
 }
 
 export interface SkillNode {
@@ -98,19 +113,19 @@ export const PORTFOLIO_DATA: {
 } = {
   candidate: {
     name: 'Bhavya Bansal',
-    degree: 'B.Tech Artificial Intelligence & Data Science',
+    degree: 'Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science',
     university: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
-    graduationDate: 'Expected Graduation: May 2027',
+    graduationDate: 'May 2027',
     graduationClass: 'Class of 2027',
     cgpa: '9.03 / 10.0',
-    hackathons: '20+ Hackathon Participations',
-    flagships: '4 Flagship AI & CV Systems',
+    hackathons: '20+ Hackathons',
+    flagships: '4 Flagship AI/ML Projects',
     topAward: '1st Place Winner — World Entrepreneurs Day 2025',
     email: 'bansalbhavya941@gmail.com',
     phone: '+91 9205292550',
     github: 'https://github.com/bhavyabansal941',
-    linkedin: 'https://www.linkedin.com/in/bhavya-bansal-aa70a3301',
-    status: 'AVAILABLE FOR INTERNSHIP OPPORTUNITIES',
+    linkedin: 'https://linkedin.com/in/bhavya-bansal-aa70a3301',
+    status: 'B.Tech AI & Data Science Candidate (Class of 2027)',
   },
 
   projects: [
@@ -118,15 +133,15 @@ export const PORTFOLIO_DATA: {
       id: 'ai-physiotherapy',
       number: '01',
       title: 'AI-Based Physiotherapy Assistance System',
-      subtitle: 'Real-Time Pose Estimation & Motion Geometry Feedback',
-      category: 'Computer Vision / Motion Geometry',
+      subtitle: 'Real-Time Pose Estimation & Joint Angle Trigonometry Math',
+      category: 'Computer Vision / Healthcare Engineering',
       summary:
-        'A real-time computer vision application calculating 2D joint angles across 33 MediaPipe pose landmarks to guide posture calibration during rehabilitation exercises.',
+        'A real-time computer vision application using MediaPipe, OpenCV, and 2D vector geometry math to analyze posture, grade exercise form depth, and log session data at 30 FPS.',
       problem:
-        'Physical therapy patients performing home exercises lack real-time posture feedback, risking re-injury due to improper joint execution angles.',
+        'At-home physical therapy lacks immediate visual feedback, leading to improper movement form and increased risk of joint strain.',
       approach:
-        'Built a 30 FPS video pipeline with MediaPipe Pose landmark extraction, applying 2D vector trigonometry to compute real-time joint angles and compare against clinical motion targets.',
-      techStack: ['Python 3.9', 'MediaPipe 0.10', 'OpenCV', 'Streamlit', 'NumPy', 'SciPy'],
+        'Engineered a real-time webcam pose tracking system extracting 33 MediaPipe keypoints, calculating 2D vector joint angles using math.atan2, and rendering live visual cues.',
+      techStack: ['Python 3.9', 'MediaPipe', 'OpenCV', 'NumPy', 'Streamlit', 'CSV'],
       pipeline: [
         {
           stage: 'CAMERA',
@@ -154,7 +169,7 @@ export const PORTFOLIO_DATA: {
           description: '2D Vector Math',
           purpose: 'Calculates joint angles via vector trigonometry',
           nextStage: 'Posture Threshold Evaluation',
-          detail: 'NumPy arctan2 vector math computing shoulder-elbow-wrist and knee angles.',
+          detail: 'NumPy math.atan2 vector math computing shoulder-elbow-wrist and knee angles.',
         },
         {
           stage: 'POSTURE ANALYSIS',
@@ -174,9 +189,9 @@ export const PORTFOLIO_DATA: {
       ],
       implementation: [
         'Configured MediaPipe Pose solution with min_detection_confidence=0.5 and min_tracking_confidence=0.5 for stable 30 FPS inference.',
-        'Calculated 2D vector angles using arctan2 trigonometry across shoulder-elbow-wrist and hip-knee-ankle joint triplets.',
+        'Calculated 2D vector angles using math.atan2 trigonometry across shoulder-elbow-wrist and hip-knee-ankle joint triplets in utils.py.',
         'Designed interactive Streamlit web dashboard rendering live webcam feed alongside real-time angle gauges and repetition counters.',
-        'Implemented CSV data logger capturing per-frame joint angles and timestamped rep completion metrics for retrospective review.',
+        'Implemented CSV data logger capturing per-frame joint angles and timestamped rep completion metrics to session_log.csv.',
       ],
       decisions: [
         'Selected 2D landmark projection over 3D coordinate estimation for 3x lower latency on consumer webcams.',
@@ -186,73 +201,112 @@ export const PORTFOLIO_DATA: {
       outcome:
         'Achieved sub-50ms frame processing latency on standard consumer webcams; winner of 1st Place at World Entrepreneurs Day Competition 2025.',
       githubUrl: 'https://github.com/bhavyabansal941/ai-physiotherapy-analysis',
+      evidence: {
+        type: 'code',
+        label: '2D Vector Joint Angle Trigonometry Math',
+        sourceFile: 'physiotherapy_project/utils.py',
+        description:
+          'Calculates the 2D spatial angle (in degrees) at point b formed by points a-b-c using math.atan2 vector math, ensuring low-latency posture evaluation without black-box libraries.',
+        codeSnippet: `def calculate_angle(a, b, c):
+    """
+    Calculate the angle (in degrees) at point b, formed by points a-b-c.
+    Each point is an (x, y) pixel coordinate tuple.
+    """
+    x1, y1 = a
+    x2, y2 = b
+    x3, y3 = c
+
+    angle = math.degrees(
+        math.atan2(y3 - y2, x3 - x2) - math.atan2(y1 - y2, x1 - x2)
+    )
+    return abs((angle + 360) % 360)`,
+      },
     },
     {
       id: 'ckd-prediction',
       number: '02',
-      title: 'Chronic Kidney Disease Prediction Pipeline',
-      subtitle: 'Clinical Feature Engineering & Classification Modeling',
+      title: 'Chronic Kidney Disease Stage Prediction Pipeline',
+      subtitle: 'Multi-Class Staging (0–5), Data Leakage Detection & XGBoost Modeling',
       category: 'Machine Learning / Healthcare Analytics',
       summary:
-        'A machine learning classification pipeline using clinical data preprocessing, median imputation, feature scaling, and model evaluation to explore CKD prediction.',
+        'A machine learning classification pipeline predicting six CKD severity stages (0 = No CKD, 1–5 = Kidney Failure) using 4,000 patient records, explicit feature leakage detection, and XGBoost modeling.',
       problem:
-        'Clinical tabular datasets frequently suffer from missing laboratory values (up to 40% missingness) and high feature correlation, requiring structured data pipelines for reliable analytics.',
+        'Clinical tabular datasets frequently suffer from target-derived feature leakage (e.g. cluster labels) and class imbalance across multi-stage disease progression.',
       approach:
-        'Engineered an end-to-end ML data pipeline utilizing median/mode imputation, standard feature scaling, correlation analysis, and hyperparameter-tuned classification models.',
-      techStack: ['Python 3.10', 'Scikit-learn', 'Pandas', 'NumPy', 'Seaborn', 'Matplotlib'],
+        'Engineered an ML pipeline dropping leakage variables (ckd_pred, cluster), applying categorical encoding, and training Logistic Regression, Random Forest, and XGBoost classifiers evaluated with 5-fold cross-validation.',
+      techStack: ['Python 3.10', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy', 'Seaborn', 'Streamlit'],
       pipeline: [
         {
-          stage: 'DATA',
-          description: 'Clinical Ingestion',
-          purpose: 'Ingests clinical laboratory dataset attributes',
-          nextStage: 'Missing Value Imputation',
-          detail:
-            'UCI Chronic Kidney Disease dataset containing 400 patient instances across 24 attributes.',
+          stage: 'DATA INGESTION',
+          description: '4,000 Patient Records',
+          purpose: 'Ingests clinical dataset attributes',
+          nextStage: 'Data Leakage Detection',
+          detail: 'Kaggle CKD dataset containing 4,000 patient records across 21 clinical & lifestyle features.',
         },
         {
-          stage: 'CLEANING',
-          description: 'Median Imputation',
-          purpose: 'Fills missing numerical values via group medians',
-          nextStage: 'Feature Encoding & Scaling',
-          detail:
-            'SimpleImputer handling missing continuous lab indicators without synthetic distortion.',
+          stage: 'LEAKAGE DETECTION',
+          description: 'Target Leakage Drop',
+          purpose: 'Identifies & removes target-derived columns',
+          nextStage: 'Categorical Encoding & Scaling',
+          detail: 'Explicitly drops ckd_pred and cluster columns confirmed via cross-tabulation to encode the target.',
         },
         {
-          stage: 'FEATURE ENG',
-          description: 'Standard Scaling',
-          purpose: 'Encodes categorical features & normalizes variance',
-          nextStage: 'Model Training & Hyperparameter Tuning',
-          detail: 'StandardScaler scaling numerical distributions to zero mean and unit variance.',
+          stage: 'PREPROCESSING',
+          description: 'One-Hot Encoding',
+          purpose: 'Encodes lifestyle factors & scales metrics',
+          nextStage: 'Stratified 5-Fold Cross-Validation',
+          detail: 'One-hot encodes categorical lifestyle variables (diet, smoking) and normalizes continuous lab values.',
         },
         {
-          stage: 'MODEL',
-          description: 'Random Forest Training',
-          purpose: 'Trains Decision Tree & Random Forest classifiers',
-          nextStage: 'Recall & ROC-AUC Metric Evaluation',
-          detail: 'Trains ensemble classifiers with stratified 5-fold cross-validation folds.',
+          stage: 'MODEL TRAINING',
+          description: 'XGBoost CV Folds',
+          purpose: 'Trains Logistic Regression, RF & XGBoost',
+          nextStage: 'Multi-Class Stage Prediction',
+          detail: 'Evaluates models using stratified 80/20 train-test split and 5-fold cross-validation.',
         },
         {
-          stage: 'PREDICTION',
-          description: 'Recall Evaluation',
-          purpose: 'Evaluates recall, confusion matrix & false negatives',
-          nextStage: 'Model Performance Reporting',
-          detail: 'Prioritizes high recall evaluation to minimize false-negative risk indicators.',
+          stage: 'STAGE PREDICTION',
+          description: '6-Class CKD Staging',
+          purpose: 'Predicts Stage 0 to Stage 5 severity',
+          nextStage: 'Permutation Feature Explainability',
+          detail: 'Predicts CKD Stage 0 (No CKD) through Stage 5 (Kidney Failure) with stage probability gauges.',
+        },
+        {
+          stage: 'EXPLAINABILITY',
+          description: 'Permutation Importance',
+          purpose: 'Identifies primary predictive lab features',
+          nextStage: 'End of ML Pipeline Loop',
+          detail: 'Permutation importance identified GFR as the dominant feature in the trained model.',
         },
       ],
       implementation: [
-        'Cleaned UCI Chronic Kidney Disease dataset containing 400 patient records across 24 clinical attributes (hemodialysis, blood urea, serum creatinine).',
-        'Implemented SimpleImputer using median strategy for continuous clinical variables and mode strategy for binary indicator attributes.',
-        'Trained and evaluated Logistic Regression, Decision Tree, and Random Forest Classifiers with stratified 5-fold cross-validation.',
-        'Generated ROC-AUC curves, confusion matrices, and feature importance rankings identifying serum creatinine and hemoglobin as top diagnostic indicators.',
+        'Processed Kaggle CKD dataset containing 4,000 patient records across 21 clinical and lifestyle attributes.',
+        'Identified data leakage columns (ckd_pred, cluster) derived from target labels and dropped them before pipeline encoding.',
+        'Trained Logistic Regression (93.75%), Random Forest (98.63%), and XGBoost (98.75% accuracy / 0.985 5-fold CV F1).',
+        'Applied model-agnostic permutation importance; permutation importance identified GFR as the dominant feature in the trained model.',
       ],
       decisions: [
-        'Prioritized recall metric optimization over accuracy to minimize false-negative diagnostic classifications.',
-        'Selected Random Forest ensemble model due to robustness against non-linear feature interactions and missing value sensitivity.',
-        'Applied Standard Scaler exclusively within cross-validation folds to strictly prevent data leakage between train and test sets.',
+        'Explicitly removed target-derived ckd_pred and cluster features to prevent artificially inflated 100% evaluation metrics.',
+        'Evaluated per-class confusion matrices across 6 stages to verify misclassifications occurred only between adjacent severity boundaries.',
+        'Selected XGBoost model for superior multi-class gradient boosting performance on tabular clinical metrics.',
       ],
       outcome:
-        'Established an interpretable diagnostic pipeline benchmark exploring machine learning feature importance in renal health analytics.',
+        'Achieved 98.75% accuracy (0.985 5-fold CV F1) with XGBoost; permutation importance identified GFR as the dominant feature in the trained model.',
       githubUrl: 'https://github.com/bhavyabansal941/urine-test-disease-prediction',
+      evidence: {
+        type: 'code',
+        label: 'Target Feature Leakage Prevention Pipeline',
+        sourceFile: 'urine-test-disease-prediction/src/08_clean_preprocess_v2.py',
+        description:
+          'Identified and removed target-derived columns (ckd_pred, cluster) confirmed via cross-tabulation to encode the target answer itself, preventing data leakage before categorical encoding.',
+        codeSnippet: `# Drop leaked/derived columns — confirmed via cross-tab that these
+# encode the answer itself rather than being real clinical inputs
+df = df.drop(columns=["ckd_pred", "cluster"])
+
+# One-hot encode categorical features (diet, smoking, alcohol, etc.)
+categorical_cols = df.select_dtypes(include="object").columns.tolist()
+df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)`,
+      },
     },
     {
       id: 'crypto-analysis',
@@ -325,78 +379,116 @@ export const PORTFOLIO_DATA: {
       outcome:
         'Established transparent baseline comparison demonstrating performance boundaries of deep learning on high-frequency financial assets.',
       githubUrl: 'https://github.com/bhavyabansal941/crypto-market-analysis',
+      evidence: {
+        type: 'evaluation',
+        label: 'LSTM vs Naive Persistence Baseline Evaluation (MAPE)',
+        sourceFile: 'Crypto Market Analysis/models/training_summary_v2.csv',
+        description:
+          'Evaluated Next-Day Return LSTM predictions against a naive "no change" persistence baseline (t = t-1), demonstrating random walk characteristics where naive baselines outperform neural models on high-frequency assets.',
+        evaluationTable: [
+          { asset: 'ADA', modelMape: '3.47%', baselineMape: '3.48%', verdict: 'Outperforms Baseline (Marginal)' },
+          { asset: 'BTC', modelMape: '2.59%', baselineMape: '1.69%', verdict: 'Naive Baseline Superior' },
+          { asset: 'DOGE', modelMape: '2.42%', baselineMape: '1.95%', verdict: 'Naive Baseline Superior' },
+          { asset: 'ETH', modelMape: '2.28%', baselineMape: '2.23%', verdict: 'Near Parity' },
+          { asset: 'SOL', modelMape: '2.86%', baselineMape: '2.62%', verdict: 'Naive Baseline Superior' },
+        ],
+      },
     },
     {
       id: 'career-agent',
       number: '04',
-      title: 'CareerAgent — AI Career Navigation Assistant',
-      subtitle: 'LLM Prompt Engineering, Resume Parsing & Skill Gap Analysis',
+      title: 'CareerAgent — Conversational AI Career Assistant',
+      subtitle: 'Multi-Modal LLM Pipeline, Vision OCR, Web Grounding & Job Search',
       category: 'Generative AI / Natural Language Processing',
       summary:
-        'An intelligent career agent analyzing resume text, extracting key technical skills, comparing candidate profiles against job specifications, and generating tailored career roadmaps.',
+        'A conversational AI assistant analyzing candidate resumes (PDF, DOCX, XLSX, images via Vision OCR), comparing skills against target job specifications using Llama 3.3 70B & Tavily web grounding, and fetching live job listings via Adzuna API.',
       problem:
-        'Job seekers struggle to identify precise skill gaps between their current resume profile and target enterprise job descriptions.',
+        'Job seekers struggle to map complex project experience against job descriptions and identify verified technical skill gaps.',
       approach:
-        'Engineered an LLM-driven application using LangChain, Groq API (Llama 3), and structured prompt templates to parse resume text and return actionable skill gap recommendations.',
-      techStack: ['Python 3.11', 'LangChain', 'Groq API', 'Llama 3 8B', 'PyPDF2', 'Streamlit'],
+        'Built a Chainlit application utilizing LangChain, Groq API (Llama 3.3 70B & Llama 3.2 Vision), Pydantic schema validation, Tavily web search grounding, and Adzuna API live job matching.',
+      techStack: ['Python 3.10', 'Chainlit', 'LangChain', 'Groq API', 'Llama 3.3 70B', 'Tavily API', 'Adzuna API', 'SQLAlchemy'],
+      demoUrl: 'https://careeragent-n127.onrender.com',
       pipeline: [
         {
-          stage: 'RESUME',
-          description: 'PDF Ingestion',
-          purpose: 'Ingests raw candidate PDF resume documents',
-          nextStage: 'PyPDF2 Text Layout Extraction',
-          detail: 'PyPDF2 file stream reader uploading resume PDF files into memory.',
-        },
-        {
-          stage: 'PARSER',
-          description: 'Text Extraction',
-          purpose: 'Extracts clean layout text from PDF content',
-          nextStage: 'LLM Technical Skill Entity Extraction',
-          detail: 'Extracts multi-column text strings and converts to structured string buffers.',
+          stage: 'MULTI-FORMAT INGESTION',
+          description: 'Document & Image OCR',
+          purpose: 'Ingests PDF, DOCX, XLSX & Image Resumes',
+          nextStage: 'Groq Llama 3.3 Skill Extraction',
+          detail: 'Parses PDF (pypdf), DOCX (python-docx), XLSX (openpyxl), and Image OCR via Llama 3.2 11B Vision.',
         },
         {
           stage: 'SKILL EXTRACTION',
-          description: 'Entity Extraction',
-          purpose: 'Parses programming languages, tools & frameworks',
-          nextStage: 'Target Job Specification Analysis',
-          detail: 'LangChain prompt template identifying technical skill taxonomy items.',
+          description: 'Entity Parsing',
+          purpose: 'Extracts technical skills & candidate context',
+          nextStage: 'Tavily Web Search Grounding',
+          detail: 'Groq Llama 3.3 70B structured prompt parsing candidate competencies into session memory.',
         },
         {
-          stage: 'JOB DESCRIPTION',
-          description: 'Target Analysis',
-          purpose: 'Analyzes enterprise job requirement competencies',
+          stage: 'WEB GROUNDING',
+          description: 'Tavily Search Grounding',
+          purpose: 'Grounds responses in live search results',
           nextStage: 'Vector Skill Gap Matrix Matching',
-          detail: 'Parses target job postings to establish required competency baselines.',
+          detail: 'Tavily API fetching up-to-date exam patterns, syllabi, & Adzuna live job listings.',
         },
         {
           stage: 'MATCHING',
-          description: 'Vector Skill Gap Matrix',
-          purpose: 'Computes skill overlap & highlights missing gaps',
+          description: 'Skill Gap Analysis',
+          purpose: 'Computes skill overlap & identifies gaps',
           nextStage: 'Actionable Career Roadmap Generation',
-          detail: 'Calculates skill similarity matrix and isolates missing required tech skills.',
+          detail: 'Pydantic-validated skill gap matrix comparing candidate skills to target job specifications.',
         },
         {
-          stage: 'CAREER ROADMAP',
-          description: 'Actionable Guidance',
-          purpose: 'Generates step-by-step learning recommendations',
-          nextStage: 'End of Agent Execution Loop',
-          detail: 'Groq API Llama 3 generating step-by-step roadmap and project suggestions.',
+          stage: 'ROADMAP GENERATION',
+          description: 'Mock Interview & Guides',
+          purpose: 'Generates sequential interview practice',
+          nextStage: 'SQLAlchemy Conversation Persistence',
+          detail: 'Llama 3.3 70B generating sequential mock interview questions and tailored learning roadmaps.',
+        },
+        {
+          stage: 'CONVERSATION PERSISTENCE',
+          description: 'SQLAlchemy & Render Host',
+          purpose: 'Persists user chat sessions',
+          nextStage: 'End of Conversational Agent Loop',
+          detail: 'Google OAuth sign-in and conversation persistence deployed live on Render.',
         },
       ],
       implementation: [
-        'Built PyPDF2 document loader extracting raw text content from uploaded PDF resumes while handling multi-column formatting.',
-        'Constructed structured zero-shot and few-shot prompt templates directing Llama 3 8B (via Groq API) to return JSON-formatted skill taxonomies.',
-        'Implemented skill gap comparison module calculating overlap percentages between candidate skills and target job requirements.',
-        'Deployed interactive Streamlit web application rendering similarity scores, missing skill lists, and custom interview preparation checklists.',
+        'Built Chainlit web interface (app.py) providing interactive streaming LLM conversational workflows.',
+        'Configured ChatGroq API utilizing llama-3.3-70b-versatile for core reasoning and llama-3.2-11b-vision-preview for OCR resume images.',
+        'Integrated Tavily API tool binding (@tool def web_search) to ground answers in real-time web search results.',
+        'Deployed production application live on Render (https://careeragent-n127.onrender.com) with SQLAlchemy session persistence.',
       ],
       decisions: [
-        'Used Groq API inference engine over standard local models for sub-second LLM response latency.',
-        'Enforced Pydantic structured output validation to guarantee deterministic JSON response schemas from the LLM.',
-        'Designed modular pipeline allowing seamless swapping between different foundation models (Llama 3, Mixtral).',
+        'Selected Chainlit UI over Streamlit for native multi-modal file uploads, streaming chat, and OAuth data layer support.',
+        'Bound Tavily search tool to LLM to prevent hallucinations on time-sensitive exam cutoffs and job requirements.',
+        'Used Llama 3.2 11B Vision model for direct image OCR resume parsing without external proprietary OCR dependencies.',
       ],
       outcome:
-        'Reduced career gap analysis turnaround from hours of manual comparison to under 3 seconds with structured actionable guidance.',
+        'Deployed live conversational agent on Render; handles multi-format resumes and real-time web search grounding.',
       githubUrl: 'https://github.com/bhavyabansal941/CareerAgent',
+      evidence: {
+        type: 'code',
+        label: 'Groq Multi-Modal LLM & Tavily Search Tool Binding',
+        sourceFile: 'CareerAgent/app.py',
+        description:
+          'Configured ChatGroq API model instances for Llama 3.3 70B reasoning and Llama 3.2 Vision OCR, binding Tavily web search tool for real-time grounded context retrieval.',
+        codeSnippet: `# ---------------- LLMs ----------------
+llm = ChatGroq(groq_api_key=os.getenv("GROQ_API_KEY"), model_name="llama-3.3-70b-versatile")
+vision_llm = ChatGroq(groq_api_key=os.getenv("GROQ_API_KEY"), model_name="llama-3.2-11b-vision-preview")
+
+# ---------------- Web search grounding (Tavily) ----------------
+tavily_client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY")) if os.getenv("TAVILY_API_KEY") else None
+
+@tool
+def web_search(query: str) -> str:
+    """Search the web for current time-sensitive information and live job patterns."""
+    if not tavily_client:
+        return "Web search is not configured."
+    results = tavily_client.search(query, max_results=5, include_answer=True)
+    return results.get("answer", "No results found.")
+
+llm_with_tools = llm.bind_tools([web_search])`,
+      },
     },
   ],
 
@@ -407,12 +499,12 @@ export const PORTFOLIO_DATA: {
       category: 'programming',
       categoryLabel: 'PROGRAMMING LANGUAGE',
       howApplied:
-        'Core development language across all 4 flagship projects. Applied for MediaPipe pose estimation, Scikit-learn modeling, ETL pipelines, and LangChain agents.',
+        'Core development language across all 4 flagship projects. Applied for MediaPipe pose estimation, Scikit-learn & XGBoost modeling, ETL pipelines, and LangChain agents.',
       whereUsed: [
         'AI Physiotherapy: MediaPipe & OpenCV frame processing loop',
-        'CKD Prediction: Scikit-learn data cleaning & model training',
+        'CKD Prediction: Scikit-learn & XGBoost multi-class data cleaning & modeling',
         'Crypto Analysis: Pandas time-series processing & API extraction',
-        'CareerAgent: PyPDF2 text parsing & Groq API orchestration',
+        'CareerAgent: Chainlit app & Groq Llama 3.3 70B API orchestration',
       ],
       relatedProjectIds: ['ai-physiotherapy', 'ckd-prediction', 'crypto-analysis', 'career-agent'],
       relatedProjectNames: ['AI Physiotherapy', 'CKD Prediction', 'Crypto Analysis', 'CareerAgent'],
@@ -426,20 +518,21 @@ export const PORTFOLIO_DATA: {
         'Designed relational database schemas, wrote indexing queries, and aggregated time-series financial datasets for analytical pipelines.',
       whereUsed: [
         'Crypto Analysis: SQLite database schema, price indexing & OHLCV aggregation queries',
+        'CareerAgent: SQLAlchemy database persistence layer for user conversations',
         'Academic Coursework: Database Management Systems (DBMS) relational modeling',
       ],
-      relatedProjectIds: ['crypto-analysis'],
-      relatedProjectNames: ['Crypto Market Analysis'],
+      relatedProjectIds: ['crypto-analysis', 'career-agent'],
+      relatedProjectNames: ['Crypto Market Analysis', 'CareerAgent'],
     },
     {
       id: 'scikit-learn',
-      name: 'Scikit-learn',
+      name: 'Scikit-learn & XGBoost',
       category: 'ml',
       categoryLabel: 'MACHINE LEARNING',
       howApplied:
-        'Data preprocessing (imputation, scaling, encoding), model selection (Random Forest, Logistic Regression), cross-validation, and metric evaluation.',
+        'Data preprocessing (leakage removal, scaling, encoding), model selection (XGBoost, Random Forest, Logistic Regression), 5-fold cross-validation, and permutation importance.',
       whereUsed: [
-        'CKD Prediction: SimpleImputer median data cleaning & Random Forest classification',
+        'CKD Prediction: Target leakage drop & XGBoost 98.75% 6-stage classification',
         'Crypto Analysis: MinMaxScaler normalization for LSTM feature inputs',
       ],
       relatedProjectIds: ['ckd-prediction', 'crypto-analysis'],
@@ -477,7 +570,7 @@ export const PORTFOLIO_DATA: {
       howApplied:
         'DataFrame manipulation, missing value handling, rolling window calculations (SMA/EMA), vector trigonometry, and statistical aggregation.',
       whereUsed: [
-        'CKD Prediction: Clinical dataset cleaning & attribute correlation analysis',
+        'CKD Prediction: 4,000 record feature encoding & leakage cleaning',
         'Crypto Analysis: 7-day/30-day moving average calculation & daily returns',
         'AI Physiotherapy: NumPy arctan2 2D joint angle vector geometry',
       ],
@@ -490,8 +583,8 @@ export const PORTFOLIO_DATA: {
       category: 'genai',
       categoryLabel: 'GENERATIVE AI',
       howApplied:
-        'LLM prompt engineering, structured JSON output extraction, PDF text chunking, and Llama 3 API orchestration.',
-      whereUsed: ['CareerAgent: Resume parsing, skill gap analysis & career roadmap generation'],
+        'Multi-modal LLM orchestration (Llama 3.3 70B & Llama 3.2 Vision), Tavily web search tool binding, Chainlit UI, and Pydantic structured output validation.',
+      whereUsed: ['CareerAgent: Multi-format resume parsing, Tavily web grounding & Chainlit chat'],
       relatedProjectIds: ['career-agent'],
       relatedProjectNames: ['CareerAgent Navigation Assistant'],
     },

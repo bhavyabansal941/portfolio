@@ -183,13 +183,26 @@ export function ProjectCard({ project }: { project: ProjectData }) {
           <span>VERIFIED IMPLEMENTATION</span>
         </div>
 
-        <button
-          onClick={() => openCaseStudy(project.id)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#09090b] font-semibold text-xs tracking-wide hover:bg-sky-300 transition-all shadow-md group"
-        >
-          <span>OPEN CASE STUDY</span>
-          <ArrowRight className="w-3.5 h-3.5 text-[#09090b] group-hover:translate-x-1 transition-transform" />
-        </button>
+        <div className="flex flex-wrap items-center gap-3">
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs hover:bg-sky-500/20 transition-all"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>LIVE DEMO ↗</span>
+            </a>
+          )}
+          <button
+            onClick={() => openCaseStudy(project.id)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#09090b] font-semibold text-xs tracking-wide hover:bg-sky-300 transition-all shadow-md group"
+          >
+            <span>OPEN CASE STUDY</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#09090b] group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
       </div>
     </div>
   );
