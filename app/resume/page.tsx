@@ -140,21 +140,21 @@ export default function ResumePage() {
                   Chronic Kidney Disease Prediction Pipeline
                 </h3>
                 <span className="text-xs font-mono text-gray-500">
-                  Python, Scikit-learn, Pandas, Seaborn
+                  Python, Scikit-learn, XGBoost, Pandas
                 </span>
               </div>
               <ul className="list-disc list-outside ml-4 text-xs text-gray-700 space-y-1">
                 <li>
-                  Developed a machine learning classification pipeline to assist in identifying
-                  early indicators of chronic kidney disease.
+                  Processed clinical dataset containing 4,000 patient records across 21 clinical and
+                  lifestyle features for 6-class severity staging.
                 </li>
                 <li>
-                  Handled missing clinical data, feature scaling, and categorical encoding to
-                  prepare health records for model training.
+                  Implemented explicit target leakage prevention by identifying and dropping derived
+                  columns prior to categorical encoding.
                 </li>
                 <li>
-                  Evaluated Random Forest and Logistic Regression models using precision and recall
-                  metrics to ensure reliable predictions.
+                  Evaluated multi-class CKD stage prediction using XGBoost, achieving 98.75% accuracy
+                  and 0.985 5-fold CV F1 score.
                 </li>
               </ul>
             </div>
@@ -165,21 +165,21 @@ export default function ResumePage() {
                   Cryptocurrency Market Analysis & Trend Forecasting
                 </h3>
                 <span className="text-xs font-mono text-gray-500">
-                  Python, SQL, Pandas, Matplotlib
+                  Python, SQL, Pandas, CoinGecko API, TensorFlow/Keras
                 </span>
               </div>
               <ul className="list-disc list-outside ml-4 text-xs text-gray-700 space-y-1">
                 <li>
-                  Built automated data extraction scripts to clean and analyze daily time-series
-                  cryptocurrency financial data.
+                  Built automated CoinGecko REST API ingestion scripts to extract and clean daily
+                  time-series cryptocurrency financial data.
                 </li>
                 <li>
-                  Executed SQL queries and Pandas transformations to calculate moving averages,
-                  asset volatility, and price correlations.
+                  Executed SQL queries and Pandas transformations to calculate 7-day/30-day moving
+                  averages, asset volatility, and price correlations.
                 </li>
                 <li>
-                  Created visual charts rendering multi-asset price trends and volume patterns for
-                  market risk assessment.
+                  Trained an LSTM forecasting model and evaluated next-day return predictions against
+                  a naive persistence baseline.
                 </li>
               </ul>
             </div>
@@ -190,21 +190,21 @@ export default function ResumePage() {
                   CareerAgent — AI Career Navigation Assistant
                 </h3>
                 <span className="text-xs font-mono text-gray-500">
-                  Python, Streamlit, LangChain, LLM APIs
+                  Python, Chainlit, LangChain, Groq API, Llama 3.3
                 </span>
               </div>
               <ul className="list-disc list-outside ml-4 text-xs text-gray-700 space-y-1">
                 <li>
-                  Developed an automated career assistant to help students identify skill gaps based
-                  on job requirements.
+                  Built a Chainlit-based AI career assistant using LangChain and Groq-hosted Llama
+                  3.3 70B for multi-format resume analysis (PDF, DOCX, XLSX).
                 </li>
                 <li>
-                  Structured prompt templates and API query logic to extract key competencies from
-                  industry job descriptions.
+                  Integrated Llama 3.2 Vision OCR for image-based resumes, Tavily web grounding, and
+                  Adzuna job search APIs for skill gap analysis.
                 </li>
                 <li>
-                  Built a responsive Streamlit application allowing users to upload resumes and view
-                  personalized career roadmaps.
+                  Implemented persistent session storage with SQLAlchemy and deployed the application
+                  live on Render.
                 </li>
               </ul>
             </div>
@@ -241,23 +241,23 @@ export default function ResumePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-gray-800">
             <div>
               <span className="font-bold text-gray-900">Languages:</span> Python, SQL, C++, HTML,
-              CSS, JavaScript
+              CSS, JavaScript, TypeScript
             </div>
             <div>
               <span className="font-bold text-gray-900">Data Analytics:</span> Pandas, NumPy,
-              Matplotlib, Seaborn
+              Matplotlib, Seaborn, CoinGecko API
             </div>
             <div>
               <span className="font-bold text-gray-900">Machine Learning & CV:</span> Scikit-learn,
-              MediaPipe, OpenCV
+              XGBoost, MediaPipe, OpenCV
             </div>
             <div>
               <span className="font-bold text-gray-900">GenAI & Web:</span> LangChain, Groq API
-              (Llama 3), Streamlit, Next.js 16, React
+              (Llama 3.3 70B & Vision), Chainlit, Tavily, Next.js 16, React
             </div>
             <div>
               <span className="font-bold text-gray-900">Tools & OS:</span> Git, GitHub, VS Code,
-              Windows, Linux
+              Render, Windows, Linux
             </div>
           </div>
         </section>

@@ -26,30 +26,30 @@ _Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Ex
 • Formulated custom 2D joint angle calculations using MediaPipe pose landmarks to evaluate movement against target health thresholds.
 • Designed an interactive camera interface in Streamlit that displays immediate visual feedback during rehabilitation sessions.
 
-**Chronic Kidney Disease Prediction Pipeline** | _Python, Scikit-learn, Pandas, Seaborn_
-• Developed a machine learning classification pipeline to assist in identifying early indicators of chronic kidney disease.
-• Handled missing clinical data, feature scaling, and categorical encoding to prepare health records for model training.
-• Evaluated Random Forest and Logistic Regression models using precision and recall metrics to ensure reliable predictions.
+**Chronic Kidney Disease Prediction Pipeline** | _Python, Scikit-learn, XGBoost, Pandas_
+• Processed clinical dataset containing 4,000 patient records across 21 clinical and lifestyle features for 6-class severity staging.
+• Implemented explicit target leakage prevention by identifying and dropping derived columns prior to categorical encoding.
+• Evaluated multi-class CKD stage prediction using XGBoost, achieving 98.75% accuracy and 0.985 5-fold CV F1 score.
 
-**Cryptocurrency Market Analysis & Trend Forecasting** | _Python, SQL, Pandas, Matplotlib_
-• Built automated data extraction scripts to clean and analyze daily time-series cryptocurrency financial data.
-• Executed SQL queries and Pandas transformations to calculate moving averages, asset volatility, and price correlations.
-• Created visual charts rendering multi-asset price trends and volume patterns for market risk assessment.
+**Cryptocurrency Market Analysis & Trend Forecasting** | _Python, SQL, Pandas, CoinGecko API, TensorFlow/Keras_
+• Built automated CoinGecko REST API ingestion scripts to extract and clean daily time-series cryptocurrency financial data.
+• Executed SQL queries and Pandas transformations to calculate 7-day/30-day moving averages, asset volatility, and price correlations.
+• Trained an LSTM forecasting model and evaluated next-day return predictions against a naive persistence baseline.
 
-**CareerAgent — AI Career Navigation Assistant** | _Python, Streamlit, LangChain, LLM APIs_
-• Developed an automated career assistant to help students identify skill gaps based on job requirements.
-• Structured prompt templates and API query logic to extract key competencies from industry job descriptions.
-• Built a responsive Streamlit application allowing users to upload resumes and view personalized career roadmaps.
+**CareerAgent — AI Career Navigation Assistant** | _Python, Chainlit, LangChain, Groq API, Llama 3.3_
+• Built a Chainlit-based AI career assistant using LangChain and Groq-hosted Llama 3.3 70B for multi-format resume analysis (PDF, DOCX, XLSX).
+• Integrated Llama 3.2 Vision OCR for image-based resumes, Tavily web grounding, and Adzuna job search APIs for skill gap analysis.
+• Implemented persistent session storage with SQLAlchemy and deployed the application live on Render.
 
 ---
 
 ## TECHNICAL SKILLS
 
-• **Programming Languages**: Python, SQL, TypeScript, JavaScript  
-• **Data Analysis**: Pandas, NumPy, Data Preprocessing, Exploratory Data Analysis (EDA), Time-Series Cleaning  
-• **Machine Learning & Computer Vision**: Scikit-learn, OpenCV, MediaPipe, Classification Models, Model Evaluation  
-• **Generative AI & LLMs**: LangChain, LLM APIs (Groq / Llama), Prompt Engineering  
-• **Web & Tools**: Next.js, React, Tailwind CSS, Three.js, Power BI, Streamlit, Git, GitHub, VS Code, Jupyter Notebooks
+• **Programming Languages**: Python, SQL, C++, HTML, CSS, JavaScript, TypeScript  
+• **Data Analysis**: Pandas, NumPy, Matplotlib, Seaborn, CoinGecko API, Time-Series Cleaning  
+• **Machine Learning & Computer Vision**: Scikit-learn, XGBoost, MediaPipe, OpenCV, Classification Models, Model Evaluation  
+• **Generative AI & LLMs**: LangChain, Groq API (Llama 3.3 70B & Vision), Chainlit, Tavily, Prompt Engineering  
+• **Web & Tools**: Next.js 16, React, Tailwind CSS, Three.js, Git, GitHub, Render, VS Code, Linux
 
 ---
 

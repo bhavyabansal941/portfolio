@@ -20,7 +20,7 @@ export function AssistantSection() {
         q.answer.toLowerCase().includes(customInput.toLowerCase())
     ) || {
       question: customInput,
-      answer: `Bhavya Bansal is a B.Tech Artificial Intelligence & Data Science candidate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA, 20+ Hackathon Participations). He specializes in Computer Vision (MediaPipe 33 Landmarks), Machine Learning pipelines (Scikit-learn), SQL/Pandas analytics, and LLM applications (LangChain & Groq API).`,
+      answer: `Bhavya Bansal is a B.Tech Artificial Intelligence & Data Science candidate at GGSIPU (Expected Graduation: May 2027, 9.03 CGPA, 20+ Hackathon Participations). He specializes in Computer Vision (MediaPipe 33 Landmarks), Machine Learning pipelines (Scikit-learn & XGBoost 98.75% accuracy), SQL/Pandas analytics, and LLM applications (LangChain, Chainlit & Groq Llama 3.3 70B).`,
       actionType: 'resume',
       actionLabel: 'VIEW RESUME ↗',
     };

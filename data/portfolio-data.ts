@@ -762,16 +762,51 @@ llm_with_tools = llm.bind_tools([web_search])`,
     {
       question: 'What projects has Bhavya built?',
       answer:
-        'Bhavya has engineered 4 canonical flagship systems: 1) AI-Based Physiotherapy Assistance System (MediaPipe 33 pose landmarks & 2D joint vector geometry at 30 FPS); 2) Chronic Kidney Disease Prediction Pipeline (Scikit-learn median imputation & Random Forest classification); 3) Cryptocurrency Market Analysis (CoinGecko API, SQL, 7d/30d moving averages & LSTM vs naive baseline evaluation); 4) CareerAgent (LangChain, Groq API Llama 3 & structured skill gap analysis).',
+        'Bhavya has engineered 4 canonical flagship systems: 1) AI-Based Physiotherapy Assistance System (MediaPipe 33 pose landmarks & 2D joint vector geometry at 30 FPS); 2) Chronic Kidney Disease Prediction Pipeline (4,000 patient records, 21 features, target leakage removal, and XGBoost classification achieving 98.75% accuracy & 0.985 5-fold CV F1); 3) Cryptocurrency Market Analysis (CoinGecko API, SQL, 7d/30d moving averages, and LSTM vs naive persistence baseline evaluation); 4) CareerAgent (Chainlit UI, Groq API Llama 3.3 70B & Llama 3.2 Vision OCR, Tavily grounding, Adzuna job APIs, and Render live deployment).',
       actionType: 'projects',
       actionLabel: 'VIEW PROJECTS',
     },
     {
       question: 'What are his core technical skills?',
       answer:
-        'Bhavya specializes in Python 3.x, SQL, Machine Learning (Scikit-learn, Random Forest), Computer Vision (MediaPipe, OpenCV 2D joint trigonometry), Data Analytics (Pandas, NumPy, Matplotlib), Generative AI (LangChain, Groq API Llama 3), Web Development (Next.js 16, TypeScript, Tailwind CSS v4, Three.js 3D WebGL), and Version Control (Git/GitHub).',
+        'Bhavya specializes in Python 3.x, SQL, Machine Learning (Scikit-learn, XGBoost), Computer Vision (MediaPipe, OpenCV 2D joint trigonometry), Data Analytics (Pandas, NumPy, CoinGecko API), Generative AI (LangChain, Groq API Llama 3.3 70B & Vision, Tavily, Chainlit), Web Development (Next.js 16, TypeScript, Tailwind CSS, Three.js 3D WebGL), and Version Control & Hosting (Git/GitHub, Render).',
       actionType: 'skills',
       actionLabel: 'VIEW SKILLS',
+    },
+    {
+      question: 'What model did you use for CKD?',
+      answer:
+        'XGBoost was the selected model for the 6-stage CKD classification pipeline on 4,000 patient records, achieving 98.75% accuracy and a 0.985 5-fold CV F1 score. Permutation importance identified GFR as the dominant feature in the trained model.',
+      actionType: 'projects',
+      actionLabel: 'VIEW CKD PROJECT',
+    },
+    {
+      question: 'What is the CKD dataset size?',
+      answer:
+        'The CKD pipeline processes 4,000 patient records across 21 clinical and lifestyle attributes, incorporating explicit target leakage prevention (ckd_pred & cluster removal) and 6-class severity staging (Stage 0 to Stage 5).',
+      actionType: 'projects',
+      actionLabel: 'VIEW CKD PROJECT',
+    },
+    {
+      question: 'What LLM does CareerAgent use?',
+      answer:
+        'CareerAgent uses Groq-hosted Llama 3.3 70B for its primary language reasoning and skill gap analysis, and Llama 3.2 11B Vision for image-based resume processing.',
+      actionType: 'projects',
+      actionLabel: 'VIEW CAREERAGENT',
+    },
+    {
+      question: 'What UI framework does CareerAgent use?',
+      answer:
+        'CareerAgent uses Chainlit for its conversational user interface, paired with SQLAlchemy for persistent session management and hosted live on Render.',
+      actionType: 'projects',
+      actionLabel: 'VIEW CAREERAGENT',
+    },
+    {
+      question: 'Does CareerAgent have a live demo?',
+      answer:
+        'Yes. CareerAgent is deployed live on Render at https://careeragent-n127.onrender.com featuring interactive resume analysis, Tavily web search grounding, and Adzuna job search.',
+      actionType: 'projects',
+      actionLabel: 'TRY LIVE DEMO ↗',
     },
     {
       question: 'What are his major achievements?',
