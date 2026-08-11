@@ -37,6 +37,18 @@ export interface EvidenceData {
   }[];
 }
 
+export interface MetricSummary {
+  label: string;
+  value: string;
+}
+
+export interface DemoMediaData {
+  type: 'video' | 'gif' | 'coming_soon';
+  videoUrl?: string;
+  posterUrl?: string;
+  caption: string;
+}
+
 export interface ProjectData {
   id: string;
   number: string;
@@ -45,15 +57,21 @@ export interface ProjectData {
   category: string;
   summary: string;
   problem: string;
+  dataInputs?: string;
   approach: string;
   techStack: string[];
   pipeline: PipelineStage[];
   implementation: string[];
   decisions: string[];
+  metricsSummary?: MetricSummary[];
+  tradeoffs?: string[];
+  limitations?: string[];
+  nextIteration?: string[];
   outcome: string;
   githubUrl: string;
   demoUrl?: string;
   evidence?: EvidenceData;
+  demoMedia?: DemoMediaData;
 }
 
 export interface SkillNode {
@@ -139,6 +157,30 @@ export const PORTFOLIO_DATA: {
         'A real-time computer vision application using MediaPipe, OpenCV, and 2D vector geometry math to analyze posture, grade exercise form depth, and log session data at 30 FPS.',
       problem:
         'At-home physical therapy lacks immediate visual feedback, leading to improper movement form and increased risk of joint strain.',
+      dataInputs:
+        'Live webcam video feed at 30 FPS, extracting 33 normalized (x, y, z) MediaPipe pose landmarks per frame.',
+      metricsSummary: [
+        { label: 'Processing Latency', value: '< 50ms' },
+        { label: 'Frame Rate', value: '30 FPS' },
+        { label: 'Pose Landmarks', value: '33 Nodes' },
+        { label: 'Award', value: '1st Place Winner (2025)' },
+      ],
+      tradeoffs: [
+        'Selected 2D landmark projection over 3D coordinate estimation for 3x lower latency on consumer webcams.',
+        'Enforced strict 10-degree margin of error on joint posture bounds to prevent false positive rep completions.',
+      ],
+      limitations: [
+        'Requires adequate lighting and full body visibility within webcam field of view.',
+        'Extreme side-profile angles can lead to 2D landmark occlusion.',
+      ],
+      nextIteration: [
+        'Integrate interactive 3D skeleton visualization for joint depth inspection.',
+        'Add custom user exercise profile calibration for specialized physical therapy regimens.',
+      ],
+      demoMedia: {
+        type: 'coming_soon',
+        caption: '15-30s real-time MediaPipe joint angle tracking demonstration (Video recording slot ready)',
+      },
       approach:
         'Engineered a real-time webcam pose tracking system extracting 33 MediaPipe keypoints, calculating 2D vector joint angles using math.atan2, and rendering live visual cues.',
       techStack: ['Python 3.9', 'MediaPipe', 'OpenCV', 'NumPy', 'Streamlit', 'CSV'],
@@ -232,6 +274,30 @@ export const PORTFOLIO_DATA: {
         'A machine learning classification pipeline predicting six CKD severity stages (0 = No CKD, 1–5 = Kidney Failure) using 4,000 patient records, explicit feature leakage detection, and XGBoost modeling.',
       problem:
         'Clinical tabular datasets frequently suffer from target-derived feature leakage (e.g. cluster labels) and class imbalance across multi-stage disease progression.',
+      dataInputs:
+        'Clinical tabular dataset containing 4,000 patient records across 21 clinical, lab, and lifestyle attributes for 6-class severity staging.',
+      metricsSummary: [
+        { label: 'Dataset Size', value: '4,000 Records' },
+        { label: 'Features', value: '21 Attributes' },
+        { label: 'XGBoost Accuracy', value: '98.75%' },
+        { label: '5-Fold CV F1', value: '0.985' },
+      ],
+      tradeoffs: [
+        'Explicitly removed target-derived ckd_pred and cluster features to prevent artificially inflated 100% metrics.',
+        'Prioritized XGBoost gradient boosting over simpler linear models to capture complex non-linear clinical feature interactions.',
+      ],
+      limitations: [
+        'Tabular dataset requires pre-imputation for missing lab values prior to pipeline ingestion.',
+        'Severity staging relies on retrospective clinical records requiring prospective validation.',
+      ],
+      nextIteration: [
+        'Implement SHAP feature explanation force plots for individual patient risk breakdowns.',
+        'Deploy REST API endpoint with FastAPI for real-time clinical EHR integration.',
+      ],
+      demoMedia: {
+        type: 'coming_soon',
+        caption: 'Interactive clinical dataset evaluation and XGBoost pipeline execution visualizer',
+      },
       approach:
         'Engineered an ML pipeline dropping leakage variables (ckd_pred, cluster), applying categorical encoding, and training Logistic Regression, Random Forest, and XGBoost classifiers evaluated with 5-fold cross-validation.',
       techStack: ['Python 3.10', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy', 'Seaborn', 'Streamlit'],
@@ -318,6 +384,30 @@ df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)`,
         'Automated time-series data extraction, SQL analytics, news sentiment scoring, and next-day return forecasting pipeline comparing LSTM predictions against a naive baseline.',
       problem:
         'Cryptocurrency markets exhibit extreme volatility and noise; naive predictions fail without rigorous feature engineering, moving averages, and sentiment indicators.',
+      dataInputs:
+        'CoinGecko REST API fetching daily market OHLCV data for BTC, ETH, SOL, ADA, and DOGE stored in indexed SQLite database.',
+      metricsSummary: [
+        { label: 'API Ingestion', value: 'CoinGecko REST' },
+        { label: 'Technical Metrics', value: '7d/30d SMA & EMA' },
+        { label: 'LSTM Assets Evaluated', value: '5 Crypto Assets' },
+        { label: 'Baseline Benchmark', value: 'Naive Persistence (t-1)' },
+      ],
+      tradeoffs: [
+        'Included naive persistence forecast as benchmark to prevent over-optimistic evaluation of time-series neural networks.',
+        'Normalized price series using MinMaxScaler fit exclusively on rolling training windows to prevent look-ahead bias.',
+      ],
+      limitations: [
+        'High-frequency crypto asset returns exhibit high noise-to-signal ratios where naive persistence often rivals complex neural models.',
+        'Sentiment analysis depends on public news headlines which may not capture sudden order-book liquidity shifts.',
+      ],
+      nextIteration: [
+        'Incorporate order-book depth and on-chain transaction metrics into feature matrix.',
+        'Implement Transformer-based time-series architectures for multi-step horizon forecasting.',
+      ],
+      demoMedia: {
+        type: 'coming_soon',
+        caption: 'Interactive financial time-series forecasting & baseline comparison dashboard',
+      },
       approach:
         'Built an automated data pipeline fetching multi-asset OHLCV data from CoinGecko API, storing records in SQL, engineering 7-day/30-day moving averages, and training an LSTM forecasting model.',
       techStack: ['Python 3.11', 'SQL', 'Pandas', 'TensorFlow/Keras', 'TextBlob', 'Dash', 'Plotly'],
@@ -404,6 +494,30 @@ df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)`,
         'A conversational AI assistant analyzing candidate resumes (PDF, DOCX, XLSX, images via Vision OCR), comparing skills against target job specifications using Llama 3.3 70B & Tavily web grounding, and fetching live job listings via Adzuna API.',
       problem:
         'Job seekers struggle to map complex project experience against job descriptions and identify verified technical skill gaps.',
+      dataInputs:
+        'Multi-format candidate resumes (PDF, DOCX, XLSX, images via Llama 3.2 11B Vision OCR) + target job specifications.',
+      metricsSummary: [
+        { label: 'Core LLM', value: 'Llama 3.3 70B' },
+        { label: 'Vision OCR', value: 'Llama 3.2 11B Vision' },
+        { label: 'UI Framework', value: 'Chainlit' },
+        { label: 'Live Host', value: 'Render' },
+      ],
+      tradeoffs: [
+        'Selected Chainlit UI over Streamlit for native multi-modal file uploads, streaming chat, and OAuth data layer support.',
+        'Bound Tavily search tool to LLM to prevent hallucinations on time-sensitive exam cutoffs and job requirements.',
+      ],
+      limitations: [
+        'Free-tier deployment on Render experiences a ~30-second cold start delay on initial HTTP connection.',
+        'Vision OCR model accuracy depends on input image resolution and layout formatting.',
+      ],
+      nextIteration: [
+        'Implement vector RAG embeddings for fast semantic matching against large enterprise job description databases.',
+        'Add interactive voice interview practice module using WebRTC.',
+      ],
+      demoMedia: {
+        type: 'coming_soon',
+        caption: 'Live interactive conversational assistant running at https://careeragent-n127.onrender.com',
+      },
       approach:
         'Built a Chainlit application utilizing LangChain, Groq API (Llama 3.3 70B & Llama 3.2 Vision), Pydantic schema validation, Tavily web search grounding, and Adzuna API live job matching.',
       techStack: ['Python 3.10', 'Chainlit', 'LangChain', 'Groq API', 'Llama 3.3 70B', 'Tavily API', 'Adzuna API', 'SQLAlchemy'],
