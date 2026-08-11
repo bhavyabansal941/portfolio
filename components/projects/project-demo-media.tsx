@@ -56,19 +56,28 @@ export function ProjectDemoMedia({ media, projectTitle, demoUrl }: ProjectDemoMe
 
       <div className="relative aspect-video bg-black flex items-center justify-center">
         {media.videoUrl ? (
-          <video
-            src={media.videoUrl}
-            poster={media.posterUrl}
-            controls
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover"
-          >
-            <track kind="captions" />
-            Your browser does not support HTML5 video playback.
-          </video>
+          media.videoUrl.endsWith('.webp') || media.videoUrl.endsWith('.gif') || media.type === 'gif' ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={media.videoUrl}
+              alt={media.caption}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <video
+              src={media.videoUrl}
+              poster={media.posterUrl}
+              controls
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover"
+            >
+              <track kind="captions" />
+              Your browser does not support HTML5 video playback.
+            </video>
+          )
         ) : (
           <div className="flex flex-col items-center gap-2 text-center p-6 text-zinc-400 font-mono text-xs">
             <Sparkles className="w-6 h-6 text-sky-400" />

@@ -95,8 +95,8 @@ export function PhysiotherapyVisualization({ activeStage }: Props) {
                   strokeWidth="0.5"
                   strokeDasharray="1,1"
                 />
-                <text x="18" y="42" fill="#38bdf8" fontSize="4.5" fontWeight="bold">
-                  92.4°
+                <text x="14" y="42" fill="#38bdf8" fontSize="4" fontWeight="bold">
+                  JOINT ANGLE
                 </text>
               </g>
             )}
@@ -167,7 +167,7 @@ export function PhysiotherapyVisualization({ activeStage }: Props) {
           </div>
 
           <div className="text-[10px] text-zinc-400 pt-1 border-t border-white/5 flex items-center justify-between">
-            <span>Clinical Motion Target Bound: 85° - 105°</span>
+            <span>Form Boundary Evaluation: Heuristic Threshold Check</span>
             <span className="text-emerald-400 font-bold flex items-center gap-1">
               <CheckCircle className="w-3 h-3 text-emerald-400" />
               ACCURATE POSE TRACKING

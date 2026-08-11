@@ -178,8 +178,10 @@ export const PORTFOLIO_DATA: {
         'Add custom user exercise profile calibration for specialized physical therapy regimens.',
       ],
       demoMedia: {
-        type: 'coming_soon',
-        caption: '15-30s real-time MediaPipe joint angle tracking demonstration (Video recording slot ready)',
+        type: 'video',
+        videoUrl: '/media/demos/physiotherapy-demo.webp',
+        posterUrl: '/media/demos/physiotherapy-poster.jpg',
+        caption: 'Cinematic AI-generated visualization of the MediaPipe pose-estimation, 2D joint-angle, form-evaluation, and session-logging pipeline.',
       },
       approach:
         'Engineered a real-time webcam pose tracking system extracting 33 MediaPipe keypoints, calculating 2D vector joint angles using math.atan2, and rendering live visual cues.',
