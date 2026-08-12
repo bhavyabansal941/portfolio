@@ -27,7 +27,21 @@ export function ProjectCard({ project }: { project: ProjectData }) {
             <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               {project.title}
             </h3>
-            <span className="text-xs font-mono text-zinc-400">{project.category}</span>
+            <div className="flex flex-wrap items-center gap-2 mt-1">
+              <span className="text-xs font-mono text-zinc-400">{project.category}</span>
+              {project.demoMedia?.type === 'video' && (
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-500/10 border border-sky-500/30 text-sky-300 flex items-center gap-1">
+                  <Play className="w-2.5 h-2.5 fill-current" />
+                  VIDEO DEMO
+                </span>
+              )}
+              {project.demoUrl && (
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-center gap-1">
+                  <ExternalLink className="w-2.5 h-2.5" />
+                  LIVE DEMO
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
