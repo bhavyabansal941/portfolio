@@ -8,45 +8,45 @@ interface Props {
 }
 
 export function CryptoVisualization({ activeStage, selectedCoin }: Props) {
-  // Asset specific demonstration parameters
+  // Asset specific benchmark parameters (Source: Crypto Market Analysis/models/training_summary_v2.csv)
   const coinData: Record<
     string,
-    { label: string; sma7: string; sma30: string; baselineRMSE: string; lstmRMSE: string }
+    { label: string; lstmMAPE: string; naiveMAPE: string; verdict: string; verdictType: 'superior' | 'baseline' | 'parity' }
   > = {
-    BTC: {
-      label: 'Bitcoin (BTC)',
-      sma7: '+4.2%',
-      sma30: '+12.8%',
-      baselineRMSE: '0.0412',
-      lstmRMSE: '0.0384',
-    },
-    ETH: {
-      label: 'Ethereum (ETH)',
-      sma7: '+3.1%',
-      sma30: '+9.4%',
-      baselineRMSE: '0.0485',
-      lstmRMSE: '0.0421',
-    },
-    SOL: {
-      label: 'Solana (SOL)',
-      sma7: '+8.6%',
-      sma30: '+24.1%',
-      baselineRMSE: '0.0610',
-      lstmRMSE: '0.0518',
-    },
     ADA: {
       label: 'Cardano (ADA)',
-      sma7: '+1.5%',
-      sma30: '+4.2%',
-      baselineRMSE: '0.0390',
-      lstmRMSE: '0.0365',
+      lstmMAPE: '3.47%',
+      naiveMAPE: '3.48%',
+      verdict: 'LSTM Superior (Marginal)',
+      verdictType: 'superior',
+    },
+    BTC: {
+      label: 'Bitcoin (BTC)',
+      lstmMAPE: '2.59%',
+      naiveMAPE: '1.69%',
+      verdict: 'Naive Baseline Superior',
+      verdictType: 'baseline',
     },
     DOGE: {
       label: 'Dogecoin (DOGE)',
-      sma7: '+11.4%',
-      sma30: '+31.0%',
-      baselineRMSE: '0.0890',
-      lstmRMSE: '0.0740',
+      lstmMAPE: '2.42%',
+      naiveMAPE: '1.95%',
+      verdict: 'Naive Baseline Superior',
+      verdictType: 'baseline',
+    },
+    ETH: {
+      label: 'Ethereum (ETH)',
+      lstmMAPE: '2.28%',
+      naiveMAPE: '2.23%',
+      verdict: 'Near Parity',
+      verdictType: 'parity',
+    },
+    SOL: {
+      label: 'Solana (SOL)',
+      lstmMAPE: '2.86%',
+      naiveMAPE: '2.62%',
+      verdict: 'Naive Baseline Superior',
+      verdictType: 'baseline',
     },
   };
 
@@ -67,7 +67,7 @@ export function CryptoVisualization({ activeStage, selectedCoin }: Props) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-        {/* Simulated Time-Series Chart Curve SVG */}
+        {/* Time-Series Chart Curve SVG */}
         <div className="md:col-span-7 bg-white/[0.02] p-3 rounded-lg border border-white/5 relative">
           <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-2">
             <span className="text-white font-bold">{currentCoin.label} Daily OHLCV</span>
@@ -153,20 +153,29 @@ export function CryptoVisualization({ activeStage, selectedCoin }: Props) {
         {/* Technical Metric Indicators */}
         <div className="md:col-span-5 space-y-2 text-[10px]">
           <div className="p-2 rounded bg-white/[0.03] border border-white/5 flex justify-between items-center">
-            <span className="text-zinc-400">7-DAY SMA SHIFT:</span>
-            <span className="text-sky-300 font-bold">{currentCoin.sma7}</span>
+            <span className="text-zinc-400">LSTM MODEL MAPE:</span>
+            <span className="text-sky-300 font-mono font-bold">{currentCoin.lstmMAPE}</span>
           </div>
           <div className="p-2 rounded bg-white/[0.03] border border-white/5 flex justify-between items-center">
-            <span className="text-zinc-400">30-DAY EMA TREND:</span>
-            <span className="text-sky-300 font-bold">{currentCoin.sma30}</span>
-          </div>
-          <div className="p-2 rounded bg-white/[0.03] border border-white/5 flex justify-between items-center">
-            <span className="text-zinc-400">NAIVE BASELINE RMSE (t-1):</span>
-            <span className="text-amber-300 font-mono font-bold">{currentCoin.baselineRMSE}</span>
+            <span className="text-zinc-400">NAIVE BASELINE MAPE (t-1):</span>
+            <span className="text-amber-300 font-mono font-bold">{currentCoin.naiveMAPE}</span>
           </div>
           <div className="p-2 rounded bg-sky-500/10 border border-sky-500/30 flex justify-between items-center">
-            <span className="text-sky-200">LSTM MODEL RMSE:</span>
-            <span className="text-emerald-400 font-mono font-bold">{currentCoin.lstmRMSE}</span>
+            <span className="text-zinc-300">BENCHMARK VERDICT:</span>
+            <span
+              className={`font-mono font-bold px-1.5 py-0.5 rounded text-[9.5px] ${
+                currentCoin.verdictType === 'superior'
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                  : currentCoin.verdictType === 'baseline'
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                    : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
+              }`}
+            >
+              {currentCoin.verdict}
+            </span>
+          </div>
+          <div className="text-[9px] text-zinc-500 text-right pt-0.5 italic">
+            Source: training_summary_v2.csv
           </div>
         </div>
       </div>

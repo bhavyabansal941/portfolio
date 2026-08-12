@@ -61,7 +61,7 @@ export function ExperienceSection() {
                   Joint Vector Trigonometry
                 </span>
                 <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-zinc-300">
-                  Streamlit UI Overlay
+                  OpenCV Video Overlay
                 </span>
               </div>
             </div>

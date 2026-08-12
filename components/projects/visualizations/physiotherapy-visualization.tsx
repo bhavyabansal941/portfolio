@@ -150,11 +150,11 @@ export function PhysiotherapyVisualization({ activeStage }: Props) {
           <div className="grid grid-cols-2 gap-2 text-[10px]">
             <div className="p-2 rounded bg-white/[0.03] border border-white/5">
               <span className="text-zinc-500 block">KEYPOINTS</span>
-              <span className="text-white font-bold">33 MediaPipe 3D</span>
+              <span className="text-white font-bold">33 MediaPipe Landmarks</span>
             </div>
             <div className="p-2 rounded bg-white/[0.03] border border-white/5">
-              <span className="text-zinc-500 block">LATENCY</span>
-              <span className="text-emerald-400 font-bold">&lt; 50 ms / 30 FPS</span>
+              <span className="text-zinc-500 block">VIDEO STREAM</span>
+              <span className="text-emerald-400 font-bold">30 FPS OpenCV Stream</span>
             </div>
             <div className="p-2 rounded bg-white/[0.03] border border-white/5">
               <span className="text-zinc-500 block">VECTOR TRIG</span>

@@ -160,13 +160,13 @@ export const PORTFOLIO_DATA: {
       dataInputs:
         'Live webcam video feed at 30 FPS, extracting 33 normalized (x, y, z) MediaPipe pose landmarks per frame.',
       metricsSummary: [
-        { label: 'Processing Latency', value: '< 50ms' },
+        { label: 'Video Stream', value: '30 FPS OpenCV' },
         { label: 'Frame Rate', value: '30 FPS' },
-        { label: 'Pose Landmarks', value: '33 Nodes' },
-        { label: 'Award', value: '1st Place Winner (2025)' },
+        { label: 'Pose Landmarks', value: '33 Keypoints' },
+        { label: 'Top Award', value: '1st Place 2025' },
       ],
       tradeoffs: [
-        'Selected 2D landmark projection over 3D coordinate estimation for 3x lower latency on consumer webcams.',
+        'Selected 2D landmark projection over 3D coordinate estimation for lower latency on consumer webcams.',
         'Enforced strict 10-degree margin of error on joint posture bounds to prevent false positive rep completions.',
       ],
       limitations: [
@@ -185,7 +185,7 @@ export const PORTFOLIO_DATA: {
       },
       approach:
         'Engineered a real-time webcam pose tracking system extracting 33 MediaPipe keypoints, calculating 2D vector joint angles using math.atan2, and rendering live visual cues.',
-      techStack: ['Python 3.9', 'MediaPipe', 'OpenCV', 'NumPy', 'Streamlit', 'CSV'],
+      techStack: ['Python 3.9', 'MediaPipe', 'OpenCV', 'NumPy', 'CSV'],
       pipeline: [
         {
           stage: 'CAMERA',
@@ -218,9 +218,9 @@ export const PORTFOLIO_DATA: {
         {
           stage: 'POSTURE ANALYSIS',
           description: 'Threshold Evaluation',
-          purpose: 'Compares real-time angles against Target Thresholds',
-          nextStage: 'Visual & CSV Feedback Logging',
-          detail: 'Evaluates computed joint angles against posture execution bounds.',
+          purpose: 'Evaluates joint angles against form thresholds',
+          nextStage: 'Visual & CSV Logging',
+          detail: 'Posture bounds checking for sitting posture, push-up depth, and squat reps.',
         },
         {
           stage: 'FEEDBACK',
@@ -228,22 +228,22 @@ export const PORTFOLIO_DATA: {
           purpose: 'Renders UI overlays and logs workout repetitions',
           nextStage: 'End of Pipeline Frame Loop',
           detail:
-            'Streamlit visual overlay displaying real-time gauges and logging rep timestamps.',
+            'OpenCV visual overlay displaying real-time angle feedback and logging rep timestamps.',
         },
       ],
       implementation: [
         'Configured MediaPipe Pose solution with min_detection_confidence=0.5 and min_tracking_confidence=0.5 for stable 30 FPS inference.',
         'Calculated 2D vector angles using math.atan2 trigonometry across shoulder-elbow-wrist and hip-knee-ankle joint triplets in utils.py.',
-        'Designed interactive Streamlit web dashboard rendering live webcam feed alongside real-time angle gauges and repetition counters.',
+        'Designed interactive OpenCV camera interface rendering live video feed alongside real-time angle overlays and repetition counters.',
         'Implemented CSV data logger capturing per-frame joint angles and timestamped rep completion metrics to session_log.csv.',
       ],
       decisions: [
-        'Selected 2D landmark projection over 3D coordinate estimation for 3x lower latency on consumer webcams.',
-        'Used Streamlit frame-looping over heavy JS frontend frameworks to maintain monolithic Python codebase simplicity.',
+        'Selected 2D landmark projection over 3D coordinate estimation for lower processing latency on consumer webcams.',
+        'Used native OpenCV frame looping over heavy web wrappers to maintain real-time 30 FPS processing efficiency.',
         'Enforced strict 10-degree margin of error on joint posture bounds to prevent false positive rep completions.',
       ],
       outcome:
-        'Achieved sub-50ms frame processing latency on standard consumer webcams; winner of 1st Place at World Entrepreneurs Day Competition 2025.',
+        'Achieved real-time 30 FPS video frame processing on standard consumer webcams; winner of 1st Place at World Entrepreneurs Day Competition 2025.',
       githubUrl: 'https://github.com/bhavyabansal941/ai-physiotherapy-analysis',
       evidence: {
         type: 'code',

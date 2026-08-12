@@ -115,7 +115,7 @@ export default function ResumePage() {
                   AI-Based Physiotherapy Assistance System
                 </h3>
                 <span className="text-xs font-mono text-gray-500">
-                  Python, MediaPipe, OpenCV, Streamlit
+                  Python, MediaPipe, OpenCV, NumPy
                 </span>
               </div>
               <ul className="list-disc list-outside ml-4 text-xs text-gray-700 space-y-1">
@@ -128,7 +128,7 @@ export default function ResumePage() {
                   evaluate movement against target health thresholds.
                 </li>
                 <li>
-                  Designed an interactive camera interface in Streamlit that displays immediate
+                  Designed an interactive camera interface in OpenCV that displays immediate
                   visual feedback during rehabilitation sessions.
                 </li>
               </ul>

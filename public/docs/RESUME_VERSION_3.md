@@ -21,10 +21,10 @@ _Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Ex
 
 ## FEATURED PROJECTS
 
-**AI-Based Physiotherapy Assistance System** | _Python, MediaPipe, OpenCV, Streamlit_
+**AI-Based Physiotherapy Assistance System** | _Python, MediaPipe, OpenCV, NumPy_
 • Built a real-time posture analysis application to help users perform physiotherapy exercises accurately at home.
 • Formulated custom 2D joint angle calculations using MediaPipe pose landmarks to evaluate movement against target health thresholds.
-• Designed an interactive camera interface in Streamlit that displays immediate visual feedback during rehabilitation sessions.
+• Designed an interactive camera interface in OpenCV that displays immediate visual feedback during rehabilitation sessions.
 
 **Chronic Kidney Disease Prediction Pipeline** | _Python, Scikit-learn, XGBoost, Pandas_
 • Processed clinical dataset containing 4,000 patient records across 21 clinical and lifestyle features for 6-class severity staging.

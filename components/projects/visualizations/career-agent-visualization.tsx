@@ -78,7 +78,7 @@ export function CareerAgentVisualization({ activeStage }: Props) {
           {activeStage === 3 && 'Pydantic-validated skill gap analysis comparing candidate vs target roles.'}
           {activeStage === 4 && 'Chainlit chat UI with SQLAlchemy session persistence hosted live on Render.'}
         </span>
-        <span className="text-emerald-400 font-bold text-[10px]">SUB-SECOND GROQ INFERENCE</span>
+        <span className="text-emerald-400 font-bold text-[10px]">GROQ-HOSTED LLM INFERENCE</span>
       </div>
     </div>
   );
