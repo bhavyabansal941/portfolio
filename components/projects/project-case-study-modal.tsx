@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import { usePortfolio } from '@/context/portfolio-context';
 import { PORTFOLIO_DATA } from '@/data/portfolio-data';
@@ -18,10 +19,19 @@ import {
   Database,
   ShieldCheck,
   Film,
+  Activity,
 } from 'lucide-react';
 import { ProjectDemoMedia } from './project-demo-media';
 import { CKDEvaluationChart } from './visualizations/ckd-evaluation-chart';
 import { CryptoEvaluationChart } from './visualizations/crypto-evaluation-chart';
+
+const Physiotherapy3DLandmarkExplorer = dynamic(
+  () =>
+    import('./visualizations/physiotherapy-3d-landmark-explorer').then(
+      (m) => m.Physiotherapy3DLandmarkExplorer
+    ),
+  { ssr: false }
+);
 
 type TabType = 'architecture' | 'evidence' | 'demo';
 
@@ -167,6 +177,20 @@ export function ProjectCaseStudyModal() {
               </h4>
               <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">{project.approach}</p>
             </div>
+
+            {/* Interactive 3D Landmark Explorer (Physiotherapy Project Only) */}
+            {project.id === 'ai-physiotherapy' && (
+              <div className="space-y-2 pt-2 border-t border-white/10">
+                <h4 className="text-xs font-mono font-bold text-sky-400 uppercase flex items-center gap-2">
+                  <Activity className="w-3.5 h-3.5 text-sky-400" />
+                  INTERACTIVE 33-LANDMARK POSE EXPLORER
+                </h4>
+                <p className="text-xs text-zinc-400 font-mono">
+                  Explore the 33-landmark pose topology and inspect how joint-angle geometry connects 2D landmark coordinates to movement-form evaluation.
+                </p>
+                <Physiotherapy3DLandmarkExplorer />
+              </div>
+            )}
 
             {/* Tech Stack */}
             <div className="space-y-2">
