@@ -86,9 +86,20 @@ export function ProjectDemoMedia({ media, projectTitle, demoUrl }: ProjectDemoMe
         )}
       </div>
 
-      <p className="px-4 py-2 text-[11px] font-mono text-zinc-400 border-t border-white/5">
-        {media.caption}
-      </p>
+      <div className="px-4 py-2.5 text-[11px] font-mono text-zinc-400 border-t border-white/5 flex flex-wrap items-center justify-between gap-2.5">
+        <span className="flex-1 min-w-[200px]">{media.caption}</span>
+        {demoUrl && (
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-300 font-bold hover:bg-sky-500/20 transition-all shrink-0"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            <span>TRY LIVE DEMO ON RENDER ↗</span>
+          </a>
+        )}
+      </div>
     </div>
   );
 }

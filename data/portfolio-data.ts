@@ -517,8 +517,9 @@ df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)`,
         'Add interactive voice interview practice module using WebRTC.',
       ],
       demoMedia: {
-        type: 'coming_soon',
-        caption: 'Live interactive conversational assistant running at https://careeragent-n127.onrender.com',
+        type: 'video',
+        videoUrl: '/media/demos/careeragent-demo.mp4',
+        caption: 'Demonstration of CareerAgent conversational resume parsing, Llama 3.3 70B skill gap extraction, and Tavily web grounding.',
       },
       approach:
         'Built a Chainlit application utilizing LangChain, Groq API (Llama 3.3 70B & Llama 3.2 Vision), Pydantic schema validation, Tavily web search grounding, and Adzuna API live job matching.',
