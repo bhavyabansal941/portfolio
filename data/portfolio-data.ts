@@ -282,7 +282,7 @@ export const PORTFOLIO_DATA: {
         { label: 'Dataset Size', value: '4,000 Records' },
         { label: 'Features', value: '21 Attributes' },
         { label: 'XGBoost Accuracy', value: '98.75%' },
-        { label: '5-Fold CV F1', value: '0.985' },
+        { label: '5-Fold CV Acc', value: '0.985' },
       ],
       tradeoffs: [
         'Explicitly removed target-derived ckd_pred and cluster features to prevent artificially inflated 100% metrics.',
@@ -350,16 +350,17 @@ export const PORTFOLIO_DATA: {
       implementation: [
         'Processed Kaggle CKD dataset containing 4,000 patient records across 21 clinical and lifestyle attributes.',
         'Identified data leakage columns (ckd_pred, cluster) derived from target labels and dropped them before pipeline encoding.',
-        'Trained Logistic Regression (93.75%), Random Forest (98.63%), and XGBoost (98.75% accuracy / 0.985 5-fold CV F1).',
-        'Applied model-agnostic permutation importance; permutation importance identified GFR as the dominant feature in the trained model.',
+        'Trained Logistic Regression (93.75%), Random Forest (98.63%), and XGBoost (98.75% accuracy, 0.987 weighted F1, and 0.985 5-fold CV accuracy).',
+        'Built feature importance analyzer evaluating GFR (Glomerular Filtration Rate) as the primary predictive indicator for CKD severity staging.',
+        'Validated pipeline robustness using 5-fold cross-validation and confusion matrix analysis across all 6 clinical severity classes.',
       ],
       decisions: [
-        'Explicitly removed target-derived ckd_pred and cluster features to prevent artificially inflated 100% evaluation metrics.',
-        'Evaluated per-class confusion matrices across 6 stages to verify misclassifications occurred only between adjacent severity boundaries.',
-        'Selected XGBoost model for superior multi-class gradient boosting performance on tabular clinical metrics.',
+        'Explicitly removed ckd_pred target leakage field from model input features.',
+        'Selected XGBoost over Neural Network architecture for superior tabular feature interpretability and lower training overhead.',
+        'Applied Stratified K-Fold cross-validation to maintain class balance across all 6 severity stages.',
       ],
       outcome:
-        'Achieved 98.75% accuracy (0.985 5-fold CV F1) with XGBoost; permutation importance identified GFR as the dominant feature in the trained model.',
+        'Achieved 98.75% accuracy (0.987 weighted F1 / 0.985 5-fold CV accuracy) with XGBoost; permutation importance identified GFR as the dominant feature in the trained model.',
       githubUrl: 'https://github.com/bhavyabansal941/urine-test-disease-prediction',
       evidence: {
         type: 'code',
@@ -879,7 +880,7 @@ llm_with_tools = llm.bind_tools([web_search])`,
     {
       question: 'What projects has Bhavya built?',
       answer:
-        'Bhavya has engineered 4 canonical flagship systems: 1) AI-Based Physiotherapy Assistance System (MediaPipe 33 pose landmarks & 2D joint vector geometry at 30 FPS); 2) Chronic Kidney Disease Prediction Pipeline (4,000 patient records, 21 features, target leakage removal, and XGBoost classification achieving 98.75% accuracy & 0.985 5-fold CV F1); 3) Cryptocurrency Market Analysis (CoinGecko API, SQL, 7d/30d moving averages, and LSTM vs naive persistence baseline evaluation); 4) CareerAgent (Chainlit UI, Groq API Llama 3.3 70B & Llama 3.2 Vision OCR, Tavily grounding, Adzuna job APIs, and Render live deployment).',
+        'Bhavya has engineered 4 canonical flagship systems: 1) AI-Based Physiotherapy Assistance System (MediaPipe 33 pose landmarks & 2D joint vector geometry at 30 FPS); 2) Chronic Kidney Disease Prediction Pipeline (4,000 patient records, 21 features, target leakage removal, and XGBoost classification achieving 98.75% accuracy, 0.987 weighted F1, and 0.985 5-fold CV accuracy); 3) Cryptocurrency Market Analysis (CoinGecko API, SQL, 7d/30d moving averages, and LSTM vs naive persistence baseline evaluation); 4) CareerAgent (Chainlit UI, Groq API Llama 3.3 70B & Llama 3.2 Vision OCR, Tavily grounding, Adzuna job APIs, and Render live deployment).',
       actionType: 'projects',
       actionLabel: 'VIEW PROJECTS',
     },

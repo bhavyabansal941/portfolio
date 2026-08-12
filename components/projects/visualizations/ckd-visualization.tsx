@@ -12,7 +12,7 @@ export function CKDVisualization({ activeStage }: Props) {
     { stage: 0, label: '4,000 RECORDS', icon: Database, detail: '21 clinical features' },
     { stage: 1, label: 'LEAKAGE DROP', icon: Filter, detail: 'ckd_pred & cluster removal' },
     { stage: 2, label: 'ENCODING', icon: Sliders, detail: 'Categorical & standard scaling' },
-    { stage: 3, label: 'XGBoost MODEL', icon: Cpu, detail: '98.75% acc / 0.985 5-fold CV F1' },
+    { stage: 3, label: 'XGBoost MODEL', icon: Cpu, detail: '98.75% Acc / 0.987 F1 / 0.985 CV' },
     { stage: 4, label: 'STAGE 0–5 PREDICTION', icon: CheckCircle2, detail: 'GFR permutation importance' },
   ];
 
@@ -76,7 +76,7 @@ export function CKDVisualization({ activeStage }: Props) {
           {activeStage === 0 && 'Ingesting 4,000 patient records across 21 clinical & lifestyle features.'}
           {activeStage === 1 && 'Explicitly dropping ckd_pred & cluster columns to prevent target data leakage.'}
           {activeStage === 2 && 'One-hot encoding categorical lifestyle factors & standard scaling lab values.'}
-          {activeStage === 3 && 'Evaluating Logistic Regression, Random Forest & XGBoost (98.75% acc / 0.985 CV F1).'}
+          {activeStage === 3 && 'Evaluating Logistic Regression, Random Forest & XGBoost (98.75% Acc / 0.987 F1 / 0.985 CV Acc).'}
           {activeStage === 4 && 'Permutation importance identified GFR as dominant feature in trained model.'}
         </span>
         <span className="text-emerald-400 font-bold flex items-center gap-1">

@@ -153,8 +153,8 @@ export default function ResumePage() {
                   columns prior to categorical encoding.
                 </li>
                 <li>
-                  Evaluated multi-class CKD stage prediction using XGBoost, achieving 98.75% accuracy
-                  and 0.985 5-fold CV F1 score.
+                  Evaluated multi-class CKD stage prediction using XGBoost, achieving 98.75% accuracy,
+                  0.987 weighted F1, and 0.985 5-fold CV accuracy.
                 </li>
               </ul>
             </div>

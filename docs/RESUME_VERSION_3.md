@@ -29,7 +29,7 @@ _Bachelor of Technology (B.Tech) in Artificial Intelligence & Data Science_ | Ex
 **Chronic Kidney Disease Prediction Pipeline** | _Python, Scikit-learn, XGBoost, Pandas_
 • Processed clinical dataset containing 4,000 patient records across 21 clinical and lifestyle features for 6-class severity staging.
 • Implemented explicit target leakage prevention by identifying and dropping derived columns prior to categorical encoding.
-• Evaluated multi-class CKD stage prediction using XGBoost, achieving 98.75% accuracy and 0.985 5-fold CV F1 score.
+• Evaluated multi-class CKD stage prediction using XGBoost, achieving 98.75% accuracy, 0.987 weighted F1, and 0.985 5-fold CV accuracy.
 
 **Cryptocurrency Market Analysis & Trend Forecasting** | _Python, SQL, Pandas, CoinGecko API, TensorFlow/Keras_
 • Built automated CoinGecko REST API ingestion scripts to extract and clean daily time-series cryptocurrency financial data.
